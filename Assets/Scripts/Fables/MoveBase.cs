@@ -16,11 +16,27 @@ public class MoveBase : ScriptableObject
     public fableType Type { get { return type; } }
     public int Power { get { return power; } }
     public int Accuracy { get { return accuracy; } }
-    public int PP { get { return pp; } } // PP property remains the same
+    public int PP { get { return pp; } } 
 
-    // No changes needed for other properties
+    public bool IsSpecial
+    {
+        get
+        {
+            if (type == fableType.Decomposers || type == fableType.Carnivore || type == fableType.Omnivore)
+            {
+                return true;    
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
 
-    // If you want to update the move's PP during the battle, you can add a method like this:
+
+
+
+
     public void UpdatePP(int newPP)
     {
         pp = newPP;

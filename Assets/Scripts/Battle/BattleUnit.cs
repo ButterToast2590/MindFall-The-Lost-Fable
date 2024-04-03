@@ -6,11 +6,9 @@ using DG.Tweening;
 
 public class BattleUnit : MonoBehaviour
 {
-    [SerializeField] FablesBase Base;
-    [SerializeField] int level;
     [SerializeField] bool isPlayerUnit;
 
-    public Fables fables {  get; set; }
+    public Fables fables { get; set; }
 
     Image image;
     Vector3 originalPos;
@@ -25,14 +23,16 @@ public class BattleUnit : MonoBehaviour
     }
 
 
-    public void Setup()
+    public void Setup(Fables fables)
     {
-        fables = new Fables(Base, level);
+        this.fables = fables;
         if (isPlayerUnit)
             image.sprite = fables.Base.BackSpriteName;
         else
             image.sprite = fables.Base.FrontSpriteName;
 
+
+        image.color = originalColor;
         PlayEnterAnimation();
     }
 
@@ -43,7 +43,7 @@ public class BattleUnit : MonoBehaviour
         else
             image.transform.localPosition = new Vector3(500f, originalPos.y);
 
-        image.transform.DOLocalMoveX(originalPos.x, 1f);
+        image.transform.DOLocalMoveX(originalPos.x, 1f).SetEase(Ease.OutQuad);
     }
 
     public void PlayAttackAnimation()
@@ -55,6 +55,7 @@ public class BattleUnit : MonoBehaviour
             sequence.Append(image.transform.DOLocalMoveX(originalPos.x - 50f, 0.25f));
 
         sequence.Append(image.transform.DOLocalMoveX(originalPos.x, 0.25f));
+        sequence.Play();
     }
 
     public void PlayHitAnimation()
@@ -62,6 +63,7 @@ public class BattleUnit : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(image.DOColor(Color.gray, 0.1f));
         sequence.Append(image.DOColor(originalColor, 0.1f));
+        sequence.Play();
     }
 
     public void PlayFaintAnimation()
@@ -69,8 +71,7 @@ public class BattleUnit : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(image.transform.DOLocalMoveY(originalPos.y - 150f, 0.5f));
         sequence.Join(image.DOFade(0f, 0.5f));
+        sequence.Play();
     }
 
 }
-
-

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,10 @@ public class PlayerCon : MonoBehaviour
     public LayerMask Obstacles;
     public LayerMask grassLayer;
 
+
+
+    public event Action OnEncountered;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +26,7 @@ public class PlayerCon : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void HandleUpdate()
     {
         float moveX = 0f;
         float moveY = 0f;
@@ -57,15 +62,16 @@ public class PlayerCon : MonoBehaviour
         }
 
     }
-    //Check if the player is in an area fit for encountering Fables
+   
     private void CheckForEncounters()
     {
-        //Set the range of percentage a player can encounter a Fables
+        
         if (Physics2D.OverlapCircle(transform.position, 0.2f, grassLayer) != null)
         {
-            if (Random.Range(1, 101) <= 15)
+            if (UnityEngine.Random.Range(1, 101) <= 15)
             {
-                Debug.Log("Encounter a wild fable");
+                animator.SetBool("Moving", false);
+                OnEncountered();
             }
         }
     }

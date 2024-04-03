@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -12,19 +13,28 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleHUD enemyHUD;
     [SerializeField] BattleDialogBox dialogBox;
 
+    public event Action<bool> OnBattleOver;
+
     BattleState state;
     int selectedMoveIndex; // Variable to store the selected move index
     bool moveSelected = false;
 
-    private void Start()
+
+    FableParty playerParty;
+    Fables wildFables;
+
+
+    public void StartBattle(FableParty playerParty, Fables wildFables)
     {
+        this.playerParty = playerParty;
+        this.wildFables = wildFables;
         StartCoroutine(SetupBattle());
     }
 
     public IEnumerator SetupBattle()
     {
-        playerUnit.Setup();
-        enemyUnit.Setup();
+        playerUnit.Setup(playerParty.GetHealthyFable());
+        enemyUnit.Setup(wildFables);
         playerHUD.SetData(playerUnit.fables);
         enemyHUD.SetData(enemyUnit.fables);
 
@@ -66,6 +76,8 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.Busy;
 
         var move = playerUnit.fables.Moves[selectedMoveIndex];
+        move.PP--;
+
         yield return dialogBox.TypeDialog($"{playerUnit.fables.Base.FableName} used {move.Base.Name}");
 
         playerUnit.PlayAttackAnimation();
@@ -79,6 +91,10 @@ public class BattleSystem : MonoBehaviour
         {
             yield return dialogBox.TypeDialog($"{enemyUnit.fables.Base.FableName} Fainted");
             enemyUnit.PlayFaintAnimation();
+
+
+            yield return new WaitForSeconds(2f);
+            OnBattleOver(true);
         }
         else
         {
@@ -92,6 +108,7 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.EnemyMove;
 
         var move = enemyUnit.fables.GetRandomMove();
+        move.PP--;
         yield return dialogBox.TypeDialog($"{enemyUnit.fables.Base.FableName} used {move.Base.Name}");
 
         enemyUnit.PlayAttackAnimation();
@@ -106,6 +123,27 @@ public class BattleSystem : MonoBehaviour
         {
             yield return dialogBox.TypeDialog($"{playerUnit.fables.Base.FableName} Fainted");
             playerUnit.PlayFaintAnimation();
+
+
+            yield return new WaitForSeconds(2f);
+
+            var nextFable = playerParty.GetHealthyFable();
+            if (nextFable != null)
+            {
+                playerUnit.Setup(nextFable);
+                playerHUD.SetData(nextFable);
+
+                dialogBox.SetMoveNames(nextFable.Moves);
+
+                yield return dialogBox.TypeDialog($"I choose you Go {nextFable.Base.FableName}!");
+
+                PlayerAction();
+            }
+            else
+            {
+                OnBattleOver(false);
+            }
+
         }
         else
         {
@@ -126,9 +164,13 @@ public class BattleSystem : MonoBehaviour
 
 
 
-    private void Update()
+    public void HandleUpdate()
     {
-        if (state == BattleState.PlayerMove)
+        if (state == BattleState.PlayerAction)
+        {
+            HandlePlayerAction();
+        }
+        else if (state == BattleState.PlayerMove)
         {
             HandleMoveSelection();
         }
