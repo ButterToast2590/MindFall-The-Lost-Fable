@@ -19239,7 +19239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &519420029
 AudioListener:
   m_ObjectHideFlags: 0
@@ -20237,6 +20237,7 @@ MonoBehaviour:
   Right: 0
   Up: 0
   Down: 0
+  Moving: 0
   Obstacles:
     serializedVersion: 2
     m_Bits: 64
@@ -21259,7 +21260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1147693978
 Transform:
   m_ObjectHideFlags: 0
