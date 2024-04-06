@@ -1,6 +1,3 @@
-
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,22 +11,14 @@ public class PlayerCon : MonoBehaviour
     public bool Right;
     public bool Up;
     public bool Down;
-    public bool Moving;
     private Animator animator;
     public LayerMask Obstacles;
     public LayerMask grassLayer;
 
+
+
     public event Action OnEncountered;
 
-<<<<<<< HEAD
-=======
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    // Start is called before the first frame update
->>>>>>> origin/DevBranch
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -43,31 +32,26 @@ public class PlayerCon : MonoBehaviour
 
         if (Left)
         {
-            animator.SetFloat("moveX", -1f);
-            animator.SetFloat("moveY", 0f);
             moveX = -1f;
         }
-        if (Right)
+        else if (Right)
         {
-            animator.SetFloat("moveX", 1f);
-            animator.SetFloat("moveY", 0f);
             moveX = 1f;
         }
 
         if (Up)
         {
-            animator.SetFloat("moveY", 1f);
-            animator.SetFloat("moveX", 0f);
             moveY = 1f;
         }
-        if (Down)
+        else if (Down)
         {
-            animator.SetFloat("moveX", 0f);
-            animator.SetFloat("moveY", -1f);
             moveY = -1f;
         }
 
-      
+        // Set the animation parameters
+        animator.SetFloat("moveX", moveX);
+        animator.SetFloat("moveY", moveY);
+        animator.SetBool("Moving", moveX != 0 || moveY != 0); // Check if moving
 
         // Move the player
         Vector3 targetPos = transform.position + new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime;
@@ -91,109 +75,62 @@ public class PlayerCon : MonoBehaviour
         }
     }
    
-//boolean
- public void RightBtnDown()
-    {
-        Right = true;
-        animator.SetBool("Moving", true);
-
-        Debug.Log("walkright");
-    }
-
-    public void RightBtnUp()
-    {
-        Right = false;
-
-        if (!Left && !Up && !Down)
+        public void RightBtnDown()
         {
-            animator.SetFloat("moveX", 1); // No horizontal movement, set to idle
-            Debug.Log("idleright top");
+            Right = true;
         }
-        else if (!Left)
+        public void RightBtnUp()
         {
-            animator.SetFloat("moveY", -1); // Switch to idle left animation if not moving left
-            Debug.Log("idleright bottom");
-        }
-        animator.SetBool("Moving", false);
+            Right = false;
+            if (!Left && !Up && !Down)
+            {
+                animator.SetFloat("moveX", 0); // No horizontal movement, set to idle
+            }
         CheckForEncounters();
-    }
-
-    public void LeftBtnDown()
-    {
-        Left = true;
-        animator.SetBool("Moving", true);
-
-    }
-
-    public void LeftBtnUp()
-    {
-        Left = false;
-
-        if (!Right && !Up && !Down)
-        {
-            animator.SetFloat("moveX", -1); // No horizontal movement, set to idle facing left
-            animator.SetFloat("moveY", 0);
         }
-        else if (!Right)
+
+        public void LeftBtnDown()
         {
-            animator.SetFloat("moveY", 1); // Switch to idle right animation if not moving right
+            Left = true;
         }
-        animator.SetBool("Moving", false);
+        public void LeftBtnUp()
+        {
+            Left = false;
+            if (!Right && !Up && !Down)
+            {
+                animator.SetFloat("moveX", 0); // No horizontal movement, set to idle
+            }
         CheckForEncounters();
-    }
-
-    public void UpBtnDown()
-    {
-        Up = true;
-        animator.SetBool("Moving", true);
-
-    }
-
-    public void UpBtnUp()
-    {
-        Up = false;
-
-        if (!Right && !Left && !Down)
-        {
-            animator.SetFloat("moveY", 1);
-            animator.SetFloat("moveX", 0);// No vertical movement, set to idle facing up
-            Debug.Log("idleUP top");
         }
-        else if (!Down)
+
+        public void UpBtnDown()
         {
-            animator.SetFloat("moveX", -1); // Switch to idle facing up animation if not moving down
-            Debug.Log("idleUP bottom");
+            Up = true;
         }
-        animator.SetBool("Moving", false);
+        public void UpBtnUp()
+        {
+            Up = false;
+            if (!Right && !Left && !Down)
+            {
+                animator.SetFloat("moveY", -1); // No vertical movement, set to idle facing down
+            }
         CheckForEncounters();
-    }
-
-    public void DownBtnDown()
-    {
-        Down = true;
-        animator.SetBool("Moving", true);
-
-    }
-
-    public void DownBtnUp()
-    {
-        Down = false;
-
-        if (!Right && !Left && !Up)
-        {
-            animator.SetFloat("moveY", -1); // No vertical movement, set to idle facing down
-            animator.SetFloat("moveX", 0);
-            Debug.Log("idleDown Top");
         }
-        else if (!Up)
+
+        public void DownBtnDown()
         {
-            animator.SetFloat("moveX", 1); // Switch to idle facing down animation if not moving up
-            Debug.Log("idleDown bottom");
+            Down = true;
         }
-        animator.SetBool("Moving", false);
+        public void DownBtnUp()
+        {
+            Down = false;
+            if (!Right && !Left && !Up)
+            {
+                animator.SetFloat("moveY", -1); // No vertical movement, set to idle facing down
+            }
         CheckForEncounters();
-    }
-//boolean end here
+        }
+
 
     private bool IsWalkable(Vector3 targetPos)
     {
@@ -209,4 +146,3 @@ public class PlayerCon : MonoBehaviour
         return true;
     }
 }
-
