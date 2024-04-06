@@ -21280,6 +21280,7 @@ MonoBehaviour:
   Right: 0
   Up: 0
   Down: 0
+  Moving: 0
   Obstacles:
     serializedVersion: 2
     m_Bits: 64
