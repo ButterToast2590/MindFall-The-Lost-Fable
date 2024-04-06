@@ -12,6 +12,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleHUD playerHUD;
     [SerializeField] BattleHUD enemyHUD;
     [SerializeField] BattleDialogBox dialogBox;
+    [SerializeField] Button backButton;
+    [SerializeField] PartyScreen partyScreen;
 
     public event Action<bool> OnBattleOver;
 
@@ -19,10 +21,13 @@ public class BattleSystem : MonoBehaviour
     int selectedMoveIndex; // Variable to store the selected move index
     bool moveSelected = false;
 
-
     FableParty playerParty;
     Fables wildFables;
 
+    void Start()
+    {
+        backButton.onClick.AddListener(OnBackButtonClick);
+    }
 
     public void StartBattle(FableParty playerParty, Fables wildFables)
     {
@@ -38,6 +43,8 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetData(playerUnit.fables);
         enemyHUD.SetData(enemyUnit.fables);
 
+        partyScreen.Init();
+
         dialogBox.SetMoveNames(playerUnit.fables.Moves);
 
         yield return dialogBox.TypeDialog($"A Wild {enemyUnit.fables.Base.FableName} appeared.");
@@ -48,13 +55,14 @@ public class BattleSystem : MonoBehaviour
     void PlayerAction()
     {
         state = BattleState.PlayerAction;
-        moveSelected = false; 
+        moveSelected = false;
         StartCoroutine(HandlePlayerAction());
     }
+
     void DisableMoveDetails()
     {
         dialogBox.EnableMoveDetails(false);
-        dialogBox.EnableActionSelector(false); 
+        dialogBox.EnableActionSelector(false);
     }
 
     IEnumerator HandlePlayerAction()
@@ -155,14 +163,12 @@ public class BattleSystem : MonoBehaviour
     {
         if (damageDetails.Critical > 1f)
             yield return dialogBox.TypeDialog("A critical hit!!");
-            
+
         if (damageDetails.TypeEffectiveness > 1f)
             yield return dialogBox.TypeDialog("It's super effective!!");
         else if (damageDetails.TypeEffectiveness < 1f)
             yield return dialogBox.TypeDialog("It's not very effective!!");
     }
-
-
 
     public void HandleUpdate()
     {
@@ -186,18 +192,42 @@ public class BattleSystem : MonoBehaviour
             if (!moveSelected)
             {
                 dialogBox.UpdateMoveSelection(selectedMoveIndex, playerUnit.fables.Moves[selectedMoveIndex]);
-                dialogBox.EnableMoveDetails(true); // Enable move details here
+                dialogBox.EnableMoveDetails(true);
                 moveSelected = true;
             }
             else
             {
                 ConfirmMoveSelection(selectedMoveIndex);
-                // Disable move details here instead of in ConfirmMoveSelection
                 DisableMoveDetails();
             }
         }
     }
 
+    public void OnBackButtonClick()
+    {
+        ResetBattleState();
+    }
+
+    void ResetBattleState()
+    {
+        state = BattleState.PlayerAction;
+        moveSelected = false;
+        dialogBox.EnableActionSelector(true);
+        dialogBox.EnableMoveSelector(false);
+        dialogBox.EnableDialogText(true);
+        dialogBox.EnableMoveDetails(false);
+    }
+
+    public void OpenPartyScreen()
+    {
+        partyScreen.SetPartyData(playerParty.Fables);
+        partyScreen.gameObject.SetActive(true);
+    }
+
+    public void OnButtonClickRun()
+    {
+        print("The player has fled the scene!!");
+    }
 
     void ConfirmMoveSelection(int selectedMoveIndex)
     {
@@ -206,13 +236,13 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableDialogText(true);
         StartCoroutine(PerformPlayerMove());
 
-        // Disable move selection, PP, and type
         dialogBox.EnableMoveSelector(false);
     }
+
     public void OnMoveButtonClick(int moveIndex)
     {
         selectedMoveIndex = moveIndex;
         ConfirmMoveSelection(moveIndex);
-        DisableMoveDetails(); 
+        DisableMoveDetails();
     }
 }

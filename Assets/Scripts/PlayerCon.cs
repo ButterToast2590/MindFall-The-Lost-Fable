@@ -19,7 +19,6 @@ public class PlayerCon : MonoBehaviour
 
     public event Action OnEncountered;
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
