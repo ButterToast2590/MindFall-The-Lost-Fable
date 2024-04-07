@@ -21,15 +21,12 @@ public class PlayerCon : MonoBehaviour
 
     public event Action OnEncountered;
 
-<<<<<<< HEAD
-=======
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
-
     // Start is called before the first frame update
->>>>>>> origin/DevBranch
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -205,7 +202,7 @@ public class PlayerCon : MonoBehaviour
         {
             return false;
         }
-
+     
         return true;
     }
 }

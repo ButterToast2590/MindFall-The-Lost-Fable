@@ -7,13 +7,9 @@ public class FableParty : MonoBehaviour
 {
     [SerializeField] List<Fables> fables;
 
-
     public List<Fables> Fables
     {
-        get
-        {
-            return fables;
-        }
+        get { return fables; }
     }
 
     private void Start()

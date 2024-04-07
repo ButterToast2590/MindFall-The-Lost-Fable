@@ -2,8 +2,9 @@ using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
-public enum BattleState { Start, PlayerAction, PlayerMove, EnemyMove, Busy }
+public enum BattleState { Start, PlayerAction, PlayerMove, EnemyMove, Busy, PartyScreen }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -18,20 +19,31 @@ public class BattleSystem : MonoBehaviour
     public event Action<bool> OnBattleOver;
 
     BattleState state;
-    int selectedMoveIndex; // Variable to store the selected move index
+    int selectedMoveIndex;
     bool moveSelected = false;
+    int selectedMemberIndex;
 
     FableParty playerParty;
     Fables wildFables;
 
+    PartyMemberUI[] memberSlots;
+
     void Start()
     {
+        memberSlots = GameObject.FindObjectsOfType<PartyMemberUI>();
+        foreach (PartyMemberUI member in memberSlots)
+        {
+            member.SetSelected(false); // Deselect all party members initially
+        }
+
         backButton.onClick.AddListener(OnBackButtonClick);
     }
+
 
     public void StartBattle(FableParty playerParty, Fables wildFables)
     {
         this.playerParty = playerParty;
+        List<Fables> fables = playerParty.Fables; // Remove parentheses after Fables
         this.wildFables = wildFables;
         StartCoroutine(SetupBattle());
     }
@@ -180,6 +192,10 @@ public class BattleSystem : MonoBehaviour
         {
             HandleMoveSelection();
         }
+        else if (state == BattleState.PartyScreen)
+        {
+            HandlePartySelection(selectedMemberIndex);
+        }
     }
 
     void HandleMoveSelection()
@@ -203,11 +219,70 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+   public void HandlePartySelection(int memberIndex)
+    {
+
+        var selectedMember = playerParty.Fables[memberIndex];
+        if (selectedMember.HP <= 0)
+        {
+            partyScreen.SetMessageText("You can't send out a Fainted Fable");
+            return;
+        }
+        if (selectedMember.Base.FableName == playerUnit.fables.Base.FableName)
+        {
+            partyScreen.SetMessageText("You can't switch with the same Fable");
+            return;
+        }
+
+        partyScreen.gameObject.SetActive(false);
+        state = BattleState.Busy;
+        StartCoroutine(SwitchFables(selectedMember));
+    }
+
+    private int GetMemberIndex(PartyMemberUI partyMember)
+    {
+        for (int i = 0; i < memberSlots.Length; i++)
+        {
+            if (partyMember == memberSlots[i])
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    IEnumerator SwitchFables(Fables newFable)
+    {
+        yield return dialogBox.TypeDialog($"Come back {playerUnit.fables.Base.FableName}");
+        playerUnit.PlayFaintAnimation();
+        yield return new WaitForSeconds(2f);
+
+        // Set up the new fable
+        playerUnit.Setup(newFable);
+        playerHUD.SetData(newFable);
+        dialogBox.SetMoveNames(newFable.Moves);
+        yield return dialogBox.TypeDialog($"Go {newFable.Base.FableName}!");
+
+        StartCoroutine(EnemyMove());
+    }
+
+    void DeselectAllPartyMembers()
+    {
+        foreach (PartyMemberUI member in memberSlots)
+        {
+            member.SetSelected(false);
+        }
+    }
+
     public void OnBackButtonClick()
     {
         ResetBattleState();
     }
-
+    public void SwitchFableButton(int memberIndex)
+    {
+        HandlePartySelection(memberIndex);
+    }
     void ResetBattleState()
     {
         state = BattleState.PlayerAction;
@@ -220,11 +295,16 @@ public class BattleSystem : MonoBehaviour
 
     public void OpenPartyScreen()
     {
+        state = BattleState.PartyScreen;
         partyScreen.SetPartyData(playerParty.Fables);
         partyScreen.gameObject.SetActive(true);
-    }
 
-    public void OnButtonClickRun()
+        foreach (PartyMemberUI member in memberSlots)
+        {
+            member.SetSelected(false);
+        }
+    }
+    void OnButtonClickRun()
     {
         print("The player has fled the scene!!");
     }
@@ -239,10 +319,11 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableMoveSelector(false);
     }
 
-    public void OnMoveButtonClick(int moveIndex)
+    void OnMoveButtonClick(int moveIndex)
     {
         selectedMoveIndex = moveIndex;
         ConfirmMoveSelection(moveIndex);
         DisableMoveDetails();
     }
+
 }
