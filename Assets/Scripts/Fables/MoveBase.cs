@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Move", menuName = "Fable/Create new Move")]
 public class MoveBase : ScriptableObject
 {
-    [SerializeField] string name;
+    [SerializeField] new string name; // Use 'new' keyword to hide inherited member
     [TextArea]
     [SerializeField] string description;
     [SerializeField] fableType type;
@@ -16,7 +16,7 @@ public class MoveBase : ScriptableObject
     public fableType Type { get { return type; } }
     public int Power { get { return power; } }
     public int Accuracy { get { return accuracy; } }
-    public int PP { get { return pp; } } 
+    public int PP { get { return pp; } }
 
     public bool IsSpecial
     {
@@ -24,7 +24,7 @@ public class MoveBase : ScriptableObject
         {
             if (type == fableType.Decomposers || type == fableType.Carnivore || type == fableType.Omnivore)
             {
-                return true;    
+                return true;
             }
             else
             {
@@ -32,10 +32,6 @@ public class MoveBase : ScriptableObject
             }
         }
     }
-
-
-
-
 
     public void UpdatePP(int newPP)
     {

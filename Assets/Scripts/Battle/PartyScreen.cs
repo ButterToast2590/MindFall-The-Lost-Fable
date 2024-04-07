@@ -1,22 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PartyScreen : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI messageText;
     [SerializeField] Button backButton;
     [SerializeField] GameObject partyButtonContainer;
-    [SerializeField] PartyMemberUI[] memberSlots;
+    PartyMemberUI[] memberSlots;
 
     List<Fables> fables;
+    int selectedMemberIndex = -1;
 
     void Start()
     {
-        Init(); // Initialize member slots
-        HideBackButton(); // Hide back button initially
+        Init();
+        HideBackButton();
     }
 
     public void Init()
@@ -33,11 +33,31 @@ public class PartyScreen : MonoBehaviour
             if (i < fables.Count)
                 memberSlots[i].SetData(fables[i]);
             else
-                memberSlots[i].gameObject.SetActive(false); // Deactivate excess slots
+                memberSlots[i].gameObject.SetActive(false);
         }
 
         messageText.text = "Choose a Fable";
     }
+
+    public void UpdateMemberSelection(int selectedMember)
+    {
+        for (int i = 0; i < fables.Count; i++)
+        {
+            if (i == selectedMember)
+                memberSlots[i].SetSelected(true);
+            else
+                memberSlots[i].SetSelected(false);
+        }
+    }
+
+    public void SetMessageText(string message)
+    {
+        messageText.text = message;
+    }
+
+
+
+
 
     public void ShowPartyScreen()
     {
@@ -91,25 +111,9 @@ public class PartyScreen : MonoBehaviour
     {
         HidePartyScreen();
     }
-
-    public void UpdateMemberSelection(int selectedMember)
-    {
-        for (int i = 0; i < fables.Count; i++)
-        {
-            if (i == selectedMember)
-                memberSlots[i].SetSelected(true);
-            else
-                memberSlots[i].SetSelected(false);
-        }
-    }
-
-    public void SetMessageText(string message)
-    {
-        messageText.text = message;
-    }
-
     public void SelectPartyMember(int selectedIndex)
     {
+        selectedMemberIndex = selectedIndex; 
         for (int i = 0; i < memberSlots.Length; i++)
         {
             memberSlots[i].SetSelected(i == selectedIndex);

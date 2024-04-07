@@ -33,7 +33,7 @@ public class BattleSystem : MonoBehaviour
         memberSlots = GameObject.FindObjectsOfType<PartyMemberUI>();
         foreach (PartyMemberUI member in memberSlots)
         {
-            member.SetSelected(false); // Deselect all party members initially
+            member.SetSelected(false);
         }
 
         backButton.onClick.AddListener(OnBackButtonClick);
@@ -43,7 +43,7 @@ public class BattleSystem : MonoBehaviour
     public void StartBattle(FableParty playerParty, Fables wildFables)
     {
         this.playerParty = playerParty;
-        List<Fables> fables = playerParty.Fables; // Remove parentheses after Fables
+        List<Fables> fables = playerParty.Fables; 
         this.wildFables = wildFables;
         StartCoroutine(SetupBattle());
     }
@@ -194,7 +194,7 @@ public class BattleSystem : MonoBehaviour
         }
         else if (state == BattleState.PartyScreen)
         {
-            HandlePartySelection(selectedMemberIndex);
+            HandlePartySelection();
         }
     }
 
@@ -219,111 +219,100 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-   public void HandlePartySelection(int memberIndex)
+    public void HandlePartySelection()
     {
+        selectedMemberIndex = Mathf.Clamp(selectedMemberIndex, 0, playerParty.Fables.Count - 1);
+        partyScreen.UpdateMemberSelection(selectedMemberIndex);
 
-        var selectedMember = playerParty.Fables[memberIndex];
+        var selectedMember = playerParty.Fables[selectedMemberIndex];
+
         if (selectedMember.HP <= 0)
-        {
-            partyScreen.SetMessageText("You can't send out a Fainted Fable");
-            return;
-        }
-        if (selectedMember.Base.FableName == playerUnit.fables.Base.FableName)
-        {
-            partyScreen.SetMessageText("You can't switch with the same Fable");
-            return;
-        }
+            {
+                partyScreen.SetMessageText("You can't send out a Fainted Fable");
+                return;
+            }
+            if (selectedMember.Base.FableName == playerUnit.fables.Base.FableName)
+            {
+                partyScreen.SetMessageText("You can't switch with the same Fable");
+                return;
+            }
 
-        partyScreen.gameObject.SetActive(false);
-        state = BattleState.Busy;
-        StartCoroutine(SwitchFables(selectedMember));
+            partyScreen.gameObject.SetActive(false);
+            state = BattleState.Busy;
+            StartCoroutine(SwitchFables(selectedMember));
     }
 
-    private int GetMemberIndex(PartyMemberUI partyMember)
-    {
-        for (int i = 0; i < memberSlots.Length; i++)
+        IEnumerator SwitchFables(Fables newFable)
         {
-            if (partyMember == memberSlots[i])
+            yield return dialogBox.TypeDialog($"Come back {playerUnit.fables.Base.FableName}");
+            playerUnit.PlayFaintAnimation();
+            yield return new WaitForSeconds(2f);
+
+            // Set up the new fable
+            playerUnit.Setup(newFable);
+            playerHUD.SetData(newFable);
+            dialogBox.SetMoveNames(newFable.Moves);
+            yield return dialogBox.TypeDialog($"Go {newFable.Base.FableName}!");
+
+            StartCoroutine(EnemyMove());
+        }
+
+        void DeselectAllPartyMembers()
+        {
+            foreach (PartyMemberUI member in memberSlots)
             {
-                return i;
+                member.SetSelected(false);
             }
         }
-        return -1;
-    }
 
-
-    IEnumerator SwitchFables(Fables newFable)
-    {
-        yield return dialogBox.TypeDialog($"Come back {playerUnit.fables.Base.FableName}");
-        playerUnit.PlayFaintAnimation();
-        yield return new WaitForSeconds(2f);
-
-        // Set up the new fable
-        playerUnit.Setup(newFable);
-        playerHUD.SetData(newFable);
-        dialogBox.SetMoveNames(newFable.Moves);
-        yield return dialogBox.TypeDialog($"Go {newFable.Base.FableName}!");
-
-        StartCoroutine(EnemyMove());
-    }
-
-    void DeselectAllPartyMembers()
-    {
-        foreach (PartyMemberUI member in memberSlots)
+        public void OnBackButtonClick()
         {
-            member.SetSelected(false);
+            ResetBattleState();
         }
-    }
 
-    public void OnBackButtonClick()
-    {
-        ResetBattleState();
-    }
-    public void SwitchFableButton(int memberIndex)
-    {
-        HandlePartySelection(memberIndex);
-    }
-    void ResetBattleState()
-    {
-        state = BattleState.PlayerAction;
-        moveSelected = false;
-        dialogBox.EnableActionSelector(true);
-        dialogBox.EnableMoveSelector(false);
-        dialogBox.EnableDialogText(true);
-        dialogBox.EnableMoveDetails(false);
-    }
-
-    public void OpenPartyScreen()
-    {
-        state = BattleState.PartyScreen;
-        partyScreen.SetPartyData(playerParty.Fables);
-        partyScreen.gameObject.SetActive(true);
-
-        foreach (PartyMemberUI member in memberSlots)
+        void ResetBattleState()
         {
-            member.SetSelected(false);
+            state = BattleState.PlayerAction;
+            moveSelected = false;
+            dialogBox.EnableActionSelector(true);
+            dialogBox.EnableMoveSelector(false);
+            dialogBox.EnableDialogText(true);
+            dialogBox.EnableMoveDetails(false);
         }
-    }
-    void OnButtonClickRun()
-    {
-        print("The player has fled the scene!!");
-    }
 
-    void ConfirmMoveSelection(int selectedMoveIndex)
-    {
-        moveSelected = false;
-        dialogBox.UpdateMoveDetails(playerUnit.fables.Moves[selectedMoveIndex]);
-        dialogBox.EnableDialogText(true);
-        StartCoroutine(PerformPlayerMove());
+        public void OpenPartyScreen()
+        {
+            state = BattleState.PartyScreen;
+            partyScreen.SetPartyData(playerParty.Fables);
+            partyScreen.gameObject.SetActive(true);
+            selectedMemberIndex = 0;
 
-        dialogBox.EnableMoveSelector(false);
+            foreach (PartyMemberUI member in memberSlots)
+            {
+                member.SetSelected(false);
+            }
+        }
+
+        void OnButtonClickRun()
+        {
+            print("The player has fled the scene!!");
+        }
+
+        void ConfirmMoveSelection(int selectedMoveIndex)
+        {
+            moveSelected = false;
+            dialogBox.UpdateMoveDetails(playerUnit.fables.Moves[selectedMoveIndex]);
+            dialogBox.EnableDialogText(true);
+            StartCoroutine(PerformPlayerMove());
+
+            dialogBox.EnableMoveSelector(false);
+        }
+
+        void OnMoveButtonClick(int moveIndex)
+        {
+            selectedMoveIndex = moveIndex;
+            ConfirmMoveSelection(moveIndex);
+            DisableMoveDetails();
+        }
+
     }
-
-    void OnMoveButtonClick(int moveIndex)
-    {
-        selectedMoveIndex = moveIndex;
-        ConfirmMoveSelection(moveIndex);
-        DisableMoveDetails();
-    }
-
-}

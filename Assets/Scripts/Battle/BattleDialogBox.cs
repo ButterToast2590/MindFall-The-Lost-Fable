@@ -90,11 +90,9 @@ public class BattleDialogBox : MonoBehaviour
             {
                 buttonText.text = moves[i].Base.Name;
 
-                // Attach a click listener to the move button
-                int moveIndex = i; // Save the index in a local variable to avoid closure issues
-                moveButtons[i].onClick.RemoveAllListeners(); // Remove any existing listeners
+                int moveIndex = i; 
+                moveButtons[i].onClick.RemoveAllListeners(); 
                 moveButtons[i].onClick.AddListener(() => {
-                    // When the button is clicked, update move details
                     UpdateMoveDetails(moves[moveIndex]);
                 });
             }

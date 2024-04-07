@@ -19,8 +19,21 @@ public class FableParty : MonoBehaviour
             fable.Init();
         }
     }
+
+    public void SwitchFable(int index, Fables newFable)
+    {
+        if (index >= 0 && index < fables.Count)
+        {
+            fables[index] = newFable;
+        }
+        else
+        {
+            Debug.LogError("Invalid fable index for switching.");
+        }
+    }
+
     public Fables GetHealthyFable()
     {
-        return fables.Where(x => x.HP > 0).FirstOrDefault();
+        return fables.FirstOrDefault(x => x.HP > 0);
     }
 }
