@@ -13,14 +13,9 @@ public class PartyScreen : MonoBehaviour
     List<Fables> fables;
     int selectedMemberIndex = -1;
 
-    void Start()
-    {
-        Init();
-        HideBackButton();
-    }
-
     public void Init()
     {
+        Debug.Log("PartyScreen initialized.");
         memberSlots = GetComponentsInChildren<PartyMemberUI>();
     }
 
@@ -31,22 +26,31 @@ public class PartyScreen : MonoBehaviour
         for (int i = 0; i < memberSlots.Length; i++)
         {
             if (i < fables.Count)
-                memberSlots[i].SetData(fables[i]);
+            {
+                memberSlots[i].gameObject.SetActive(true); // Ensure the slot is active
+                memberSlots[i].SetData(fables[i]); // Set fable data for the slot
+            }
             else
-                memberSlots[i].gameObject.SetActive(false);
+            {
+                memberSlots[i].gameObject.SetActive(false); // Disable the slot if no fable data
+            }
         }
 
         messageText.text = "Choose a Fable";
+
+        foreach (var fable in fables)
+        {
+            Debug.Log("Fable Name: " + fable.Base.FableName); // Added debug log
+        }
     }
+
 
     public void UpdateMemberSelection(int selectedMember)
     {
-        for (int i = 0; i < fables.Count; i++)
+        DeselectAllPartyMembers();
+        if (selectedMember >= 0 && selectedMember < memberSlots.Length)
         {
-            if (i == selectedMember)
-                memberSlots[i].SetSelected(true);
-            else
-                memberSlots[i].SetSelected(false);
+            memberSlots[selectedMember].SetSelected(true);
         }
     }
 
@@ -55,9 +59,13 @@ public class PartyScreen : MonoBehaviour
         messageText.text = message;
     }
 
-
-
-
+    public void DeselectAllPartyMembers()
+    {
+        foreach (PartyMemberUI member in memberSlots)
+        {
+            member.SetSelected(false);
+        }
+    }
 
     public void ShowPartyScreen()
     {
@@ -111,12 +119,16 @@ public class PartyScreen : MonoBehaviour
     {
         HidePartyScreen();
     }
+
     public void SelectPartyMember(int selectedIndex)
     {
-        selectedMemberIndex = selectedIndex; 
-        for (int i = 0; i < memberSlots.Length; i++)
+        if (selectedIndex >= 0 && selectedIndex < memberSlots.Length)
         {
-            memberSlots[i].SetSelected(i == selectedIndex);
+            selectedMemberIndex = selectedIndex;
+            for (int i = 0; i < memberSlots.Length; i++)
+            {
+                memberSlots[i].SetSelected(i == selectedIndex);
+            }
         }
     }
 
