@@ -150,14 +150,7 @@ public class BattleSystem : MonoBehaviour
             var nextFable = playerParty.GetHealthyFable();
             if (nextFable != null)
             {
-                playerUnit.Setup(nextFable);
-                playerHUD.SetData(nextFable);
-
-                dialogBox.SetMoveNames(nextFable.Moves);
-
-                yield return dialogBox.TypeDialog($"I choose you Go {nextFable.Base.FableName}!");
-
-                PlayerAction();
+                OpenPartyScreen();
             }
             else
             {
@@ -194,7 +187,7 @@ public class BattleSystem : MonoBehaviour
         }
         else if (state == BattleState.PartyScreen)
         {
-            HandlePartySelection();
+            OnFableButtonClicked(selectedMemberIndex);
         }
     }
 
@@ -203,7 +196,7 @@ public class BattleSystem : MonoBehaviour
         if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
         {
             Vector2 inputPosition = (Input.touchCount > 0) ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
-            selectedMoveIndex = dialogBox.CalculateSelectedMoveIndex(inputPosition); // Update the selected move index
+            selectedMoveIndex = dialogBox.CalculateSelectedMoveIndex(inputPosition);
 
             if (!moveSelected)
             {
@@ -219,45 +212,27 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void HandlePartySelection()
+    IEnumerator SwitchFables(Fables newFable)
     {
-        selectedMemberIndex = Mathf.Clamp(selectedMemberIndex, 0, playerParty.Fables.Count - 1);
-        partyScreen.UpdateMemberSelection(selectedMemberIndex);
-
-        var selectedMember = playerParty.Fables[selectedMemberIndex];
-
-        if (selectedMember.HP <= 0)
-            {
-                partyScreen.SetMessageText("You can't send out a Fainted Fable");
-                return;
-            }
-            if (selectedMember.Base.FableName == playerUnit.fables.Base.FableName)
-            {
-                partyScreen.SetMessageText("You can't switch with the same Fable");
-                return;
-            }
-
-            partyScreen.gameObject.SetActive(false);
-            state = BattleState.Busy;
-            StartCoroutine(SwitchFables(selectedMember));
-    }
-
-        IEnumerator SwitchFables(Fables newFable)
+        if (playerUnit.fables.HP > 0)
         {
             yield return dialogBox.TypeDialog($"Come back {playerUnit.fables.Base.FableName}");
             playerUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
-
-            // Set up the new fable
-            playerUnit.Setup(newFable);
-            playerHUD.SetData(newFable);
-            dialogBox.SetMoveNames(newFable.Moves);
-            yield return dialogBox.TypeDialog($"Go {newFable.Base.FableName}!");
-
-            StartCoroutine(EnemyMove());
         }
+        // Set up the new fable
+        playerUnit.Setup(newFable);
+        playerHUD.SetData(newFable);
+        dialogBox.SetMoveNames(newFable.Moves);
+        yield return dialogBox.TypeDialog($"Go {newFable.Base.FableName}!");
 
-        void DeselectAllPartyMembers()
+        // Return to the battle state after switching
+        state = BattleState.PlayerAction;
+        StartCoroutine(EnemyMove());
+    }
+
+
+    void DeselectAllPartyMembers()
         {
             foreach (PartyMemberUI member in memberSlots)
             {
@@ -280,34 +255,30 @@ public class BattleSystem : MonoBehaviour
             dialogBox.EnableMoveDetails(false);
         }
 
-        public void OpenPartyScreen()
-        {
-            state = BattleState.PartyScreen;
-            partyScreen.SetPartyData(playerParty.Fables);
-            partyScreen.gameObject.SetActive(true);
-            selectedMemberIndex = 0;
+    public void OpenPartyScreen()
+    {
+        state = BattleState.PartyScreen;
+        partyScreen.SetPartyData(playerParty.Fables);
+        partyScreen.gameObject.SetActive(true);
+        selectedMemberIndex = -1; 
+        partyScreen.DeselectAllPartyMembers();
+    }
 
-            foreach (PartyMemberUI member in memberSlots)
-            {
-                member.SetSelected(false);
-            }
-        }
 
-        void OnButtonClickRun()
+    void ConfirmMoveSelection(int selectedMoveIndex)
+    {
+        moveSelected = false;
+        dialogBox.UpdateMoveDetails(playerUnit.fables.Moves[selectedMoveIndex]);
+        dialogBox.EnableDialogText(true);
+        StartCoroutine(PerformPlayerMove());
+
+        dialogBox.EnableMoveSelector(false);
+    }
+  //buttons
+    void OnButtonClickRun()
         {
             print("The player has fled the scene!!");
         }
-
-        void ConfirmMoveSelection(int selectedMoveIndex)
-        {
-            moveSelected = false;
-            dialogBox.UpdateMoveDetails(playerUnit.fables.Moves[selectedMoveIndex]);
-            dialogBox.EnableDialogText(true);
-            StartCoroutine(PerformPlayerMove());
-
-            dialogBox.EnableMoveSelector(false);
-        }
-
         void OnMoveButtonClick(int moveIndex)
         {
             selectedMoveIndex = moveIndex;
@@ -315,4 +286,30 @@ public class BattleSystem : MonoBehaviour
             DisableMoveDetails();
         }
 
+
+    public void OnFableButtonClicked(int selectedIndex)
+    {
+        if (selectedIndex >= 0 && selectedIndex < playerParty.Fables.Count)
+        {
+            var selectedMember = playerParty.Fables[selectedIndex];
+
+            if (selectedMember.HP <= 0)
+            {
+                partyScreen.SetMessageText("You can't send out a Fainted Fable");
+                return;
+            }
+
+            if (selectedMember == playerUnit.fables)
+            {
+                partyScreen.SetMessageText("You can't switch with the same Fable");
+                return;
+            }
+
+            partyScreen.gameObject.SetActive(false); // Hide party screen
+            state = BattleState.Busy;
+            selectedMemberIndex = selectedIndex; // Update selected member index
+            StartCoroutine(SwitchFables(selectedMember));
+        }
     }
+
+}
