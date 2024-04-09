@@ -31,6 +31,7 @@ public class FableParty : MonoBehaviour
             Debug.LogError("Invalid fable index for switching.");
         }
     }
+
     public Fables GetHealthyFable()
     {
         return fables.FirstOrDefault(x => x.HP > 0);

@@ -13,7 +13,7 @@ public class BattleHUD : MonoBehaviour
 
     public void SetData(Fables fable)
     {
-        _fables = fable; 
+        _fables = fable; // Corrected assignment
         nameText.text = fable.Base.FableName;
         levelText.text = "Lvl " + fable.Level;
         hpBar.SetHP((float)fable.HP / fable.MaxHp);
