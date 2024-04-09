@@ -305,7 +305,7 @@ public class BattleSystem : MonoBehaviour
                 return;
             }
 
-            partyScreen.gameObject.SetActive(false); // Hide party screen
+            partyScreen.gameObject.SetActive(false); 
             state = BattleState.Busy;
             selectedMemberIndex = selectedIndex; // Update selected member index
             StartCoroutine(SwitchFables(selectedMember));
