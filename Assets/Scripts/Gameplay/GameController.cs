@@ -17,11 +17,11 @@ public class GameController : MonoBehaviour
         playerController.OnEncountered += StartBattle;
         battleSystem.OnBattleOver += EndBattle;
 
-        DialogManager.Instance,OnShowDialog += () =>
+        DialogManager.Instance.OnShowDialog += () =>
         {
             state = GameState.Dialog;
         };
-        DialogManager.Instance,OnCloseDialog += () =>
+        DialogManager.Instance.OnCloseDialog += () =>
         {
             if (state == GameState.Dialog)
             {

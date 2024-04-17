@@ -4,199 +4,128 @@ using UnityEngine;
 public class PlayerCon : MonoBehaviour
 {
     public float moveSpeed;
-
-    public bool Left;
-    public bool Right;
-    public bool Up;
-    public bool Down;
-    public bool Moving;
-    private Animator animator;
-    public LayerMask Obstacles;
-    public LayerMask interactableLayer; // Changed to public
-    public LayerMask grassLayer;
-
     public event Action OnEncountered;
+    private Character character;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        character = GetComponent<Character>();
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        HandleUpdate();
+    }
+
     public void HandleUpdate()
     {
-        float moveX = 0f;
-        float moveY = 0f;
+        if (!character.IsMoving)
+        {
+            Vector2 input = Vector2.zero;
+            input.x = Input.GetAxisRaw("Horizontal");
+            input.y = Input.GetAxisRaw("Vertical");
 
-        if (Left)
-        {
-            animator.SetFloat("moveX", -1f);
-            animator.SetFloat("moveY", 0f);
-            moveX = -1f;
-        }
-        if (Right)
-        {
-            animator.SetFloat("moveX", 1f);
-            animator.SetFloat("moveY", 0f);
-            moveX = 1f;
-        }
-
-        if (Up)
-        {
-            animator.SetFloat("moveY", 1f);
-            animator.SetFloat("moveX", 0f);
-            moveY = 1f;
-        }
-        if (Down)
-        {
-            animator.SetFloat("moveX", 0f);
-            animator.SetFloat("moveY", -1f);
-            moveY = -1f;
-        }
-
-        // Move the player
-        Vector3 targetPos = transform.position + new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime;
-        if (IsWalkable(targetPos))
-        {
-            transform.Translate(new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime);
+            if (input != Vector2.zero)
+            {
+                StartCoroutine(character.Move(input * moveSpeed, CheckForEncounters));
+            }
+            else
+            {
+                float moveX = character.Animator.MoveX;
+                float moveY = character.Animator.MoveY;
+                Vector3 targetPos = transform.position + new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime;
+                if (character.IsWalkable(targetPos))
+                {
+                    transform.Translate(new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime);
+                }
+            }
         }
     }
 
     private void CheckForEncounters()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.2f, grassLayer) != null)
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.GrassLayer) != null)
         {
             if (UnityEngine.Random.Range(1, 101) <= 15)
             {
-                animator.SetBool("Moving", false);
-                OnEncountered();
+                character.Animator.IsMoving = false;
+                OnEncountered?.Invoke();
             }
         }
     }
 
-    //boolean
+    // Methods for button input handling
     public void RightBtnDown()
     {
-        Right = true;
-        animator.SetBool("Moving", true);
+        character.Animator.MoveX = 1;
+        character.Animator.MoveY = 0;
+        character.Animator.IsMoving = true;
     }
 
     public void RightBtnUp()
     {
-        Right = false;
-
-        if (!Left && !Up && !Down)
-        {
-            animator.SetFloat("moveX", 1); // No horizontal movement, set to idle
-        }
-        else if (!Left)
-        {
-            animator.SetFloat("moveY", -1); // Switch to idle left animation if not moving left
-        }
-        animator.SetBool("Moving", false);
+        character.Animator.MoveX = 0;
+        character.Animator.IsMoving = false;
         CheckForEncounters();
     }
 
     public void LeftBtnDown()
     {
-        Left = true;
-        animator.SetBool("Moving", true);
+        character.Animator.MoveX = -1;
+        character.Animator.MoveY = 0;
+        character.Animator.IsMoving = true;
     }
 
     public void LeftBtnUp()
     {
-        Left = false;
-
-        if (!Right && !Up && !Down)
-        {
-            animator.SetFloat("moveX", -1); // No horizontal movement, set to idle facing left
-            animator.SetFloat("moveY", 0);
-        }
-        else if (!Right)
-        {
-            animator.SetFloat("moveY", 1); // Switch to idle right animation if not moving right
-        }
-        animator.SetBool("Moving", false);
+        character.Animator.MoveX = 0;
+        character.Animator.IsMoving = false;
         CheckForEncounters();
     }
 
     public void UpBtnDown()
     {
-        Up = true;
-        animator.SetBool("Moving", true);
+        character.Animator.MoveY = 1;
+        character.Animator.MoveX = 0;
+        character.Animator.IsMoving = true;
     }
 
     public void UpBtnUp()
     {
-        Up = false;
-
-        if (!Right && !Left && !Down)
-        {
-            animator.SetFloat("moveY", 1);
-            animator.SetFloat("moveX", 0);// No vertical movement, set to idle facing up
-        }
-        else if (!Down)
-        {
-            animator.SetFloat("moveX", -1); // Switch to idle facing up animation if not moving down
-        }
-        animator.SetBool("Moving", false);
+        character.Animator.MoveY = 0;
+        character.Animator.IsMoving = false;
         CheckForEncounters();
     }
 
     public void DownBtnDown()
     {
-        Down = true;
-        animator.SetBool("Moving", true);
+        character.Animator.MoveY = -1;
+        character.Animator.MoveX = 0;
+        character.Animator.IsMoving = true;
     }
 
     public void DownBtnUp()
     {
-        Down = false;
-
-        if (!Right && !Left && !Up)
-        {
-            animator.SetFloat("moveY", -1); // No vertical movement, set to idle facing down
-            animator.SetFloat("moveX", 0);
-        }
-        else if (!Up)
-        {
-            animator.SetFloat("moveX", 1); // Switch to idle facing down animation if not moving up
-        }
-        animator.SetBool("Moving", false);
+        character.Animator.MoveY = 0;
+        character.Animator.IsMoving = false;
         CheckForEncounters();
     }
-    //boolean end here
 
-    private bool IsWalkable(Vector3 targetPos)
+    // Method for interacting with objects
+    void Interact()
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f, Obstacles | interactableLayer) != null) // Changed to use the bitwise OR operator
+        var facingDir = new Vector3(character.Animator.MoveX, character.Animator.MoveY);
+        var interactPos = transform.position + facingDir;
+
+        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, GameLayers.i.InteractableLayer);
+        if (collider != null)
         {
-            return false;
+            collider.GetComponent<Interactable>()?.Interact(transform);
         }
-
-        return true;
-    }
-
-    void interact()
-    {
-        var animator = GetComponent<Animator>(); // Get the Animator component
-
-        if (animator != null) // Check if Animator component exists
-        {
-            var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
-            var interactPos = transform.position + facingDir;
-
-            var collider = Physics2D.OverlapCircle(interactPos, 0.3f, interactableLayer);
-            if (collider != null)
-            {
-                collider.GetComponent<Interactable>()?.Interact();
-            }
-        }
-        //Debug.DrawLine(transform.position, interactPos, Color.green, 0.5f);
     }
 
     public void OnInteract()
     {
-        interact();
+        Interact();
     }
 }

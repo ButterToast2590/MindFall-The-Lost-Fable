@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class SpriteAnimator
     List<Sprite> frames;
     float frameRate;
 
-    //Keep track of current frame
+    // Keep track of current frame
     int currentFrame;
     float timer;
 
@@ -36,4 +35,6 @@ public class SpriteAnimator
             timer -= frameRate;
         }
     }
+
+    public List<Sprite> Frames { get { return frames; } }
 }
