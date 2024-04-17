@@ -7,6 +7,10 @@ using DG.Tweening;
 public class BattleUnit : MonoBehaviour
 {
     [SerializeField] bool isPlayerUnit;
+    [SerializeField] BattleHUD hud;
+
+    public bool IsPlayerUnit { get { return isPlayerUnit; }}
+    public BattleHUD Hud { get { return hud; } }
 
     public Fables fables { get; set; }
 
@@ -31,6 +35,8 @@ public class BattleUnit : MonoBehaviour
         else
             image.sprite = fables.Base.FrontSpriteName;
 
+
+        hud.SetData(fables);
 
         image.color = originalColor;
         PlayEnterAnimation();

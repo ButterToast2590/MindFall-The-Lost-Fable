@@ -4,14 +4,12 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public enum BattleState { Start, PlayerAction, PlayerMove, EnemyMove, Busy, PartyScreen }
+public enum BattleState { Start, ActionSelection, MoveSelection, PerformMove, Busy, PartyScreen, BattleOver }
 
 public class BattleSystem : MonoBehaviour
 {
     [SerializeField] BattleUnit playerUnit;
     [SerializeField] BattleUnit enemyUnit;
-    [SerializeField] BattleHUD playerHUD;
-    [SerializeField] BattleHUD enemyHUD;
     [SerializeField] BattleDialogBox dialogBox;
     [SerializeField] Button backButton;
     [SerializeField] PartyScreen partyScreen;
@@ -53,8 +51,6 @@ public class BattleSystem : MonoBehaviour
     {
         playerUnit.Setup(playerParty.GetHealthyFable());
         enemyUnit.Setup(wildFables);
-        playerHUD.SetData(playerUnit.fables);
-        enemyHUD.SetData(enemyUnit.fables);
 
         partyScreen.Init();
 
@@ -62,12 +58,19 @@ public class BattleSystem : MonoBehaviour
 
         yield return dialogBox.TypeDialog($"A Wild {enemyUnit.fables.Base.FableName} appeared.");
 
-        PlayerAction();
+        ActionSelection();
     }
 
-    void PlayerAction()
+    void BattleOver(bool won)
     {
-        state = BattleState.PlayerAction;
+        state = BattleState.BattleOver;
+        OnBattleOver(won);
+    }
+
+
+    void ActionSelection()
+    {
+        state = BattleState.ActionSelection;
         moveSelected = false;
         StartCoroutine(HandlePlayerAction());
     }
@@ -84,70 +87,73 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableActionSelector(true);
     }
 
-    void PlayerMove()
+    void MoveSelection()
     {
-        state = BattleState.PlayerMove;
+        state = BattleState.MoveSelection;
         dialogBox.EnableActionSelector(false);
         dialogBox.EnableDialogText(false);
         dialogBox.EnableMoveSelector(true);
     }
 
-    IEnumerator PerformPlayerMove()
+    IEnumerator PlayerMove()
     {
-        state = BattleState.Busy;
+        state = BattleState.PerformMove;
 
         var move = playerUnit.fables.Moves[selectedMoveIndex];
-        move.PP--;
+        yield return RunMove(playerUnit, enemyUnit, move);
 
-        yield return dialogBox.TypeDialog($"{playerUnit.fables.Base.FableName} used {move.Base.Name}");
-
-        playerUnit.PlayAttackAnimation();
-        yield return new WaitForSeconds(1f);
-
-        enemyUnit.PlayHitAnimation();
-        var damageDetails = enemyUnit.fables.TakeDamage(move, playerUnit.fables);
-        yield return enemyHUD.UpdateHP();
-        yield return ShowDamageDetails(damageDetails);
-        if (damageDetails.Fainted)
-        {
-            yield return dialogBox.TypeDialog($"{enemyUnit.fables.Base.FableName} Fainted");
-            enemyUnit.PlayFaintAnimation();
-
-
-            yield return new WaitForSeconds(2f);
-            OnBattleOver(true);
-        }
-        else
+        // If the battle stat was not changed by RunMove, then go to next step
+        if (state == BattleState.PerformMove)
         {
             StartCoroutine(EnemyMove());
         }
         dialogBox.EnableMoveDetails(false);
     }
 
+
     IEnumerator EnemyMove()
     {
-        state = BattleState.EnemyMove;
+        state = BattleState.PerformMove;
 
         var move = enemyUnit.fables.GetRandomMove();
-        move.PP--;
-        yield return dialogBox.TypeDialog($"{enemyUnit.fables.Base.FableName} used {move.Base.Name}");
+        yield return RunMove(enemyUnit, playerUnit, move);
 
-        enemyUnit.PlayAttackAnimation();
+        // If the battle stat was not changed by RunMove, then go to next step
+        if (state == BattleState.PerformMove)
+        {
+            ActionSelection();
+        }
+    }
+
+
+    IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move)
+    {
+        move.PP--;
+
+        yield return dialogBox.TypeDialog($"{sourceUnit.fables.Base.FableName} used {move.Base.Name}");
+
+        sourceUnit.PlayAttackAnimation();
         yield return new WaitForSeconds(1f);
 
-        playerUnit.PlayHitAnimation();
-        var damageDetails = playerUnit.fables.TakeDamage(move, enemyUnit.fables);
-        yield return playerHUD.UpdateHP();
+        targetUnit.PlayHitAnimation();
+        var damageDetails = targetUnit.fables.TakeDamage(move, sourceUnit.fables);
+        yield return targetUnit.Hud.UpdateHP();
         yield return ShowDamageDetails(damageDetails);
-
         if (damageDetails.Fainted)
         {
-            yield return dialogBox.TypeDialog($"{playerUnit.fables.Base.FableName} Fainted");
-            playerUnit.PlayFaintAnimation();
-
-
+            yield return dialogBox.TypeDialog($"{targetUnit.fables.Base.FableName} Fainted");
+            targetUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
 
+            CheckForBattleOver(targetUnit);
+        }
+    }
+
+
+    void CheckForBattleOver(BattleUnit faintedUnit)
+    {
+        if (faintedUnit.IsPlayerUnit)
+        {
             var nextFable = playerParty.GetHealthyFable();
             if (nextFable != null)
             {
@@ -155,16 +161,17 @@ public class BattleSystem : MonoBehaviour
             }
             else
             {
-                OnBattleOver(false);
+                BattleOver(false);
             }
-
         }
         else
         {
-            PlayerAction();
+            BattleOver(true);
         }
+
     }
 
+  
     IEnumerator ShowDamageDetails(DamageDetails damageDetails)
     {
         if (damageDetails.Critical > 1f)
@@ -178,11 +185,11 @@ public class BattleSystem : MonoBehaviour
 
     public void HandleUpdate()
     {
-        if (state == BattleState.PlayerAction)
+        if (state == BattleState.ActionSelection)
         {
             HandlePlayerAction();
         }
-        else if (state == BattleState.PlayerMove)
+        else if (state == BattleState.MoveSelection)
         {
             HandleMoveSelection();
         }
@@ -229,7 +236,6 @@ public class BattleSystem : MonoBehaviour
         }
 
         playerUnit.Setup(newFable);
-        playerHUD.SetData(newFable);
         dialogBox.SetMoveNames(newFable.Moves);
         yield return dialogBox.TypeDialog($"Go {newFable.Base.FableName}!");
         state = BattleState.Busy;
@@ -257,7 +263,7 @@ public class BattleSystem : MonoBehaviour
 
     void ResetBattleState()
     {
-        state = BattleState.PlayerAction;
+        state = BattleState.ActionSelection;
         moveSelected = false;
         dialogBox.EnableActionSelector(true);
         dialogBox.EnableMoveSelector(false);
@@ -282,7 +288,7 @@ public class BattleSystem : MonoBehaviour
         moveSelected = false;
         dialogBox.UpdateMoveDetails(playerUnit.fables.Moves[selectedMoveIndex]);
         dialogBox.EnableDialogText(true);
-        StartCoroutine(PerformPlayerMove());
+        StartCoroutine(PlayerMove());
 
         dialogBox.EnableMoveSelector(false);
     }
@@ -322,6 +328,11 @@ public class BattleSystem : MonoBehaviour
             selectedMemberIndex = selectedIndex; // Update selected member index
             StartCoroutine(SwitchFables(selectedMember));
         }
+    }
+
+   public void OnMoveSelectionButtonClick()
+    {
+        MoveSelection();
     }
 
 }

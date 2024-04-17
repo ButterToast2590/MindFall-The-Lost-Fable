@@ -1,9 +1,4 @@
-
-
-
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCon : MonoBehaviour
@@ -17,17 +12,12 @@ public class PlayerCon : MonoBehaviour
     public bool Moving;
     private Animator animator;
     public LayerMask Obstacles;
+    public LayerMask interactableLayer; // Changed to public
     public LayerMask grassLayer;
 
     public event Action OnEncountered;
 
-
     private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-    // Start is called before the first frame update
-    void Start()
     {
         animator = GetComponent<Animator>();
     }
@@ -64,20 +54,16 @@ public class PlayerCon : MonoBehaviour
             moveY = -1f;
         }
 
-      
-
         // Move the player
         Vector3 targetPos = transform.position + new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime;
         if (IsWalkable(targetPos))
         {
             transform.Translate(new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime);
         }
-
     }
-   
+
     private void CheckForEncounters()
     {
-        
         if (Physics2D.OverlapCircle(transform.position, 0.2f, grassLayer) != null)
         {
             if (UnityEngine.Random.Range(1, 101) <= 15)
@@ -87,14 +73,12 @@ public class PlayerCon : MonoBehaviour
             }
         }
     }
-   
-//boolean
- public void RightBtnDown()
+
+    //boolean
+    public void RightBtnDown()
     {
         Right = true;
         animator.SetBool("Moving", true);
-
-        Debug.Log("walkright");
     }
 
     public void RightBtnUp()
@@ -104,12 +88,10 @@ public class PlayerCon : MonoBehaviour
         if (!Left && !Up && !Down)
         {
             animator.SetFloat("moveX", 1); // No horizontal movement, set to idle
-            Debug.Log("idleright top");
         }
         else if (!Left)
         {
             animator.SetFloat("moveY", -1); // Switch to idle left animation if not moving left
-            Debug.Log("idleright bottom");
         }
         animator.SetBool("Moving", false);
         CheckForEncounters();
@@ -119,7 +101,6 @@ public class PlayerCon : MonoBehaviour
     {
         Left = true;
         animator.SetBool("Moving", true);
-
     }
 
     public void LeftBtnUp()
@@ -143,7 +124,6 @@ public class PlayerCon : MonoBehaviour
     {
         Up = true;
         animator.SetBool("Moving", true);
-
     }
 
     public void UpBtnUp()
@@ -154,12 +134,10 @@ public class PlayerCon : MonoBehaviour
         {
             animator.SetFloat("moveY", 1);
             animator.SetFloat("moveX", 0);// No vertical movement, set to idle facing up
-            Debug.Log("idleUP top");
         }
         else if (!Down)
         {
             animator.SetFloat("moveX", -1); // Switch to idle facing up animation if not moving down
-            Debug.Log("idleUP bottom");
         }
         animator.SetBool("Moving", false);
         CheckForEncounters();
@@ -169,7 +147,6 @@ public class PlayerCon : MonoBehaviour
     {
         Down = true;
         animator.SetBool("Moving", true);
-
     }
 
     public void DownBtnUp()
@@ -180,30 +157,46 @@ public class PlayerCon : MonoBehaviour
         {
             animator.SetFloat("moveY", -1); // No vertical movement, set to idle facing down
             animator.SetFloat("moveX", 0);
-            Debug.Log("idleDown Top");
         }
         else if (!Up)
         {
             animator.SetFloat("moveX", 1); // Switch to idle facing down animation if not moving up
-            Debug.Log("idleDown bottom");
         }
         animator.SetBool("Moving", false);
         CheckForEncounters();
     }
-//boolean end here
+    //boolean end here
 
     private bool IsWalkable(Vector3 targetPos)
     {
-        // Cast a ray from the current position to the target position
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, targetPos, Obstacles);
-
-        // If the ray hits an obstacle, return false
-        if (hit.collider != null)
+        if (Physics2D.OverlapCircle(targetPos, 0.2f, Obstacles | interactableLayer) != null) // Changed to use the bitwise OR operator
         {
             return false;
         }
-     
+
         return true;
     }
-}
 
+    void interact()
+    {
+        var animator = GetComponent<Animator>(); // Get the Animator component
+
+        if (animator != null) // Check if Animator component exists
+        {
+            var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+            var interactPos = transform.position + facingDir;
+
+            var collider = Physics2D.OverlapCircle(interactPos, 0.3f, interactableLayer);
+            if (collider != null)
+            {
+                collider.GetComponent<Interactable>()?.Interact();
+            }
+        }
+        //Debug.DrawLine(transform.position, interactPos, Color.green, 0.5f);
+    }
+
+    public void OnInteract()
+    {
+        interact();
+    }
+}
