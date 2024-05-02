@@ -10,6 +10,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] int power;
     [SerializeField] int accuracy;
     [SerializeField] int pp;
+    [SerializeField] int priority; 
 
     public string Name { get { return name; } }
     public string Description { get { return description; } }
@@ -17,6 +18,7 @@ public class MoveBase : ScriptableObject
     public int Power { get { return power; } }
     public int Accuracy { get { return accuracy; } }
     public int PP { get { return pp; } }
+    public int Priority { get { return priority; } } 
 
     public bool IsSpecial
     {

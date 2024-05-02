@@ -56,3 +56,6 @@ TagManager:
   - name: LongGrass
     uniqueID: 4093190681
     locked: 0
+  - name: Battle
+    uniqueID: 2951786425
+    locked: 0

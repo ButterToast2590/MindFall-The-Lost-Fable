@@ -1,0 +1,883 @@
+fileFormatVersion: 2
+guid: c63b6697232eb0647bec7d1fa13ee28e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 203
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 652f0072af0665b42b08161d2d682cac
+      internalID: -1396123780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 225
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17d085b8ff9aa88479adfaa12e988b52
+      internalID: 688621451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 128
+        width: 48
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5361339, y: 0.20856088}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7821d19800c60f44aa93f27da0e2810
+      internalID: 1597075773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_3
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 129
+        width: 47
+        height: 55
+      alignment: 9
+      pivot: {x: 0.509226, y: 0.23195384}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06738f8c5d17ba44acfd3118d6f7682
+      internalID: -2128705588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_4
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 126
+        width: 47
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5184524, y: 0.17651731}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d673c43563080048aed6976ad0ef0ae
+      internalID: -122143973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 128
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5000004, y: 0.20815101}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aa7bac3bcd214d408ef342ba46dd7bf
+      internalID: -1830099078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_6
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 126
+        width: 55
+        height: 55
+      alignment: 9
+      pivot: {x: 0.52365226, y: 0.24772117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ff16ab16e6a69d4d9c1762d949332bd
+      internalID: 1380832040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_7
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 124
+        width: 38
+        height: 52
+      alignment: 9
+      pivot: {x: 0.48858964, y: 0.21648934}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d176a93c1fe75046b7f1f854aa89d52
+      internalID: 1311945179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_8
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 98
+        width: 30
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9648262ae2a74c84b9e817148e8f6093
+      internalID: 670202300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_9
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 98
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8faa75d8658597040bb9da29432469bb
+      internalID: 1144543034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_10
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 98
+        width: 30
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb3e75fc1e62a8d4b9926a56c7b062ac
+      internalID: 961413628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_11
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 95
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95c4280eb545fbd47a00a6b8a46ceccb
+      internalID: -1677216985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_12
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 96
+        width: 29
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7785ca2542b28740afd9e92727b34b9
+      internalID: -1497621765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_13
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 95
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea5ea1f7566a8343aac4340bcabcc98
+      internalID: -2105800588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_14
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 70
+        width: 28
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bffcea28532b9744d9a23374b062cb6d
+      internalID: 605747480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_15
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 70
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 127a4fe5daaff644eadd962909a1e51e
+      internalID: 438380742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_16
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 71
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fb0c65b6082f26448d9e071c3bb255a
+      internalID: -149067354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 71
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c07d300a774cda428f078febda362a8
+      internalID: -380082986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_18
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 71
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fbfdeea0140c6f4b854f5b4d28666e3
+      internalID: 1481694952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_19
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 69
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c504b0f797f63f4cb90197ef677c101
+      internalID: -393839298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_20
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 68
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a90cb3c4da1c6ea47bbaf8de343e4d59
+      internalID: 356689463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_21
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 70
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2c5f2ca5aa48e14387d26acbe5ceecd
+      internalID: 363063315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_22
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 70
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a7a184a46ba374458a93a8bb517686d
+      internalID: 1358579174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_23
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 44
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46e965ecdf1c8024bbf33b0acab2198e
+      internalID: -375962438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_24
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 39
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbbeca5ea7ec83d428a7b427420fe8a7
+      internalID: -1820406296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_25
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 44
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d783a6d94ba184ab88902488784b6c
+      internalID: -1682668578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_26
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 38
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 253b6e18fd861f1418ffc9304a643023
+      internalID: 923235604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_27
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 39
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a98001760bc2c7946b2d1f0f7abe9793
+      internalID: -974078085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_28
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 38
+        width: 33
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3a9364f8c5a6db4cbf102d06cfc57d4
+      internalID: -322499986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_29
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 36
+        width: 30
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d74b101df8d180248ad03361db38899c
+      internalID: 88657603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_30
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 36
+        width: 33
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48537ffca7829454faf966c17bd5a9d5
+      internalID: 1731710514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_31
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 15
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 355e913196552a740828c93561fa1579
+      internalID: -568330728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_32
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 14
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed962341e6c16de419ec9cf374b7e242
+      internalID: 1517004034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunoAndstuff-3.png_33
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 13
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7cd1c18a55df941bb7e2f061db7cca
+      internalID: -1944970128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PunoAndstuff-3.png_0: -1396123780
+      PunoAndstuff-3.png_1: 688621451
+      PunoAndstuff-3.png_10: 961413628
+      PunoAndstuff-3.png_11: -1677216985
+      PunoAndstuff-3.png_12: -1497621765
+      PunoAndstuff-3.png_13: -2105800588
+      PunoAndstuff-3.png_14: 605747480
+      PunoAndstuff-3.png_15: 438380742
+      PunoAndstuff-3.png_16: -149067354
+      PunoAndstuff-3.png_17: -380082986
+      PunoAndstuff-3.png_18: 1481694952
+      PunoAndstuff-3.png_19: -393839298
+      PunoAndstuff-3.png_2: 1597075773
+      PunoAndstuff-3.png_20: 356689463
+      PunoAndstuff-3.png_21: 363063315
+      PunoAndstuff-3.png_22: 1358579174
+      PunoAndstuff-3.png_23: -375962438
+      PunoAndstuff-3.png_24: -1820406296
+      PunoAndstuff-3.png_25: -1682668578
+      PunoAndstuff-3.png_26: 923235604
+      PunoAndstuff-3.png_27: -974078085
+      PunoAndstuff-3.png_28: -322499986
+      PunoAndstuff-3.png_29: 88657603
+      PunoAndstuff-3.png_3: -2128705588
+      PunoAndstuff-3.png_30: 1731710514
+      PunoAndstuff-3.png_31: -568330728
+      PunoAndstuff-3.png_32: 1517004034
+      PunoAndstuff-3.png_33: -1944970128
+      PunoAndstuff-3.png_4: -122143973
+      PunoAndstuff-3.png_5: -1830099078
+      PunoAndstuff-3.png_6: 1380832040
+      PunoAndstuff-3.png_7: 1311945179
+      PunoAndstuff-3.png_8: 670202300
+      PunoAndstuff-3.png_9: 1144543034
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

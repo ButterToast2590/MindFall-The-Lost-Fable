@@ -10,6 +10,13 @@ public class Fables
     [SerializeField] FablesBase _base;
     [SerializeField] int level;
 
+    public Fables(FablesBase pBase, int pLevel)
+    {
+        _base = pBase; 
+        level = pLevel;
+
+        Init();
+    }
 
 
     public FablesBase Base { get { return _base; } }
@@ -18,6 +25,7 @@ public class Fables
     public int HP { get; set; }
 
     public List<Move> Moves { get; set; }
+    public Move CurrentMove { get; set; }
 
     public void Init()
     {

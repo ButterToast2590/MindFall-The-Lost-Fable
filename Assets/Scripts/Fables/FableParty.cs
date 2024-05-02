@@ -1,11 +1,11 @@
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public class FableParty : MonoBehaviour
 {
-    [SerializeField] List<Fables> fables;
+    [SerializeField] public List<Fables> fables;
 
     public List<Fables> Fables
     {
@@ -34,5 +34,17 @@ public class FableParty : MonoBehaviour
     public Fables GetHealthyFable()
     {
         return fables.FirstOrDefault(x => x.HP > 0);
+    }
+
+    public void AddFable(Fables newFables)
+    {
+        if (fables.Count < 6)
+        {
+            fables.Add(newFables);
+        }
+        else
+        {
+
+        }
     }
 }

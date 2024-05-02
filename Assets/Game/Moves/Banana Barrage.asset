@@ -17,4 +17,5 @@ MonoBehaviour:
   type: 6
   power: 80
   accuracy: 100
-  pp: 15
+  pp: 1
+  priority: 0

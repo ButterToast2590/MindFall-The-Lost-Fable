@@ -18,3 +18,4 @@ MonoBehaviour:
   power: 90
   accuracy: 80
   pp: 10
+  priority: 1

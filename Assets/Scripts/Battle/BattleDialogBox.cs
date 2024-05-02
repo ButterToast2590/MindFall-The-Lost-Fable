@@ -12,10 +12,16 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] GameObject actionSelector;
     [SerializeField] GameObject moveSelector;
     [SerializeField] GameObject moveDetails;
+    [SerializeField] GameObject choiceBox;
+
+
     [SerializeField] List<Button> actionButtons;
     [SerializeField] List<Button> moveButtons;
+
     [SerializeField] TextMeshProUGUI ppText;
     [SerializeField] TextMeshProUGUI typeText;
+    [SerializeField] TextMeshProUGUI yesText;
+    [SerializeField] TextMeshProUGUI noText;
 
     private Move currentMove;
 
@@ -61,6 +67,11 @@ public class BattleDialogBox : MonoBehaviour
         moveDetails.SetActive(enabled);
     }
 
+    public void EnableChoiceBox(bool enabled)
+    {
+        choiceBox.SetActive(enabled);
+    }
+
     public void UpdateActionSelection(int selectedAction)
     {
         for (int i = 0; i < actionButtons.Count; ++i)
@@ -72,10 +83,24 @@ public class BattleDialogBox : MonoBehaviour
 
     public void UpdateMoveSelection(int selectedMove, Move move)
     {
-        for (int i = 0; i < moveButtons.Count; ++i)
+        for (int i = 0; i < actionButtons.Count; ++i)
         {
             Color color = (i == selectedMove) ? highlightedColor : Color.white;
-            moveButtons[i].image.color = color;
+            actionButtons[i].image.color = color;
+        }
+    }
+
+    public void UpdateChoiceBox(bool yesSelected)
+    {
+        if (yesSelected)
+        {
+            yesText.color = highlightedColor;
+            noText.color = Color.black; 
+        }
+        else
+        {
+            yesText.color = Color.black;
+            noText.color = highlightedColor;
         }
     }
 
@@ -139,6 +164,15 @@ public class BattleDialogBox : MonoBehaviour
             ppText.text = $"PP: {move.PP}/{move.Base.PP}";
             typeText.text = $"Type: {move.Base.Type.ToString()}";
             moveDetails.SetActive(true);
+
+            if (move.PP == 0)
+            {
+                ppText.color = Color.red;
+            }
+            else
+            {
+                ppText.color = Color.black;
+            }
         }
     }
 

@@ -17,6 +17,8 @@ public class FablesBase : ScriptableObject
     [SerializeField] int spAttack;
     [SerializeField] int spDefense;
     [SerializeField] int speed;
+
+    [SerializeField] int catchRate = 255;
     [SerializeField] List<LearnableMove> learnableMoves;
 
     public string FableName { get { return fablename; } }
@@ -31,6 +33,7 @@ public class FablesBase : ScriptableObject
     public int SpAttack { get { return spAttack; } }
     public int SpDefense { get { return spDefense; } }
     public int Speed { get { return speed; } }
+    public int CatchRate => catchRate;
     public List<LearnableMove> LearnableMoves { get { return learnableMoves; } }
 }
 

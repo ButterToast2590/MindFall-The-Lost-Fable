@@ -12,6 +12,11 @@ public class GameController : MonoBehaviour
 
    public GameState state;
 
+    public static GameController Instance{get; private set;}    
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         playerController.OnEncountered += StartBattle;
@@ -49,12 +54,37 @@ public class GameController : MonoBehaviour
         var playerParty = playerController.GetComponent<FableParty>();
         var wildFable = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildFables();
 
-        battleSystem.StartBattle(playerParty, wildFable);
+        var wildFableCopy = new Fables(wildFable.Base, wildFable.Level);
+
+        battleSystem.StartBattle(playerParty, wildFableCopy);
+
+    }
+    TrainerController trainer;
+    //Start Trainer Battle
+    public void StartTrainerBattle(TrainerController trainer)
+    {
+        state = GameState.Battle;
+        battleSystem.gameObject.SetActive(true);
+        worldCamera.gameObject.SetActive(false);
+
+        this.trainer = trainer;
+        var playerParty = playerController.GetComponent<FableParty>();
+        var trainerParty = trainer.GetComponent<FableParty>();
+       
+
+        battleSystem.StartTrainerBattle(playerParty, trainerParty);
 
     }
 
+
     void EndBattle(bool won)
     {
+        if(trainer != null && won == true)
+        {
+            trainer.BattleLost();
+            trainer = null;
+        }
+
         state = GameState.FreeRoam;
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);

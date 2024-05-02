@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerCon : MonoBehaviour, IDataPersistence
 {
+
+    [SerializeField] string name;
+    [SerializeField] Sprite sprite;
     public float moveSpeed;
     public event Action OnEncountered;
     public event Action<Collider2D> OnEnterTrainersView;
@@ -11,6 +14,10 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
     bool isInDialog = false;
     bool isMovementPaused = false; 
     bool isInTrainerViewCollider = false;
+
+
+    public string Name { get => name; }
+    public Sprite Sprite { get => sprite; }
 
     private void Awake()
     {
