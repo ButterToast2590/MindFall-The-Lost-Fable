@@ -129,6 +129,7 @@ public class BattleSystem : MonoBehaviour
     void BattleOver(bool won)
     {
         state = BattleState.BattleOver;
+        playerParty.fables.ForEach(p => p.OnBattleOver());
         OnBattleOver(won);
     }
 
@@ -169,12 +170,20 @@ public class BattleSystem : MonoBehaviour
 
         sourceUnit.PlayAttackAnimation();
         yield return new WaitForSeconds(1f);
-
         targetUnit.PlayHitAnimation();
-        var damageDetails = targetUnit.fables.TakeDamage(move, sourceUnit.fables);
-        yield return targetUnit.Hud.UpdateHP();
-        yield return ShowDamageDetails(damageDetails);
-        if (damageDetails.Fainted)
+
+        if (move.Base.Category == MoveCategory.Status)
+        {
+           yield return RunMoveEffects(move, sourceUnit.fables, targetUnit.fables);
+        }
+        else
+        {
+            var damageDetails = targetUnit.fables.TakeDamage(move, sourceUnit.fables);
+            yield return targetUnit.Hud.UpdateHP();
+            yield return ShowDamageDetails(damageDetails);
+        }
+
+        if (targetUnit.fables.HP <= 0)
         {
             yield return dialogBox.TypeDialog($"{targetUnit.fables.Base.FableName} Fainted");
             targetUnit.PlayFaintAnimation();
@@ -182,9 +191,69 @@ public class BattleSystem : MonoBehaviour
 
             CheckForBattleOver(targetUnit);
         }
+
+        //Statuses like bruise or poison will hurt the fable after the turn
+        sourceUnit.fables.OnAfterTurn();
+        yield return ShowStatusChanges(sourceUnit.fables);
+        yield return sourceUnit.Hud.UpdateHP();
+        if (sourceUnit.fables.HP <= 0)
+        {
+            yield return dialogBox.TypeDialog($"{sourceUnit.fables.Base.FableName} Fainted");
+            sourceUnit.PlayFaintAnimation();
+            yield return new WaitForSeconds(2f);
+
+            CheckForBattleOver(sourceUnit);
+        }
+
         DisableMoveDetails();
     }
 
+    IEnumerator RunMoveEffects(Move move, Fables source, Fables target)
+    {
+        var effects = move.Base.Effects;
+        //Stat Boosting
+        if (effects.Boosts != null)
+        {
+            if (move.Base.Target == MoveTarget.Self)
+            {
+                source.ApplyBoosts(move.Base.Effects.Boosts); 
+            }
+            else
+            {
+                target.ApplyBoosts(move.Base.Effects.Boosts); 
+            }
+        }
+        //Stat Condition
+        if (effects.Status != ConditionID.None)
+        {
+            target.SetStatus(effects.Status);
+        }
+
+        if (source != null && source != null) 
+        {
+            yield return ShowStatusChanges(source);
+        }
+        if (target != null && target != null) 
+        {
+            yield return ShowStatusChanges(target);
+        }
+    }
+
+
+
+    IEnumerator ShowStatusChanges(Fables fable)
+    {
+        Debug.Log("ShowStatusChanges coroutine started.");
+
+        while (fable.StatusChanges.Count > 0)
+        {
+            var message = fable.StatusChanges.Dequeue();
+            Debug.Log("Dequeued status change message: " + message);
+            yield return dialogBox.TypeDialog(message);
+        }
+
+        Debug.Log("ShowStatusChanges coroutine finished.");
+    }
 
     void CheckForBattleOver(BattleUnit faintedUnit)
     {
@@ -240,87 +309,84 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitUntil(() => state == BattleState.RunningTurn);
     }
 
-    public IEnumerator RunTurns(BattleAction playerAction)
+   public IEnumerator RunTurns(BattleAction playerAction)
+{
+    state = BattleState.RunningTurn;
+
+    // Stop the current battle coroutine if it exists
+    if (battleCoroutine != null)
     {
-        state = BattleState.RunningTurn;
-
-        // Stop the current battle coroutine if it exists
-        if (battleCoroutine != null)
-        {
-            StopCoroutine(battleCoroutine);
-        }
-
-        // Assign the current coroutine to the battleCoroutine variable
-        battleCoroutine = StartCoroutine(ExecuteTurn(playerAction));
-
-        yield return battleCoroutine;
+        StopCoroutine(battleCoroutine);
     }
 
-    private IEnumerator ExecuteTurn(BattleAction playerAction)
+    // Assign the current coroutine to the battleCoroutine variable
+    battleCoroutine = StartCoroutine(ExecuteTurn(playerAction));
+
+    yield return battleCoroutine;
+}
+
+private IEnumerator ExecuteTurn(BattleAction playerAction)
+{
+    if (playerAction == BattleAction.Move)
     {
-        if (playerAction == BattleAction.Move)
+        var selectedMove = playerUnit.fables.Moves[selectedMoveIndex];
+
+        if (selectedMove.PP == 0)
         {
-            var selectedMove = playerUnit.fables.Moves[selectedMoveIndex];
-
-            if (selectedMove.PP == 0)
-            {
-                yield return dialogBox.TypeDialog($"No PP left for {selectedMove.Base.Name}!");
-                DisableMoveDetails();
-                // Return to Action Selection
-                ActionSelection();
-                yield break;
-            }
-            else if (selectedMove.PP < 0)
-            {
-                // If PP somehow goes negative, set it back to 0
-                selectedMove.PP = 0;
-            }
-
-            // Now let's run the move since it has PP
-            playerUnit.fables.CurrentMove = selectedMove;
-            enemyUnit.fables.CurrentMove = enemyUnit.fables.GetRandomMove();
-
-            int playerMovePriority = playerUnit.fables.CurrentMove.Base.Priority;
-            int enemyMovePriority = enemyUnit.fables.CurrentMove.Base.Priority;
-
-            // Check who goes first
-            bool playerGoesFirst = true;
-            if (enemyMovePriority > playerMovePriority)
-            {
-                playerGoesFirst = false;
-            }
-            else if (enemyMovePriority == playerMovePriority)
-            {
-                playerGoesFirst = playerUnit.fables.Speed >= enemyUnit.fables.Speed;
-            }
-
-            var firstUnit = (playerGoesFirst) ? playerUnit : enemyUnit;
-            var secondUnit = (playerGoesFirst) ? enemyUnit : playerUnit;
-
-            // First turn
-            yield return RunMove(firstUnit, secondUnit, firstUnit.fables.CurrentMove);
-            yield return RunAfterTurn(firstUnit);
-            if (state == BattleState.BattleOver) yield break;
-
-            // Check if both fables are still alive before proceeding to the second turn
-            if (playerUnit.fables.HP > 0 && enemyUnit.fables.HP > 0)
-            {
-                // Second turn
-                yield return RunMove(secondUnit, firstUnit, secondUnit.fables.CurrentMove);
-                yield return RunAfterTurn(secondUnit);
-                if (state == BattleState.BattleOver) yield break;
-            }
-
-            // Check if any fable has fainted after both turns
-            if (playerUnit.fables.HP <= 0 || enemyUnit.fables.HP <= 0)
-            {
-                // Reset battle state
-                ResetBattle();
-                yield break;
-            }
+            yield return dialogBox.TypeDialog($"No PP left for {selectedMove.Base.Name}!");
+            DisableMoveDetails();
+            ActionSelection();
+            yield break;
         }
-        else
+        else if (selectedMove.PP < 0)
         {
+            selectedMove.PP = 0;
+        }
+
+        // run the move since it has PP
+        playerUnit.fables.CurrentMove = selectedMove;
+        enemyUnit.fables.CurrentMove = enemyUnit.fables.GetRandomMove();
+
+        int playerMovePriority = playerUnit.fables.CurrentMove.Base.Priority;
+        int enemyMovePriority = enemyUnit.fables.CurrentMove.Base.Priority;
+
+        // Check who goes first
+        bool playerGoesFirst = true;
+        if (enemyMovePriority > playerMovePriority)
+        {
+            playerGoesFirst = false;
+        }
+        else if (enemyMovePriority == playerMovePriority)
+        {
+            playerGoesFirst = playerUnit.fables.Speed >= enemyUnit.fables.Speed;
+        }
+
+        var firstUnit = (playerGoesFirst) ? playerUnit : enemyUnit;
+        var secondUnit = (playerGoesFirst) ? enemyUnit : playerUnit;
+
+        // First turn
+        yield return RunMove(firstUnit, secondUnit, firstUnit.fables.CurrentMove);
+        yield return RunAfterTurn(firstUnit);
+        if (state == BattleState.BattleOver) yield break;
+
+        // Check if both fables are still alive before proceeding to the second turn
+        if (playerUnit.fables.HP > 0 && enemyUnit.fables.HP > 0)
+        {
+            // Second turn
+            yield return RunMove(secondUnit, firstUnit, secondUnit.fables.CurrentMove);
+            yield return RunAfterTurn(secondUnit);
+            if (state == BattleState.BattleOver) yield break;
+        }
+
+        // Check if any fable has fainted after turns
+        if (playerUnit.fables.HP <= 0 || enemyUnit.fables.HP <= 0)
+        {
+            ResetBattle();
+            yield break;
+        }
+    }
+    else
+    {
             if (playerAction == BattleAction.SwitchFable)
             {
                 var selectedFable = playerParty.fables[selectedMemberIndex];
@@ -341,6 +407,8 @@ public class BattleSystem : MonoBehaviour
             var enemyMove = enemyUnit.fables.GetRandomMove();
             yield return RunMove(enemyUnit, playerUnit, enemyMove);
             yield return RunAfterTurn(enemyUnit);
+
+            // Check if battle is over after enemy action
             if (state == BattleState.BattleOver) yield break;
 
             // Check if any fable has fainted after the enemy's turn
@@ -357,6 +425,8 @@ public class BattleSystem : MonoBehaviour
             ActionSelection(); // Return to action selection
         }
     }
+
+
 
 
 
@@ -437,12 +507,20 @@ public class BattleSystem : MonoBehaviour
         dialogBox.SetMoveNames(newFable.Moves);
         yield return dialogBox.TypeDialog($"Go {newFable.Base.FableName}!");
 
-        state = BattleState.RunningTurn;
+        // Trigger the enemy's turn immediately after the player's fable switch
+        if (state == BattleState.PartyScreen)
+        {
+            state = BattleState.RunningTurn; // Change state to RunningTurn for enemy's turn
+            StartCoroutine(RunTurns(BattleAction.SwitchFable)); // Proceed with enemy's turn
+            yield return new WaitUntil(() => state != BattleState.RunningTurn); // Wait until the enemy's turn finishes
+        }
 
         switchAnimationInProgress = false;
-        if (state != BattleState.PartyScreen)
+
+        // If it's not a manual switch or the enemy's turn, continue with player's turn
+        if (state != BattleState.RunningTurn)
         {
-            dialogBox.EnableActionSelector(true);
+            ActionSelection();
         }
     }
 

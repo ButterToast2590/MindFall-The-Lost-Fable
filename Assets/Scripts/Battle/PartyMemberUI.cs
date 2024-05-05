@@ -6,6 +6,7 @@ public class PartyMemberUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] Image typeImage;
     [SerializeField] HPBar hpBar;
     [SerializeField] Color highlightedColor;
 
@@ -25,6 +26,9 @@ public class PartyMemberUI : MonoBehaviour
         nameText.text = _fable.Base.FableName;
         levelText.text = "Lvl " + _fable.Level;
         hpBar.SetHP((float)_fable.HP / _fable.MaxHp);
+
+        // Set fable type image
+        typeImage.sprite = _fable.Base.TypeSprite;
     }
 
     public void SetSelected(bool selected)

@@ -9,6 +9,7 @@ public class FablesBase : ScriptableObject
     [TextArea][SerializeField] string description;
     [SerializeField] Sprite frontsprite;
     [SerializeField] Sprite backsprite;
+    [SerializeField] Sprite typeSprite;
     [SerializeField] fableType type1;
     [SerializeField] fableType type2;
     [SerializeField] int maxHp;
@@ -18,8 +19,12 @@ public class FablesBase : ScriptableObject
     [SerializeField] int spDefense;
     [SerializeField] int speed;
 
+    [SerializeField] int expYield;
+
     [SerializeField] int catchRate = 255;
     [SerializeField] List<LearnableMove> learnableMoves;
+
+    public Sprite TypeSprite { get { return typeSprite; } }
 
     public string FableName { get { return fablename; } }
     public string Description { get { return description; } }
@@ -58,6 +63,14 @@ public enum fableType
     Carnivore,
     Omnivore,
     
+}
+public enum Stat
+{
+    Attack,
+    Defense,
+    SpAttack,
+    SpDefense,
+    Speed
 }
 
 

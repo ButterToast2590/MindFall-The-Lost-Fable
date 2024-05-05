@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc2cbc9881d8e6428e671ec4ba3e317, type: 3}
+  m_Name: Serpentine
+  m_EditorClassIdentifier: 
+  fablename: Serpentine
+  description: 
+  frontsprite: {fileID: 21300000, guid: 3047399c9f0530d429aca4c5496584e6, type: 3}
+  backsprite: {fileID: 21300000, guid: 1344c78f228222e4f899ab59b117dc1a, type: 3}
+  typeSprite: {fileID: 21300000, guid: 653a6fe1d97188644a3747cd5e674bc4, type: 3}
+  type1: 5
+  type2: 1
+  maxHp: 60
+  attack: 95
+  defense: 69
+  spAttack: 65
+  spDefense: 79
+  speed: 80
+  expYield: 157
+  catchRate: 255
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 3360c9746eaeb8f429b4e9186a2a984f, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 239d250e6fc4a6242822448e2a08c393, type: 2}
+    level: 4
+  - moveBase: {fileID: 11400000, guid: e340f151ab9378040a169af17c701f66, type: 2}
+    level: 7
+  - moveBase: {fileID: 11400000, guid: 5c179c53430e8944883cdf2465fe5b57, type: 2}
+    level: 16
