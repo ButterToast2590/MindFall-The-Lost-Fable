@@ -8,8 +8,9 @@ public class BattleUnit : MonoBehaviour
 {
     [SerializeField] bool isPlayerUnit;
     [SerializeField] BattleHUD hud;
+    [SerializeField] GameObject particleEffectPrefab; // Reference to the particle effect prefab
 
-    public bool IsPlayerUnit { get { return isPlayerUnit; }}
+    public bool IsPlayerUnit { get { return isPlayerUnit; } }
     public BattleHUD Hud { get { return hud; } }
 
     public Fables fables { get; set; }
@@ -18,14 +19,12 @@ public class BattleUnit : MonoBehaviour
     Vector3 originalPos;
     Color originalColor;
 
-
     private void Awake()
     {
         image = GetComponent<Image>();
         originalPos = image.transform.localPosition;
         originalColor = image.color;
     }
-
 
     public void Setup(Fables fables)
     {
@@ -42,11 +41,11 @@ public class BattleUnit : MonoBehaviour
         image.color = originalColor;
         PlayEnterAnimation();
     }
+
     public void Clear()
     {
-        hud.gameObject.SetActive(false);    
+        hud.gameObject.SetActive(false);
     }
-
 
     public void PlayEnterAnimation()
     {
@@ -68,6 +67,19 @@ public class BattleUnit : MonoBehaviour
 
         sequence.Append(image.transform.DOLocalMoveX(originalPos.x, 0.25f));
         sequence.Play();
+
+        // Play particle effect when attacking
+        PlayParticleEffect(transform.position);
+    }
+
+    private void PlayParticleEffect(Vector3 position)
+    {
+        if (particleEffectPrefab != null)
+        {
+            GameObject particleEffect = Instantiate(particleEffectPrefab, position, Quaternion.identity);
+            // Optionally, you can adjust particle effect properties here
+            Destroy(particleEffect, 2f); // Destroy the particle effect after 2 seconds
+        }
     }
 
     public void PlayHitAnimation()
@@ -103,5 +115,4 @@ public class BattleUnit : MonoBehaviour
         sequence.Join(transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f));
         yield return sequence.WaitForCompletion();
     }
-
 }

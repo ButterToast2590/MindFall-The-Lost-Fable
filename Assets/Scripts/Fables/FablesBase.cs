@@ -18,13 +18,14 @@ public class FablesBase : ScriptableObject
     [SerializeField] int spAttack;
     [SerializeField] int spDefense;
     [SerializeField] int speed;
-
+ 
     [SerializeField] int expYield;
 
     [SerializeField] int catchRate = 255;
     [SerializeField] List<LearnableMove> learnableMoves;
 
     public Sprite TypeSprite { get { return typeSprite; } }
+
 
     public string FableName { get { return fablename; } }
     public string Description { get { return description; } }

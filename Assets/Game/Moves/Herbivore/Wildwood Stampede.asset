@@ -18,3 +18,10 @@ MonoBehaviour:
   power: 85
   accuracy: 70
   pp: 10
+  category: 2
+  effects:
+    boosts: []
+    status: 4
+  target: 0
+  priority: 0
+  statusSprite: {fileID: 21300000, guid: fd778b10238928144963aa92df6b2f69, type: 3}

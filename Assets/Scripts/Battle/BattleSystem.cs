@@ -21,7 +21,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] GameObject faecharmSprite;
 
     public event Action<bool> OnBattleOver;
-
+    private BattleAction playerAction;
     BattleState state;
     BattleState? prevState;
     int selectedMoveIndex;
@@ -151,7 +151,14 @@ public class BattleSystem : MonoBehaviour
     {
         yield return StartCoroutine(dialogBox.TypeDialog("Choose an action"));
         dialogBox.EnableActionSelector(true);
+
+        // Wait until the player selects an action
+        yield return new WaitUntil(() => state == BattleState.RunningTurn);
+
+        // Now the player has selected an action, proceed with running the turns
+        yield return RunTurns(playerAction);
     }
+
 
 
     void MoveSelection()
@@ -164,49 +171,80 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move)
     {
+        // Instantiate particle effect if available
+        if (move.Base.ParticleEffectPrefab != null)
+        {
+            GameObject particleEffectInstance = Instantiate(move.Base.ParticleEffectPrefab, targetUnit.transform.position, Quaternion.identity);
+            float particleDuration = 5.0f; // Set the duration to 5 seconds
+            Destroy(particleEffectInstance, particleDuration);
+        }
+
+        // Deduct PP for the move
         move.PP--;
 
+        // Execute OnBeforeMove method of the source fable
+        bool canRunMove = sourceUnit.fables.OnBeforeMove();
+        if (!canRunMove)
+        {
+            yield return ShowStatusChanges(sourceUnit.fables);
+            yield break;
+        }
+
+        // Show status changes of the source fable
+        yield return ShowStatusChanges(sourceUnit.fables);
+
+        // Display a dialog indicating the move used
         yield return dialogBox.TypeDialog($"{sourceUnit.fables.Base.FableName} used {move.Base.Name}");
 
+        // Play attack animation for the source unit
         sourceUnit.PlayAttackAnimation();
         yield return new WaitForSeconds(1f);
+
+        // Play hit animation for the target unit
         targetUnit.PlayHitAnimation();
 
+        // Check if the move is a status move or not
         if (move.Base.Category == MoveCategory.Status)
         {
-           yield return RunMoveEffects(move, sourceUnit.fables, targetUnit.fables);
+            // Run move effects for status moves
+            yield return RunMoveEffects(move, sourceUnit.fables, targetUnit.fables);
         }
         else
         {
+            // Deal damage for non-status moves
             var damageDetails = targetUnit.fables.TakeDamage(move, sourceUnit.fables);
             yield return targetUnit.Hud.UpdateHP();
             yield return ShowDamageDetails(damageDetails);
         }
 
+        // Check if the target fable has fainted
         if (targetUnit.fables.HP <= 0)
         {
             yield return dialogBox.TypeDialog($"{targetUnit.fables.Base.FableName} Fainted");
             targetUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
-
             CheckForBattleOver(targetUnit);
         }
 
-        //Statuses like bruise or poison will hurt the fable after the turn
+        // Execute OnAfterTurn method of the source fable
         sourceUnit.fables.OnAfterTurn();
         yield return ShowStatusChanges(sourceUnit.fables);
         yield return sourceUnit.Hud.UpdateHP();
+
+        // Check if the source fable has fainted
         if (sourceUnit.fables.HP <= 0)
         {
             yield return dialogBox.TypeDialog($"{sourceUnit.fables.Base.FableName} Fainted");
             sourceUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
-
             CheckForBattleOver(sourceUnit);
         }
 
+        // Add a delay before disabling move details
+        yield return new WaitForSeconds(5f);
         DisableMoveDetails();
     }
+
 
     IEnumerator RunMoveEffects(Move move, Fables source, Fables target)
     {

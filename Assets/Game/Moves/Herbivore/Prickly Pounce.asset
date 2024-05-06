@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4d6107fc75b88458cc68023ae7a99a, type: 3}
+  m_Name: Prickly Pounce
+  m_EditorClassIdentifier: 
+  name: Prickly Pounce
+  description: 
+  type: 2
+  power: 40
+  accuracy: 100
+  pp: 20
+  category: 2
+  effects:
+    boosts:
+    - stat: 4
+      boost: -2
+    status: 0
+  target: 0
+  priority: 0
+  statusSprite: {fileID: 0}
+  particleEffectPrefab: {fileID: 5642766282230003982, guid: b5c8ca7ed10b61e499cce8ec3b6e2e4c, type: 3}

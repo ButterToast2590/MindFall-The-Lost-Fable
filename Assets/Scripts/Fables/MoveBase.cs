@@ -14,7 +14,11 @@ public class MoveBase : ScriptableObject
     [SerializeField] MoveCategory category;
     [SerializeField] MoveEffects effects;
     [SerializeField] MoveTarget target;
-    [SerializeField] int priority; 
+    [SerializeField] int priority;
+    [SerializeField] Sprite statusSprite;
+    [SerializeField] GameObject particleEffectPrefab;
+
+    public GameObject ParticleEffectPrefab { get { return particleEffectPrefab; } }
 
     public string Name { get { return name; } }
     public string Description { get { return description; } }
@@ -22,10 +26,12 @@ public class MoveBase : ScriptableObject
     public int Power { get { return power; } }
     public int Accuracy { get { return accuracy; } }
     public int PP { get { return pp; } }
-    public int Priority { get { return priority; } } 
-    public MoveCategory Category { get { return category; } }  
-    public MoveEffects Effects { get { return effects; } }  
-    public MoveTarget Target { get { return target; } }  
+    public int Priority { get { return priority; } }
+    public MoveCategory Category { get { return category; } }
+    public MoveEffects Effects { get { return effects; } }
+    public MoveTarget Target { get { return target; } }
+    public Sprite StatusSprite { get { return statusSprite; } }
+
 
     public void UpdatePP(int newPP)
     {

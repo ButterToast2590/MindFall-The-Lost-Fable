@@ -7,6 +7,7 @@ public class PartyMemberUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Image typeImage;
+    [SerializeField] Image statusImage;
     [SerializeField] HPBar hpBar;
     [SerializeField] Color highlightedColor;
 

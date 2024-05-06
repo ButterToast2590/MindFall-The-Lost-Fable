@@ -26,12 +26,17 @@ public class Fables
     public Dictionary<Stat, int> StatBoosts { get; private set; }
 
     public Queue<string> StatusChanges { get; private set; }
+    public event System.Action OnStatusChanged;
     public Condition Status { get; private set; }
+    public int StatusTime { get; set; }
     public bool HpChanged { get; set; }
 
 
     public Move CurrentMove { get; set; }
     public BattleHUD Hud { get; set; }
+ 
+
+
 
     public void Init()
     {
@@ -63,7 +68,7 @@ public class Fables
         Stats.Add(Stat.SpDefense, Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5);
         Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5);
 
-        MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10;
+        MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + level;
     }
 
     void ResetStatBoost()
@@ -206,8 +211,28 @@ public class Fables
     }
     public void SetStatus(ConditionID conditionId)
     {
+        if (Status != null) return;
+
         Status = ConditionsDB.Conditions[conditionId];
+        Status?.OnStart?.Invoke(this);
         StatusChanges.Enqueue($"{Base.FableName} {Status.StartMessage}");
+        OnStatusChanged?.Invoke();
+    }
+
+    public void CureStatus()
+    {
+        Status = null;
+        OnStatusChanged?.Invoke();
+    }
+
+    public bool OnBeforeMove()
+    {
+        if (Status?.OnBeforeMove != null)
+        {
+            return Status.OnBeforeMove(this);
+        }
+
+        return true;
     }
 
     public void OnAfterTurn()
