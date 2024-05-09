@@ -18,4 +18,11 @@ MonoBehaviour:
   power: 50
   accuracy: 90
   pp: 15
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+  target: 0
   priority: 1
+  statusSprite: {fileID: 0}
+  particleEffectPrefab: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}

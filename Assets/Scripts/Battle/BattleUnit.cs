@@ -8,7 +8,7 @@ public class BattleUnit : MonoBehaviour
 {
     [SerializeField] bool isPlayerUnit;
     [SerializeField] BattleHUD hud;
-    [SerializeField] GameObject particleEffectPrefab; // Reference to the particle effect prefab
+    [SerializeField] GameObject particleEffectPrefab;
 
     public bool IsPlayerUnit { get { return isPlayerUnit; } }
     public BattleHUD Hud { get { return hud; } }
@@ -26,18 +26,18 @@ public class BattleUnit : MonoBehaviour
         originalColor = image.color;
     }
 
-    public void Setup(Fables fables)
+    public void Setup(Fables fable)
     {
-        this.fables = fables;
+        this.fables = fable;
         if (isPlayerUnit)
-            image.sprite = fables.Base.BackSpriteName;
+            image.sprite = fable.Base.BackSpriteName;
         else
-            image.sprite = fables.Base.FrontSpriteName;
+            image.sprite = fable.Base.FrontSpriteName;
 
         hud.gameObject.SetActive(true);
-        hud.SetData(fables);
+        hud.SetData(fable);
 
-        transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = Vector3.one;
         image.color = originalColor;
         PlayEnterAnimation();
     }
@@ -57,7 +57,7 @@ public class BattleUnit : MonoBehaviour
         image.transform.DOLocalMoveX(originalPos.x, 1f).SetEase(Ease.OutQuad);
     }
 
-    public void PlayAttackAnimation()
+    public void PlayAttackAnimation(BattleUnit sourceUnit, Vector3 targetPosition, float throwDuration)
     {
         var sequence = DOTween.Sequence();
         if (isPlayerUnit)
@@ -65,22 +65,43 @@ public class BattleUnit : MonoBehaviour
         else
             sequence.Append(image.transform.DOLocalMoveX(originalPos.x - 50f, 0.25f));
 
-        sequence.Append(image.transform.DOLocalMoveX(originalPos.x, 0.25f));
-        sequence.Play();
-
-        // Play particle effect when attacking
-        PlayParticleEffect(transform.position);
+        sequence.AppendInterval(throwDuration); // Wait for the attack animation duration
+        sequence.Append(image.transform.DOLocalMove(originalPos, 0.25f)); // Return to original position
+        sequence.OnComplete(() => PlayParticleEffect(targetPosition)); // Trigger particle effect
     }
 
-    private void PlayParticleEffect(Vector3 position)
+
+    private void PlayParticleEffect(Vector3 targetPosition)
     {
         if (particleEffectPrefab != null)
         {
-            GameObject particleEffect = Instantiate(particleEffectPrefab, position, Quaternion.identity);
-            // Optionally, you can adjust particle effect properties here
-            Destroy(particleEffect, 2f); // Destroy the particle effect after 2 seconds
+            // Instantiate the particle effect at the target position with the prefab's rotation
+            GameObject particleEffect = Instantiate(particleEffectPrefab, targetPosition, particleEffectPrefab.transform.rotation);
+
+            // Get the duration of the particle effect animation
+            ParticleSystem particleSystem = particleEffect.GetComponent<ParticleSystem>();
+            float particleDuration = particleSystem ? particleSystem.main.duration : 0f;
+
+            // Calculate the total duration of the particle effect animation
+            float totalDuration = particleDuration + 1f; // Additional 1 second for safety
+
+            // Destroy the particle effect after the total duration
+            Destroy(particleEffect, totalDuration);
+
+            // Wait for the total duration before proceeding
+            StartCoroutine(WaitForParticleEffect(totalDuration));
         }
     }
+
+
+    IEnumerator WaitForParticleEffect(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        // Perform any action after the particle effect finishes
+        Debug.Log("Particle effect finished!");
+    }
+
+
 
     public void PlayHitAnimation()
     {
@@ -112,7 +133,7 @@ public class BattleUnit : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(image.DOFade(1, 0.5f));
         sequence.Join(transform.DOLocalMoveY(originalPos.y, 0.5f));
-        sequence.Join(transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f));
+        sequence.Join(transform.DOScale(Vector3.one, 0.5f));
         yield return sequence.WaitForCompletion();
     }
 }

@@ -21,60 +21,106 @@ public class BattleHUD : MonoBehaviour
     Fables _fables;
     Dictionary<ConditionID, Color> StatusColors;
 
+    // Define sprite variables for each condition
+    [SerializeField] Sprite poisonSprite;
+    [SerializeField] Sprite bruiseSprite;
+    [SerializeField] Sprite dizzinessSprite;
+    [SerializeField] Sprite allergySprite;
+    [SerializeField] Sprite sprainSprite;
+
     public void SetData(Fables fable)
     {
         _fables = fable;
+
+        Debug.Log("SetData method called for Fable: " + fable.Base.FableName);
+
         nameText.text = fable.Base.FableName;
         levelText.text = "Lvl " + fable.Level;
         hpBar.SetHP((float)fable.HP / fable.MaxHp);
 
         StatusColors = new Dictionary<ConditionID, Color>()
-        {
-            { ConditionID.Poison, psnColor },
-            { ConditionID.Bruise, brsColor },
-            { ConditionID.Dizziness, dizColor },
-            { ConditionID.Allergy, algColor },
-            { ConditionID.Sprain, sprColor }
-        };
+    {
+        { ConditionID.Poison, psnColor },
+        { ConditionID.Bruise, brsColor },
+        { ConditionID.Dizziness, dizColor },
+        { ConditionID.Allergy, algColor },
+        { ConditionID.Sprain, sprColor }
+    };
 
-        // Set fable type image
         typeImage.sprite = fable.Base.TypeSprite;
         SetStatus();
         _fables.OnStatusChanged += SetStatus;
+
+        if (fable.Status != null)
+        {
+            UpdateStatusImage(GetStatusSprite(fable.Status.Id));
+        }
     }
+
+
     void SetStatus()
     {
+        Debug.Log("SetStatus method called.");
+
         if (_fables.Status == null)
         {
             statusText.text = "";
             statusImage.sprite = null;
+            statusImage.gameObject.SetActive(false); 
+            statusText.gameObject.SetActive(false); 
         }
         else
         {
             statusText.text = _fables.Status.Id.ToString().ToUpper();
             statusText.color = StatusColors[_fables.Status.Id];
-            statusImage.sprite = _fables.Base.TypeSprite;
+
+            statusImage.sprite = GetStatusSprite(_fables.Status.Id);
+            statusImage.gameObject.SetActive(true); 
+            statusText.gameObject.SetActive(true); 
         }
     }
+
+
+    void UpdateStatusImage(Sprite statusSprite)
+    {
+        Debug.Log("UpdateStatusImage method called.");
+
+        if (statusSprite != null)
+        {
+            statusImage.gameObject.SetActive(true);
+            statusImage.sprite = statusSprite;
+        }
+        else
+        {
+            statusImage.gameObject.SetActive(false);
+        }
+    }
+
+    Sprite GetStatusSprite(ConditionID conditionId)
+    {
+        switch (conditionId)
+        {
+            case ConditionID.Poison:
+                return poisonSprite;
+            case ConditionID.Bruise:
+                return bruiseSprite;
+            case ConditionID.Dizziness:
+                return dizzinessSprite;
+            case ConditionID.Allergy:
+                return allergySprite;
+            case ConditionID.Sprain:
+                return sprainSprite;
+            default:
+                return null;
+        }
+    }
+
     public IEnumerator UpdateHP()
     {
         if (_fables.HpChanged)
         {
             yield return hpBar.SetHPSmooth((float)_fables.HP / _fables.MaxHp);
             _fables.HpChanged = false;
-        }
-    }
-
-    public void UpdateStatusImage(Sprite statusSprite)
-    {
-        if (statusSprite != null)
-        {
-            statusImage.sprite = statusSprite;
-            statusImage.gameObject.SetActive(true);
-        }
-        else
-        {
-            statusImage.gameObject.SetActive(false);
         }
     }
 }

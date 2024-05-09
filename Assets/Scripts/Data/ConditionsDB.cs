@@ -55,7 +55,7 @@ public class ConditionsDB
                     fables.StatusChanges.Enqueue($"{fables.Base.FableName} stumbled and missed its attack.");
                     return false;
                 }
-
+                fables.CureStatus();
                 return true;
             }
         }
@@ -107,6 +107,14 @@ public class ConditionsDB
     }
 };
 
+    public static void ApplyCondition(ConditionID conditionId, Fables fables, Sprite statusSprite)
+    {
+        if (Conditions.TryGetValue(conditionId, out Condition condition))
+        {
+            // Apply the condition to the fables instance
+            condition.Apply(fables);
+        }
+    }
 }
 
 public enum ConditionID

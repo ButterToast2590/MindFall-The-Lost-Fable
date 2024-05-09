@@ -24,5 +24,5 @@ MonoBehaviour:
     status: 5
   target: 0
   priority: 0
-  statusSprite: {fileID: 21300000, guid: e29237177ef8a5f438cef043fca5479e, type: 3}
-  particleEffectPrefab: {fileID: 4425129568585013132, guid: bbeeb0ddc21369746aaaae5c5c1c09cf, type: 3}
+  statusSprite: {fileID: -1232562394, guid: 8247eaca484fd174fb52e68fffe50b39, type: 3}
+  particleEffectPrefab: {fileID: 5530157774355894543, guid: 1f3e55641ff5c3448b7a830817a230f1, type: 3}

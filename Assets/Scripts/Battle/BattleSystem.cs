@@ -20,6 +20,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] PartyScreen partyScreen;
     [SerializeField] GameObject faecharmSprite;
 
+
     public event Action<bool> OnBattleOver;
     private BattleAction playerAction;
     BattleState state;
@@ -136,6 +137,7 @@ public class BattleSystem : MonoBehaviour
 
     void ActionSelection()
     {
+        DisableMoveDetails();
         state = BattleState.ActionSelection;
         moveSelected = false;
         StartCoroutine(HandlePlayerAction());
@@ -152,10 +154,8 @@ public class BattleSystem : MonoBehaviour
         yield return StartCoroutine(dialogBox.TypeDialog("Choose an action"));
         dialogBox.EnableActionSelector(true);
 
-        // Wait until the player selects an action
         yield return new WaitUntil(() => state == BattleState.RunningTurn);
 
-        // Now the player has selected an action, proceed with running the turns
         yield return RunTurns(playerAction);
     }
 
@@ -171,14 +171,6 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move)
     {
-        // Instantiate particle effect if available
-        if (move.Base.ParticleEffectPrefab != null)
-        {
-            GameObject particleEffectInstance = Instantiate(move.Base.ParticleEffectPrefab, targetUnit.transform.position, Quaternion.identity);
-            float particleDuration = 5.0f; // Set the duration to 5 seconds
-            Destroy(particleEffectInstance, particleDuration);
-        }
-
         // Deduct PP for the move
         move.PP--;
 
@@ -196,22 +188,30 @@ public class BattleSystem : MonoBehaviour
         // Display a dialog indicating the move used
         yield return dialogBox.TypeDialog($"{sourceUnit.fables.Base.FableName} used {move.Base.Name}");
 
-        // Play attack animation for the source unit
-        sourceUnit.PlayAttackAnimation();
+        sourceUnit.PlayAttackAnimation(sourceUnit, targetUnit.transform.position, move.Base.ParticleDuration);
+        if (move.Base.ParticleEffectPrefab != null)
+        {
+            Vector3 particlePosition = targetUnit.transform.position - new Vector3(0f, 0.7f, 0f);
+
+            GameObject particleEffectInstance = Instantiate(move.Base.ParticleEffectPrefab, particlePosition, move.Base.ParticleEffectPrefab.transform.rotation);
+
+            ParticleSystem particleSystem = particleEffectInstance.GetComponent<ParticleSystem>();
+            float particleDuration = particleSystem ? particleSystem.main.duration : 0f;
+
+            Destroy(particleEffectInstance, particleDuration);
+        }
+
+
         yield return new WaitForSeconds(1f);
 
-        // Play hit animation for the target unit
         targetUnit.PlayHitAnimation();
 
-        // Check if the move is a status move or not
         if (move.Base.Category == MoveCategory.Status)
         {
-            // Run move effects for status moves
             yield return RunMoveEffects(move, sourceUnit.fables, targetUnit.fables);
         }
         else
         {
-            // Deal damage for non-status moves
             var damageDetails = targetUnit.fables.TakeDamage(move, sourceUnit.fables);
             yield return targetUnit.Hud.UpdateHP();
             yield return ShowDamageDetails(damageDetails);
@@ -220,6 +220,7 @@ public class BattleSystem : MonoBehaviour
         // Check if the target fable has fainted
         if (targetUnit.fables.HP <= 0)
         {
+            DisableMoveDetails();
             yield return dialogBox.TypeDialog($"{targetUnit.fables.Base.FableName} Fainted");
             targetUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
@@ -234,16 +235,15 @@ public class BattleSystem : MonoBehaviour
         // Check if the source fable has fainted
         if (sourceUnit.fables.HP <= 0)
         {
+            DisableMoveDetails();
             yield return dialogBox.TypeDialog($"{sourceUnit.fables.Base.FableName} Fainted");
             sourceUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
             CheckForBattleOver(sourceUnit);
         }
-
-        // Add a delay before disabling move details
-        yield return new WaitForSeconds(5f);
         DisableMoveDetails();
     }
+
 
 
     IEnumerator RunMoveEffects(Move move, Fables source, Fables target)
@@ -367,7 +367,7 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
 {
     if (playerAction == BattleAction.Move)
     {
-        var selectedMove = playerUnit.fables.Moves[selectedMoveIndex];
+            var selectedMove = playerUnit.fables.Moves[selectedMoveIndex];
 
         if (selectedMove.PP == 0)
         {
@@ -405,12 +405,14 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
         // First turn
         yield return RunMove(firstUnit, secondUnit, firstUnit.fables.CurrentMove);
         yield return RunAfterTurn(firstUnit);
+        DisableMoveDetails();
         if (state == BattleState.BattleOver) yield break;
 
         // Check if both fables are still alive before proceeding to the second turn
         if (playerUnit.fables.HP > 0 && enemyUnit.fables.HP > 0)
         {
             // Second turn
+            DisableMoveDetails();
             yield return RunMove(secondUnit, firstUnit, secondUnit.fables.CurrentMove);
             yield return RunAfterTurn(secondUnit);
             if (state == BattleState.BattleOver) yield break;
@@ -419,6 +421,7 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
         // Check if any fable has fainted after turns
         if (playerUnit.fables.HP <= 0 || enemyUnit.fables.HP <= 0)
         {
+            DisableMoveDetails();
             ResetBattle();
             yield break;
         }
@@ -453,15 +456,16 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
             if (playerUnit.fables.HP <= 0 || enemyUnit.fables.HP <= 0)
             {
                 // Reset battle state
+                DisableMoveDetails();
                 ResetBattle();
                 yield break;
             }
         }
-
         if (state != BattleState.BattleOver)
         {
             ActionSelection(); // Return to action selection
         }
+        DisableMoveDetails();
     }
 
 
@@ -472,6 +476,7 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
     {
         if (battleCoroutine != null)
         {
+            DisableMoveDetails();
             StopCoroutine(battleCoroutine);
         }
 
@@ -620,9 +625,9 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
     }
     void OnMoveButtonClick(int moveIndex)
     {
+        DisableMoveDetails();
         selectedMoveIndex = moveIndex;
         ConfirmMoveSelection(moveIndex);
-        DisableMoveDetails();
     }
 
 
@@ -786,12 +791,6 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
                 state = BattleState.RunningTurn;
             }
         }
-    }
-
-    IEnumerator DisableMoveDetailsWithDelay()
-    {
-        yield return new WaitForSeconds(3f); // Adjust the delay time as needed
-        dialogBox.EnableMoveDetails(false);
     }
 
 }

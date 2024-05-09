@@ -21,5 +21,8 @@ MonoBehaviour:
   category: 0
   effects:
     boosts: []
+    status: 0
   target: 0
   priority: 0
+  statusSprite: {fileID: 0}
+  particleEffectPrefab: {fileID: 685818150072898441, guid: b87d64f4c83f89b4d93150a61fbe416a, type: 3}

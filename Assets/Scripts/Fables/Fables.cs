@@ -7,6 +7,7 @@ public class Fables
 {
     [SerializeField] FablesBase _base;
     [SerializeField] int level;
+    [SerializeField] Sprite statusSprite;
 
     public Fables(FablesBase pBase, int pLevel)
     {
@@ -33,8 +34,9 @@ public class Fables
 
 
     public Move CurrentMove { get; set; }
+    public MoveBase StatImage { get; set; }
     public BattleHUD Hud { get; set; }
- 
+    public Sprite StatusSprite { get { return statusSprite; } }
 
 
 
@@ -223,7 +225,9 @@ public class Fables
     {
         Status = null;
         OnStatusChanged?.Invoke();
+        Debug.Log("Status cured for: " + Base.FableName);
     }
+
 
     public bool OnBeforeMove()
     {

@@ -15,8 +15,8 @@ public class MoveBase : ScriptableObject
     [SerializeField] MoveEffects effects;
     [SerializeField] MoveTarget target;
     [SerializeField] int priority;
-    [SerializeField] Sprite statusSprite;
     [SerializeField] GameObject particleEffectPrefab;
+    // Change from 'statusSprite' to 'StatusSprite'
 
     public GameObject ParticleEffectPrefab { get { return particleEffectPrefab; } }
 
@@ -30,8 +30,7 @@ public class MoveBase : ScriptableObject
     public MoveCategory Category { get { return category; } }
     public MoveEffects Effects { get { return effects; } }
     public MoveTarget Target { get { return target; } }
-    public Sprite StatusSprite { get { return statusSprite; } }
-
+    public float ParticleDuration { get; set; }
 
     public void UpdatePP(int newPP)
     {

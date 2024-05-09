@@ -5,6 +5,7 @@ using UnityEngine;
 public class Move
 {
     public MoveBase Base { get; set; }
+
     private int pp;
 
     public int PP
@@ -19,6 +20,3 @@ public class Move
         PP = pBase.PP;
     }
 }
-
-
-

@@ -24,6 +24,7 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] TextMeshProUGUI noText;
 
     private Move currentMove;
+    public Text MoveDetailsText;
 
     private void Awake()
     {
