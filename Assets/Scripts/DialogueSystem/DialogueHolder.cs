@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement; // Import the SceneManager class
 
 namespace DialogueSystem
 {
@@ -18,7 +19,13 @@ namespace DialogueSystem
                 transform.GetChild(i).gameObject.SetActive(true);
                 yield return new WaitUntil(() => transform.GetChild(i).GetComponent<DialogueLine>().finished);
             }
-            gameObject.SetActive(false);
+            // Load the main game scene after the dialogue sequence is finished
+            LoadMainScene();
+        }
+
+        private void LoadMainScene()
+        {
+            SceneManager.LoadScene("SampleScene"); // Replace "MainGameSceneName" with the name of your main game scene
         }
 
         private void Deactivate()
@@ -30,4 +37,3 @@ namespace DialogueSystem
         }
     }
 }
-
