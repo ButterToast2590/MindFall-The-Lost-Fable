@@ -28,7 +28,7 @@ MonoBehaviour:
   expYield: 163
   catchRate: 255
   learnableMoves:
-  - moveBase: {fileID: 11400000, guid: 2a5fa1b82993c7b4b9cbe5be2de43bca, type: 2}
+  - moveBase: {fileID: 11400000, guid: ec8bd4880dfecd34d874fadbdef090e8, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: 9a81723f642435b4aa3760f0aaaf44e4, type: 2}
     level: 4

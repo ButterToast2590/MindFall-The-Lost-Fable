@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c4d6107fc75b88458cc68023ae7a99a, type: 3}
-  m_Name: Smash Charge
+  m_Name: Stampede
   m_EditorClassIdentifier: 
-  name: Smash Charge
+  name: Stampede
   description: 
-  type: 5
-  power: 90
-  accuracy: 80
-  pp: 10
-  category: 0
+  type: 1
+  power: 0
+  accuracy: 100
+  pp: 15
+  category: 2
   effects:
     boosts: []
     status: 0
+    volatileStatus: 6
   target: 0
-  priority: 1
-  particleEffectPrefab: {fileID: 3419454988384340378, guid: 34232837358426944bb7a490bff74896, type: 3}
+  priority: 0
+  particleEffectPrefab: {fileID: 3152856907310126581, guid: 7b5d6febef8be4e418821154335f72a6, type: 3}

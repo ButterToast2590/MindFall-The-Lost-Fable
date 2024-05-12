@@ -171,14 +171,14 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move)
     {
-        // Deduct PP for the move
+        
         move.PP--;
 
-        // Execute OnBeforeMove method of the source fable
         bool canRunMove = sourceUnit.fables.OnBeforeMove();
         if (!canRunMove)
         {
             yield return ShowStatusChanges(sourceUnit.fables);
+            yield return sourceUnit.Hud.UpdateHP();
             yield break;
         }
 
@@ -275,6 +275,16 @@ public class BattleSystem : MonoBehaviour
         {
             yield return ShowStatusChanges(target);
         }
+
+
+        //Volatile Status
+        if (effects.VolatileStatus != ConditionID.None)
+        {
+            target.SetVolatileStatus(effects.VolatileStatus);
+        }
+
+        yield return ShowStatusChanges(source);
+        yield return ShowStatusChanges(target);
     }
 
 

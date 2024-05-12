@@ -30,6 +30,8 @@ public class Fables
     public event System.Action OnStatusChanged;
     public Condition Status { get; private set; }
     public int StatusTime { get; set; }
+    public Condition VolatileStatus { get; set; }
+    public int VolatileStatusTime { get; set; }
     public bool HpChanged { get; set; }
 
 
@@ -59,6 +61,8 @@ public class Fables
         HP = MaxHp;
 
         ResetStatBoost();
+        Status = null;
+        VolatileStatus = null;
     }
 
     void CalculateStats()
@@ -208,9 +212,11 @@ public class Fables
 
     public void OnBattleOver()
     {
+        VolatileStatus = null;
         ResetStatBoost();
         StatusChanges.Clear(); 
     }
+
     public void SetStatus(ConditionID conditionId)
     {
         if (Status != null) return;
@@ -228,20 +234,46 @@ public class Fables
         Debug.Log("Status cured for: " + Base.FableName);
     }
 
+    public void SetVolatileStatus(ConditionID conditionId)
+    {
+        if (VolatileStatus != null) return;
+
+        VolatileStatus = ConditionsDB.Conditions[conditionId];
+        VolatileStatus?.OnStart?.Invoke(this);
+        StatusChanges.Enqueue($"{Base.FableName} {VolatileStatus.StartMessage}");
+    }
+
+    public void CureVolatileStatus()
+    {
+        VolatileStatus = null;
+    }
 
     public bool OnBeforeMove()
     {
+        bool canPerformMove = true;
         if (Status?.OnBeforeMove != null)
         {
-            return Status.OnBeforeMove(this);
+           if (!Status.OnBeforeMove(this))
+            {
+                canPerformMove = false;
+            }
         }
 
-        return true;
+        if (VolatileStatus?.OnBeforeMove != null)
+        {
+            if (!VolatileStatus.OnBeforeMove(this))
+            {
+                canPerformMove = false;
+            }
+        }
+
+        return canPerformMove;
     }
 
     public void OnAfterTurn()
     {
         Status?.OnAfterTurn?.Invoke(this);
+        VolatileStatus?.OnAfterTurn?.Invoke(this);
     }
 
 }

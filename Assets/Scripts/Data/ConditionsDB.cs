@@ -21,11 +21,11 @@ public class ConditionsDB
         new Condition()
         {
             Name = "Poison",
-            StartMessage = "Has been poisoned",
+            StartMessage = "Has been poisoned.",
             OnAfterTurn = (Fables fables) =>
             {
                 fables.UpdateHP(fables.MaxHp / 8);
-                fables.StatusChanges.Enqueue($"{fables.Base.FableName} hurt itself due to poison");
+                fables.StatusChanges.Enqueue($"{fables.Base.FableName} is hurt by poison.");
             }
         }
     },
@@ -38,7 +38,7 @@ public class ConditionsDB
             OnAfterTurn = (Fables fables) =>
             {
                 fables.UpdateHP(fables.MaxHp / 5);
-                fables.StatusChanges.Enqueue($"{fables.Base.FableName} felt a sharp pain due to its bruise");
+                fables.StatusChanges.Enqueue($"{fables.Base.FableName} felt a sharp pain due to its bruise.");
             }
         }
     },
@@ -47,7 +47,7 @@ public class ConditionsDB
         new Condition()
         {
             Name = "Dizziness",
-            StartMessage = "Is dizzy! It may stumble or miss its next action.",
+            StartMessage = "Is feeling dizzy! It may stumble or miss its next action.",
             OnBeforeMove = (Fables fables) =>
             {
                 if (Random.Range(1, 4) == 1)
@@ -56,6 +56,7 @@ public class ConditionsDB
                     return false;
                 }
                 fables.CureStatus();
+                fables.StatusChanges.Enqueue($"{fables.Base.FableName} has recovered from its dizziness.");
                 return true;
             }
         }
@@ -65,7 +66,7 @@ public class ConditionsDB
         new Condition()
         {
             Name = "Allergy",
-            StartMessage = "Has developed an allergy! it skip a turn waiting to recover",
+             StartMessage = "Has developed an allergy! It may have trouble aiming, causing attacks to miss.",
             OnBeforeMove = (Fables fables) =>
             {
                 if (Random.Range(1, 4) == 1)
@@ -96,7 +97,7 @@ public class ConditionsDB
                 if (fables.StatusTime <= 0)
                 {
                     fables.CureStatus();
-                    fables.StatusChanges.Enqueue($"{fables.Base.FableName} recover from its sprain");
+                    fables.StatusChanges.Enqueue($"{fables.Base.FableName} recover from its sprain.");
                     return true;
                 }
                 fables.StatusTime--;
@@ -104,7 +105,43 @@ public class ConditionsDB
                 return false;
             }
         }
+    },
+   // Volatile Status Conditions
+{
+    ConditionID.Disoriented,
+    new Condition()
+    {
+        Name = "Disoriented",
+        StartMessage = "has become disoriented, causing confusion.",
+        OnStart = (Fables fables) =>
+        {
+            fables.VolatileStatusTime = Random.Range(1, 4);
+            Debug.Log($"Will skip its turn for {fables.VolatileStatusTime} round(s) due to disorientation.");
+        },
+
+        OnBeforeMove = (Fables fables) =>
+        {
+            if (fables.VolatileStatusTime <= 0)
+            {
+                fables.CureVolatileStatus();
+                fables.StatusChanges.Enqueue($"{fables.Base.FableName} has regained its composure and is no longer disoriented.");
+                return true;
+            }
+            fables.VolatileStatusTime--;
+
+            // 50% chance to do a move
+            if(Random.Range(1, 3) == 1)
+                return true;
+
+            // Hurt by Confusion
+            fables.StatusChanges.Enqueue($"{fables.Base.FableName} is disoriented.");
+            fables.UpdateHP(fables.MaxHp / 8); // Changed MaxHP to MaxHp
+            fables.StatusChanges.Enqueue($"{fables.Base.FableName} Hurt itself due to disorientation.");
+            return false;
+        }
     }
+}
+
 };
 
     public static void ApplyCondition(ConditionID conditionId, Fables fables, Sprite statusSprite)
@@ -119,5 +156,5 @@ public class ConditionsDB
 
 public enum ConditionID
 {
-    None, Poison, Bruise, Dizziness, Sprain, Allergy
+    None, Poison, Bruise, Dizziness, Sprain, Allergy, Disoriented
 }
