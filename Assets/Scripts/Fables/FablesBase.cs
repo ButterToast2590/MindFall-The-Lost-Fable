@@ -22,6 +22,7 @@ public class FablesBase : ScriptableObject
     [SerializeField] int expYield;
 
     [SerializeField] int catchRate = 255;
+    [SerializeField] int fableID;
     [SerializeField] List<LearnableMove> learnableMoves;
 
     public Sprite TypeSprite { get { return typeSprite; } }
@@ -39,6 +40,7 @@ public class FablesBase : ScriptableObject
     public int SpAttack { get { return spAttack; } }
     public int SpDefense { get { return spDefense; } }
     public int Speed { get { return speed; } }
+    public int FableID { get { return fableID; } }
     public int CatchRate => catchRate;
     public List<LearnableMove> LearnableMoves { get { return learnableMoves; } }
 }

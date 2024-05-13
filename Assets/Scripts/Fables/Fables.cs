@@ -1,6 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Fables
@@ -8,6 +7,8 @@ public class Fables
     [SerializeField] FablesBase _base;
     [SerializeField] int level;
     [SerializeField] Sprite statusSprite;
+    [SerializeField] bool isDefeated;
+    [SerializeField] int fableID;
 
     public Fables(FablesBase pBase, int pLevel)
     {
@@ -16,9 +17,11 @@ public class Fables
 
         Init();
     }
+    public int FableID { get { return fableID; } }
     public Condition Condition { get; set; }
     public FablesBase Base { get { return _base; } }
     public int Level { get { return level; } }
+    public bool IsDefeated { get { return isDefeated; } } // Getter for isDefeated
 
     public int HP { get; set; }
 
@@ -34,14 +37,11 @@ public class Fables
     public int VolatileStatusTime { get; set; }
     public bool HpChanged { get; set; }
 
-
     public Move CurrentMove { get; set; }
     public MoveBase StatImage { get; set; }
     public BattleHUD Hud { get; set; }
     public Sprite StatusSprite { get { return statusSprite; } }
-
-
-
+ 
     public void Init()
     {
         // Initialize StatusChanges queue
@@ -142,32 +142,11 @@ public class Fables
         }
     }
 
-
-    public int Attack
-    {
-        get { return GetStat(Stat.Attack); }
-    }
-
-    public int Defense
-    {
-        get { return GetStat(Stat.Defense); }
-    }
-
-    public int SpAttack
-    {
-        get { return GetStat(Stat.SpAttack); }
-    }
-
-    public int SpDefense
-    {
-        get { return GetStat(Stat.SpDefense); }
-    }
-
-    public int Speed
-    {
-        get { return GetStat(Stat.Speed); }
-    }
-
+    public int Attack { get { return GetStat(Stat.Attack); } }
+    public int Defense { get { return GetStat(Stat.Defense); } }
+    public int SpAttack { get { return GetStat(Stat.SpAttack); } }
+    public int SpDefense { get { return GetStat(Stat.SpDefense); } }
+    public int Speed { get { return GetStat(Stat.Speed); } }
     public int MaxHp { get; private set; }
 
     public DamageDetails TakeDamage(Move move, Fables attacker)
@@ -214,7 +193,7 @@ public class Fables
     {
         VolatileStatus = null;
         ResetStatBoost();
-        StatusChanges.Clear(); 
+        StatusChanges.Clear();
     }
 
     public void SetStatus(ConditionID conditionId)
@@ -253,7 +232,7 @@ public class Fables
         bool canPerformMove = true;
         if (Status?.OnBeforeMove != null)
         {
-           if (!Status.OnBeforeMove(this))
+            if (!Status.OnBeforeMove(this))
             {
                 canPerformMove = false;
             }
@@ -276,6 +255,11 @@ public class Fables
         VolatileStatus?.OnAfterTurn?.Invoke(this);
     }
 
+    // Method to mark the fable as defeated
+    public void MarkAsDefeated()
+    {
+        isDefeated = true;
+    }
 }
 
 public class DamageDetails

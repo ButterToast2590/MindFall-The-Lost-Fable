@@ -27,6 +27,7 @@ MonoBehaviour:
   speed: 81
   expYield: 142
   catchRate: 255
+  fableID: 5
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: 460d02ce5e836534a9796129ac7296e3, type: 2}
     level: 1
