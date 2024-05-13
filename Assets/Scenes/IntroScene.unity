@@ -1014,6 +1014,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b20aa8372bac14387c34a7d6658fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImages:
+  - {fileID: 21300000, guid: 5ad7344d91b89b94aa96bcf63dcb6952, type: 3}
+  - {fileID: 21300000, guid: c92f832fed7846b4196db1d186b8900e, type: 3}
+  - {fileID: 21300000, guid: 49564d35e4167754dac57fcf5e3a1f20, type: 3}
+  - {fileID: 21300000, guid: 2cc20a11b61b4b24e9dd3ca9533a5881, type: 3}
+  - {fileID: 21300000, guid: 7353265583f73be4da69e066ffe3e4e8, type: 3}
+  backgroundImageHolder: {fileID: 409074935}
 --- !u!114 &880641731
 MonoBehaviour:
   m_ObjectHideFlags: 0
