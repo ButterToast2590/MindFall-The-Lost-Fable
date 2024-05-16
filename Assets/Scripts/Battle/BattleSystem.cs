@@ -350,135 +350,85 @@ public class BattleSystem : MonoBehaviour
         else if (damageDetails.TypeEffectiveness < 1f)
             yield return dialogBox.TypeDialog("It's not very effective!!");
     }
+
     IEnumerator RunAfterTurn(BattleUnit sourceUnit)
     {
         yield return new WaitForSeconds(0.1f);
         if (state == BattleState.BattleOver) yield break;
-        yield return new WaitUntil(() => state == BattleState.RunningTurn);
+      
     }
 
-   public IEnumerator RunTurns(BattleAction playerAction)
-{
-    state = BattleState.RunningTurn;
 
-    // Stop the current battle coroutine if it exists
-    if (battleCoroutine != null)
+    public IEnumerator RunTurns(BattleAction playerAction)
     {
-        StopCoroutine(battleCoroutine);
-    }
+        state = BattleState.RunningTurn;
 
-    // Assign the current coroutine to the battleCoroutine variable
-    battleCoroutine = StartCoroutine(ExecuteTurn(playerAction));
-
-    yield return battleCoroutine;
-}
-
-private IEnumerator ExecuteTurn(BattleAction playerAction)
-{
-    if (playerAction == BattleAction.Move)
-    {
-            var selectedMove = playerUnit.fables.Moves[selectedMoveIndex];
-
-        if (selectedMove.PP == 0)
+        if (battleCoroutine != null)
         {
-            yield return dialogBox.TypeDialog($"No PP left for {selectedMove.Base.Name}!");
-            DisableMoveDetails();
-            ActionSelection();
-            yield break;
-        }
-        else if (selectedMove.PP < 0)
-        {
-            selectedMove.PP = 0;
+            StopCoroutine(battleCoroutine);
         }
 
-        // run the move since it has PP
-        playerUnit.fables.CurrentMove = selectedMove;
-        enemyUnit.fables.CurrentMove = enemyUnit.fables.GetRandomMove();
+        battleCoroutine = StartCoroutine(ExecuteTurn(playerAction));
 
-        int playerMovePriority = playerUnit.fables.CurrentMove.Base.Priority;
-        int enemyMovePriority = enemyUnit.fables.CurrentMove.Base.Priority;
+        yield return battleCoroutine;
 
-        // Check who goes first
-        bool playerGoesFirst = true;
-        if (enemyMovePriority > playerMovePriority)
-        {
-            playerGoesFirst = false;
-        }
-        else if (enemyMovePriority == playerMovePriority)
-        {
-            playerGoesFirst = playerUnit.fables.Speed >= enemyUnit.fables.Speed;
-        }
-
-        var firstUnit = (playerGoesFirst) ? playerUnit : enemyUnit;
-        var secondUnit = (playerGoesFirst) ? enemyUnit : playerUnit;
-
-        // First turn
-        yield return RunMove(firstUnit, secondUnit, firstUnit.fables.CurrentMove);
-        yield return RunAfterTurn(firstUnit);
-        DisableMoveDetails();
-        if (state == BattleState.BattleOver) yield break;
-
-        // Check if both fables are still alive before proceeding to the second turn
-        if (playerUnit.fables.HP > 0 && enemyUnit.fables.HP > 0)
-        {
-            // Second turn
-            DisableMoveDetails();
-            yield return RunMove(secondUnit, firstUnit, secondUnit.fables.CurrentMove);
-            yield return RunAfterTurn(secondUnit);
-            if (state == BattleState.BattleOver) yield break;
-        }
-
-        // Check if any fable has fainted after turns
-        if (playerUnit.fables.HP <= 0 || enemyUnit.fables.HP <= 0)
-        {
-            DisableMoveDetails();
-            ResetBattle();
-            yield break;
-        }
-    }
-    else
-    {
-            if (playerAction == BattleAction.SwitchFable)
-            {
-                var selectedFable = playerParty.fables[selectedMemberIndex];
-                state = BattleState.Busy;
-                yield return SwitchFables(selectedFable);
-            }
-            else if (playerAction == BattleAction.UseItem)
-            {
-                dialogBox.EnableActionSelector(false);
-                yield return ThrowFaeCharm();
-            }
-            else if (playerAction == BattleAction.Run)
-            {
-                yield return TryToEscape();
-            }
-
-            // Enemy Turn
-            var enemyMove = enemyUnit.fables.GetRandomMove();
-            yield return RunMove(enemyUnit, playerUnit, enemyMove);
-            yield return RunAfterTurn(enemyUnit);
-
-            // Check if battle is over after enemy action
-            if (state == BattleState.BattleOver) yield break;
-
-            // Check if any fable has fainted after the enemy's turn
-            if (playerUnit.fables.HP <= 0 || enemyUnit.fables.HP <= 0)
-            {
-                // Reset battle state
-                DisableMoveDetails();
-                ResetBattle();
-                yield break;
-            }
-        }
+        // Ensure the action selection happens after both turns
         if (state != BattleState.BattleOver)
         {
-            ActionSelection(); // Return to action selection
+            ActionSelection(); // Return to action selection if the battle is not over
         }
-        DisableMoveDetails();
     }
 
+    private IEnumerator ExecuteTurn(BattleAction playerAction)
+    {
+        if (playerAction == BattleAction.Move)
+        {
+            var selectedMove = playerUnit.fables.Moves[selectedMoveIndex];
+            if (selectedMove.PP == 0)
+            {
+                yield return dialogBox.TypeDialog($"No PP left for {selectedMove.Base.Name}!");
+                ActionSelection();
+                yield break;
+            }
 
+            playerUnit.fables.CurrentMove = selectedMove;
+            enemyUnit.fables.CurrentMove = enemyUnit.fables.GetRandomMove();
+
+            int playerMovePriority = playerUnit.fables.CurrentMove.Base.Priority;
+            int enemyMovePriority = enemyUnit.fables.CurrentMove.Base.Priority;
+
+            bool playerGoesFirst = playerMovePriority > enemyMovePriority || (playerMovePriority == enemyMovePriority && playerUnit.fables.Speed >= enemyUnit.fables.Speed);
+            var firstUnit = playerGoesFirst ? playerUnit : enemyUnit;
+            var secondUnit = playerGoesFirst ? enemyUnit : playerUnit;
+
+            // First turn
+            yield return RunMove(firstUnit, secondUnit, firstUnit.fables.CurrentMove);
+            yield return RunAfterTurn(firstUnit);
+            if (state == BattleState.BattleOver) yield break;
+
+            // Second turn
+            if (playerUnit.fables.HP > 0 && enemyUnit.fables.HP > 0)
+            {
+                yield return RunMove(secondUnit, firstUnit, secondUnit.fables.CurrentMove);
+                yield return RunAfterTurn(secondUnit);
+                if (state == BattleState.BattleOver) yield break;
+            }
+        }
+        else if (playerAction == BattleAction.SwitchFable)
+        {
+            var selectedFable = playerParty.fables[selectedMemberIndex];
+            state = BattleState.Busy;
+            yield return SwitchFables(selectedFable);
+        }
+        else if (playerAction == BattleAction.UseItem)
+        {
+            yield return ThrowFaeCharm();
+        }
+        else if (playerAction == BattleAction.Run)
+        {
+            yield return TryToEscape();
+        }
+    }
 
 
 
@@ -696,7 +646,7 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
         var faecharmObj = Instantiate(faecharmSprite, playerUnit.transform.position - new Vector3(3, 0), Quaternion.identity);
         var faecharm = faecharmObj.GetComponent<SpriteRenderer>();
 
-        //Animation Throw
+        // Animation Throw
         yield return faecharm.transform.DOJump(enemyUnit.transform.position + new Vector3(0, 2), 2f, 1, 1).WaitForCompletion();
         yield return enemyUnit.PlayCaptureAnimation();
         yield return faecharm.transform.DOMoveY(enemyUnit.transform.position.y - 1.3f, 1).WaitForCompletion();
@@ -725,26 +675,39 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
             yield return new WaitForSeconds(2f);
             faecharm.DOFade(0, 0.2f);
             yield return enemyUnit.PlayBreakOutAnimation();
-
             if (shakeCount < 2)
             {
                 yield return dialogBox.TypeDialog($"{enemyUnit.fables.Base.FableName} broke free");
-                Debug.Log("Fable broke free");
-                yield break;
             }
             else
             {
                 yield return dialogBox.TypeDialog($"Almost caught it!");
-                Debug.Log("Almost caught it");
             }
 
             Destroy(faecharm);
-            Debug.Log("Destroyed faecharm");
-
-            // Only set the state to RunningTurn here, after the catch attempt
-            state = BattleState.RunningTurn;
-            Debug.Log("Set state to RunningTurn");
+            StartCoroutine(EnemyTurn());
         }
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        var enemyMove = enemyUnit.fables.GetRandomMove();
+        yield return RunMove(enemyUnit, playerUnit, enemyMove);
+        yield return RunAfterTurn(enemyUnit);
+
+        // Check if battle is over after enemy action
+        if (state == BattleState.BattleOver) yield break;
+
+        // Check if any fable has fainted after the enemy's turn
+        if (playerUnit.fables.HP <= 0 || enemyUnit.fables.HP <= 0)
+        {
+            // Reset battle state
+            DisableMoveDetails();
+            ResetBattle();
+            yield break;
+        }
+
+        ActionSelection(); // Return to action selection
     }
 
     int TryToCatchFables(Fables fable)
@@ -765,6 +728,7 @@ private IEnumerator ExecuteTurn(BattleAction playerAction)
         }
 
         return shakeCount;
+
     }
 
     IEnumerator TryToEscape()

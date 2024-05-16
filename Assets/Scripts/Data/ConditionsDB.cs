@@ -152,8 +152,25 @@ public class ConditionsDB
             condition.Apply(fables);
         }
     }
-}
 
+    public static float GetStatusBonus(Condition condition)
+    {
+        if (condition == null)
+        {
+            return 1f;
+        }
+        else if (condition.Id == ConditionID.Dizziness || condition.Id == ConditionID.Sprain)
+        {
+            return 2f;
+        }
+        else if (condition.Id == ConditionID.Poison || condition.Id == ConditionID.Bruise || condition.Id == ConditionID.Allergy)
+        {
+            return 1.5f;
+        }
+
+        return 1f;
+    }
+}
 public enum ConditionID
 {
     None, Poison, Bruise, Dizziness, Sprain, Allergy, Disoriented
