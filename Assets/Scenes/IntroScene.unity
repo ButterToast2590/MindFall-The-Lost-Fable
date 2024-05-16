@@ -276,7 +276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -398.0335, y: 3.7504}
+  m_AnchoredPosition: {x: -788, y: 0.0000033379}
   m_SizeDelta: {x: 130.1996, y: 157.5325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114817934
@@ -422,8 +422,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.169, y: 0.000076298}
-  m_SizeDelta: {x: 606.82, y: 199.14}
+  m_AnchoredPosition: {x: 68.532, y: 0.000076298}
+  m_SizeDelta: {x: 1371.9, y: 199.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &391605480
 MonoBehaviour:
@@ -441,7 +441,7 @@ MonoBehaviour:
     cycle that transcends mere biology. '
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textFont: {fileID: 12800000, guid: 584e726639c1fc94b8b258e8bf1e1e90, type: 3}
-  delay: 0.05
+  delay: 0.003
   delayBetweenLines: 0
   sound: {fileID: 8300000, guid: 9f8d62239224bb2409a7927b6eef24b2, type: 3}
   characterSprite: {fileID: -163684913, guid: f908b903eca70eb47b941740f4e397bc, type: 3}
@@ -599,7 +599,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -399.0909, y: 4.909}
+  m_AnchoredPosition: {x: -780, y: 0.0000033379}
   m_SizeDelta: {x: 127.7151, y: 157.1761}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &423672736
@@ -675,7 +675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: 5}
+  m_AnchoredPosition: {x: -781, y: 0}
   m_SizeDelta: {x: 129.1176, y: 152.3272}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464515279
@@ -753,8 +753,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.169, y: -0.000030518}
-  m_SizeDelta: {x: 606.82, y: 199.14}
+  m_AnchoredPosition: {x: 68.53099, y: -0.000030518}
+  m_SizeDelta: {x: 1371.9, y: 199.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &572351643
 MonoBehaviour:
@@ -773,7 +773,7 @@ MonoBehaviour:
     with the food web chain.
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textFont: {fileID: 12800000, guid: aff46af37ee875c4089b49805255c0c3, type: 3}
-  delay: 0.1
+  delay: 0.003
   delayBetweenLines: 0
   sound: {fileID: 8300000, guid: 0170ac8a992de094cb052e42551df1dd, type: 3}
   characterSprite: {fileID: -163684913, guid: f908b903eca70eb47b941740f4e397bc, type: 3}
@@ -850,13 +850,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ee21bb955eff68f4b81f9caa37705fbf, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.352
+  m_Volume: 0.238
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 101
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1004,8 +1004,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 77.43383, y: 161.00192}
-  m_SizeDelta: {x: 799.1616, y: 199.1393}
+  m_AnchoredPosition: {x: 2.709, y: 143.54715}
+  m_SizeDelta: {x: 1623.5303, y: 234.0489}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &880641730
 MonoBehaviour:
@@ -1021,10 +1021,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundImages:
   - {fileID: 21300000, guid: 5ad7344d91b89b94aa96bcf63dcb6952, type: 3}
-  - {fileID: 21300000, guid: c92f832fed7846b4196db1d186b8900e, type: 3}
-  - {fileID: 21300000, guid: 23164be4e5d83ec44b8707de98256a99, type: 3}
-  - {fileID: 21300000, guid: 9d2d75a247e86494594af28b8dac73af, type: 3}
-  - {fileID: 21300000, guid: 063ec96164c3f8a44948b7151688cb50, type: 3}
+  - {fileID: 21300000, guid: 5a0f36a53644fbb4c8b6443cab67a045, type: 3}
+  - {fileID: 21300000, guid: 5ad7344d91b89b94aa96bcf63dcb6952, type: 3}
+  - {fileID: 21300000, guid: 5a0f36a53644fbb4c8b6443cab67a045, type: 3}
+  - {fileID: 21300000, guid: 5ad7344d91b89b94aa96bcf63dcb6952, type: 3}
   - {fileID: 21300000, guid: 5a0f36a53644fbb4c8b6443cab67a045, type: 3}
   backgroundImageHolder: {fileID: 409074935}
 --- !u!114 &880641731
@@ -1219,8 +1219,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.169, y: -0.000030518}
-  m_SizeDelta: {x: 606.82, y: 199.14}
+  m_AnchoredPosition: {x: 68.525, y: -0.000030518}
+  m_SizeDelta: {x: 1371.9, y: 199.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1119170369
 MonoBehaviour:
@@ -1238,7 +1238,7 @@ MonoBehaviour:
     the truth to Fables awaits, whispering secrets and consequences.
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textFont: {fileID: 12800000, guid: 584e726639c1fc94b8b258e8bf1e1e90, type: 3}
-  delay: 0.05
+  delay: 0.003
   delayBetweenLines: 0
   sound: {fileID: 8300000, guid: 9f8d62239224bb2409a7927b6eef24b2, type: 3}
   characterSprite: {fileID: -163684913, guid: f908b903eca70eb47b941740f4e397bc, type: 3}
@@ -1322,8 +1322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.16884, y: -0.000045775}
-  m_SizeDelta: {x: 606.8235, y: 199.14}
+  m_AnchoredPosition: {x: 68.53212, y: -0.000045775}
+  m_SizeDelta: {x: 1371.9255, y: 199.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353727365
 MonoBehaviour:
@@ -1341,9 +1341,9 @@ MonoBehaviour:
     myth blur, there exists a realm teeming with creatures the Fables.
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textFont: {fileID: 12800000, guid: aff46af37ee875c4089b49805255c0c3, type: 3}
-  delay: 0.1
-  delayBetweenLines: 2
-  sound: {fileID: 8300000, guid: 0170ac8a992de094cb052e42551df1dd, type: 3}
+  delay: 3
+  delayBetweenLines: 1
+  sound: {fileID: 8300000, guid: 066eb40834038094a85317809d43c02e, type: 3}
   characterSprite: {fileID: -163684913, guid: f908b903eca70eb47b941740f4e397bc, type: 3}
   imageHolder: {fileID: 423672736}
 --- !u!114 &1353727366
@@ -1423,7 +1423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400.25015, y: 4.8919}
+  m_AnchoredPosition: {x: -784, y: -0.0000066757}
   m_SizeDelta: {x: 127.7665, y: 155.7266}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400613968
@@ -1499,7 +1499,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -398.0335, y: 3.7504}
+  m_AnchoredPosition: {x: -784, y: 0.0000033379}
   m_SizeDelta: {x: 130.1996, y: 157.5325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424512882
@@ -1575,7 +1575,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -398.0335, y: 3.7504}
+  m_AnchoredPosition: {x: -786, y: 0.0000033379}
   m_SizeDelta: {x: 130.1996, y: 157.5325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1663825160
@@ -1653,8 +1653,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.169, y: -0.000030518}
-  m_SizeDelta: {x: 606.82, y: 199.14}
+  m_AnchoredPosition: {x: 68.537, y: -0.000030518}
+  m_SizeDelta: {x: 1371.9, y: 199.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718440743
 MonoBehaviour:
@@ -1673,7 +1673,7 @@ MonoBehaviour:
     knowledge.
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textFont: {fileID: 12800000, guid: 584e726639c1fc94b8b258e8bf1e1e90, type: 3}
-  delay: 0.05
+  delay: 0.003
   delayBetweenLines: 0
   sound: {fileID: 8300000, guid: 9f8d62239224bb2409a7927b6eef24b2, type: 3}
   characterSprite: {fileID: -163684913, guid: f908b903eca70eb47b941740f4e397bc, type: 3}
@@ -1757,8 +1757,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.169, y: -0.000030518}
-  m_SizeDelta: {x: 606.82, y: 199.14}
+  m_AnchoredPosition: {x: 68.532, y: -0.000030518}
+  m_SizeDelta: {x: 1371.9, y: 199.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001429512
 MonoBehaviour:
@@ -1776,7 +1776,7 @@ MonoBehaviour:
     fractured realms. '
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textFont: {fileID: 12800000, guid: 584e726639c1fc94b8b258e8bf1e1e90, type: 3}
-  delay: 0.05
+  delay: 0.003
   delayBetweenLines: 0
   sound: {fileID: 8300000, guid: 9f8d62239224bb2409a7927b6eef24b2, type: 3}
   characterSprite: {fileID: -163684913, guid: f908b903eca70eb47b941740f4e397bc, type: 3}
