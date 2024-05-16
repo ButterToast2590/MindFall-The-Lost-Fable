@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuButtonsGame : MonoBehaviour
 {
+    public GameObject PlayGamePanel;
+
     public void PlayGame()
     {
-        SceneManager.LoadScene("IntroScene");
+        // Show the popup panel
+        PlayGamePanel.SetActive(true);
     }
+
 
     public void QuitGame()
     {
