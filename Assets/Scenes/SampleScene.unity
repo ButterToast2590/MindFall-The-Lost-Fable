@@ -32655,9 +32655,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
     lines:
-    - Fable is bla bla
-    - Great companion
-    - Go look for dr carza I already talk to him and he will guide to ems ems.
+    - Go look for Dr.Carza I already talk to him and he will guide you.
+    - Be safe, fullfil your dreams of being the best fable researcher.
   movementPattern: []
   timeBetweenPattern: 0
   npcImage: {fileID: -163684913, guid: f908b903eca70eb47b941740f4e397bc, type: 3}
@@ -33020,10 +33019,10 @@ MonoBehaviour:
     lines:
     - Shhhhhh, your going to disturb the wild life
     - what do you want?
-    - Ohh your the Eripin nice to meet you I heard you are here
-    - To learn more about fables and you can use them to help you aid your jurney
-    - okay now in your faebook open page 1
-  sceneToLoad: IntroScene
+    - Ohh your Eripin nice to meet you I heard you are here To learn more about fables
+      and you can use them to help you aid your journey
+    - okay now in your faebook.
+  sceneToLoad: Battle Tutorial
   gameController: {fileID: 995385000}
 --- !u!114 &481431378476316784
 MonoBehaviour:
