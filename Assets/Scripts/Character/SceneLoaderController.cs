@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Make sure to include this namespace
 
-public class TrainerController : MonoBehaviour, Interactable
+public class SceneLoaderController : MonoBehaviour, Interactable
 {
     [SerializeField] string name;
     [SerializeField] Sprite sprite;
     [SerializeField] GameObject exclamation;
     [SerializeField] GameObject fov;
     [SerializeField] Dialog dialog;
-    [SerializeField] Dialog dialogAfterBattle;
+    [SerializeField] string sceneToLoad; // Add a variable to specify the scene to load
     Character character;
     [SerializeField] GameController gameController;
-    [SerializeField] TrainerController trainerController;
-
-    //state
-    bool battleLost = false;
 
     private void Awake()
     {
@@ -34,29 +31,25 @@ public class TrainerController : MonoBehaviour, Interactable
     public void Interact(Transform initiator)
     {
         character.LookTowards(initiator.position);
-        if (!battleLost)
+        StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
         {
-            StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
-            {
-                GameController.Instance.StartTrainerBattle(this);
-                // Resume player movement after the dialog
-                initiator.GetComponent<PlayerCon>().ResumeMovement();
-            }));
-        }
-        else
-        {
-            StartCoroutine(DialogManager.Instance.ShowDialog(dialogAfterBattle, null, null));
-        }
+            LoadScene();
+            // Resume player movement after the dialog
+            initiator.GetComponent<PlayerCon>().ResumeMovement();
+        }));
     }
 
-
+    private void LoadScene()
+    {
+        SceneManager.LoadScene(sceneToLoad);
+    }
 
     public void SetGameController(GameController controller)
     {
         gameController = controller;
     }
 
-    public IEnumerator TriggerTrainerBattle(PlayerCon player)
+    public IEnumerator TriggerSceneLoad(PlayerCon player)
     {
         // Pause player movement
         player.PauseMovement();
@@ -68,7 +61,7 @@ public class TrainerController : MonoBehaviour, Interactable
         }
         else
         {
-            Debug.LogError("GameController reference is null in TrainerController.");
+            Debug.LogError("GameController reference is null in SceneLoaderController.");
         }
 
         // Show the Exclamation and disable it after 0.5 sec
@@ -76,35 +69,29 @@ public class TrainerController : MonoBehaviour, Interactable
         yield return new WaitForSeconds(0.5f);
         exclamation.SetActive(false);
 
-        // Calculate the direction from the trainer to the player
+        // Calculate the direction from the NPC to the player
         var diff = player.transform.position - transform.position;
 
-        // Move the trainer towards the player
-        while (diff.magnitude > 0.5f) // Adjust this threshold as needed
+        // Move the NPC towards the player
+        while (diff.magnitude > 1.0f) // Adjust this threshold as needed
         {
             // Calculate the movement direction
             var moveDir = diff.normalized;
 
-            // Move the trainer one step towards the player
+            // Move the NPC one step towards the player
             yield return character.Move(moveDir);
 
             // Recalculate the direction to the player
             diff = player.transform.position - transform.position;
         }
 
-        // Show dialog before battle
+        // Show dialog before loading the scene
         StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
         {
-            GameController.Instance.StartTrainerBattle(this);
+            LoadScene();
             // Resume player movement after the dialog
             player.ResumeMovement();
         }));
-    }
-
-    public void BattleLost()
-    {
-        battleLost = true;
-        fov.gameObject.SetActive(false);
     }
 
     public void SetFovRotation(FacingDirection dir)
@@ -122,5 +109,4 @@ public class TrainerController : MonoBehaviour, Interactable
 
     public string Name { get => name; }
     public Sprite Sprite { get => sprite; }
-
 }
