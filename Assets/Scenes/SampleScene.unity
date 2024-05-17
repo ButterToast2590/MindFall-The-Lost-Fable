@@ -33022,7 +33022,7 @@ MonoBehaviour:
     - Ohh your Eripin nice to meet you I heard you are here To learn more about fables
       and you can use them to help you aid your journey
     - okay now in your faebook.
-  sceneToLoad: Battle Tutorial
+  sceneToLoad: BattleTutorial
   gameController: {fileID: 995385000}
 --- !u!114 &481431378476316784
 MonoBehaviour:
