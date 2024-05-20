@@ -10,7 +10,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField] TMP_Text dialogText;
     [SerializeField] int lettersPerSecond;
     [SerializeField] Button continueButton;
-    
+    [SerializeField] Button ScreenSizeContinue;
+
     // References to NPC name and image UI elements
     [SerializeField] TMP_Text npcNameText;
     [SerializeField] Image npcImage;
@@ -29,6 +30,10 @@ public class DialogManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        // Add listeners to buttons
+        continueButton.onClick.AddListener(ContinueButtonPressed);
+        ScreenSizeContinue.onClick.AddListener(ContinueButtonPressed);
     }
 
     public IEnumerator ShowDialog(Dialog dialog, string npcName, Sprite npcImageSprite, Action onFinished = null)
@@ -54,6 +59,7 @@ public class DialogManager : MonoBehaviour
     {
         bool showContinueButton = !isTyping && currentLine < dialog.Lines.Count;
         continueButton.gameObject.SetActive(showContinueButton);
+        ScreenSizeContinue.gameObject.SetActive(showContinueButton); // Ensure ScreenSizeContinue visibility is updated as well
     }
 
     public void ContinueButtonPressed()

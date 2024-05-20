@@ -87991,39 +87991,63 @@ MonoBehaviour:
   - _base: {fileID: 11400000, guid: 1fd9c76185170d045baa4f96c2c9cfc7, type: 2}
     level: 2
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: 1fd9c76185170d045baa4f96c2c9cfc7, type: 2}
     level: 4
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: 1fd9c76185170d045baa4f96c2c9cfc7, type: 2}
     level: 9
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: fef85e0d215e75d4381e04416ab17925, type: 2}
     level: 3
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: fef85e0d215e75d4381e04416ab17925, type: 2}
     level: 6
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: fef85e0d215e75d4381e04416ab17925, type: 2}
     level: 8
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: 76d88c05e7b478a48a8be4fba8f94b0f, type: 2}
     level: 3
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: 76d88c05e7b478a48a8be4fba8f94b0f, type: 2}
     level: 7
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: 76d88c05e7b478a48a8be4fba8f94b0f, type: 2}
     level: 9
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: 6113e584d9587a54a95bf7266dc48d9b, type: 2}
     level: 4
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: 6113e584d9587a54a95bf7266dc48d9b, type: 2}
     level: 5
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: 6113e584d9587a54a95bf7266dc48d9b, type: 2}
     level: 9
     statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
 --- !u!1 &8018596202372707100
 GameObject:
   m_ObjectHideFlags: 0
@@ -90745,955 +90769,65 @@ CompositeCollider2D:
       - {x: 15.000063, y: 3.0624382}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!1001 &6709242430308666662
+--- !u!1001 &2911042502846867560
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 8018596202296284268}
     m_Modifications:
-    - target: {fileID: 3628708001067760956, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772018, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_Name
-      value: Lighting for the game
+      value: Lighting for the game(Final)
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
+    - target: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973622, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973622, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973622, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973623, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Color.b
-      value: 0.6007476
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973623, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Color.g
-      value: 0.7460306
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973623, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Color.r
-      value: 0.9433962
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973623, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973623, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 2.0968847
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973623, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.773413
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973625, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973625, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973625, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.22735092
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042784973625, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.97381294
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747688, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747688, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 2.7070043
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747688, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 6.4931755
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747690, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9992786
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747690, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.037977237
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747691, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747691, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].IN
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747691, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747691, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042800747691, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].fadeIn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042942331274, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042942331274, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042942331274, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042942331275, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042942331275, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 2.037213
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042942331275, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 5.7540097
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042942331277, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99982566
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042942331277, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.018673833
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367378, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367378, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367378, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367379, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367379, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 1.4808425
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367379, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 5.611038
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367381, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367381, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367381, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99924093
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862042994367381, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.038955573
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043063080662, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043063080662, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043063080662, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043063080663, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043063080663, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 3.1943107
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043063080663, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 6.1819973
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043063080665, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.91903406
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043063080665, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.39417815
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010350, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010350, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010350, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010351, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010351, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0.67012155
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010351, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 3.1783645
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010353, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010353, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010353, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99967647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043125010353, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.025436722
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043447676840, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043447676840, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043447676840, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043447676841, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043447676841, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 1.303231
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043447676841, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.145576
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043447676843, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.79780746
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043447676843, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.60291237
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043544322720, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 2.923285
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043544322720, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 5.4453893
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043544322722, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.90752906
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043544322722, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.4199893
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043544322723, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043544322723, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989228, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989228, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 1.6939417
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989228, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 6.4635024
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989230, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -17.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989230, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989230, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.22988679
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989230, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.9732174
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989231, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989231, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989231, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043546989231, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].Out
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043867362433, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.999885
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043867362433, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.0151659995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043867362494, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043867362494, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043867362494, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043867362495, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043867362495, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0.9597675
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043867362495, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.809694
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043893520648, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043893520648, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 1.0231267
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043893520648, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 3.9881022
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043893520650, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.63731015
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043893520650, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.7706074
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043893520651, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043893520651, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862043893520651, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190150, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190150, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 1.6917313
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190150, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 6.491187
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190152, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.24213545
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190152, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.9702425
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190153, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190153, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190153, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044139190153, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].Out
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044373054124, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044373054124, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044373054124, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044373054125, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044373054125, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0.8428117
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044373054125, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.3791647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044373054127, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99904895
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044373054127, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.043603245
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044398071326, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044398071326, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044398071326, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044398071327, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044398071327, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 1.6169066
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044398071327, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 3.2928567
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044398071393, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9859626
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044398071393, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.16696618
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044467066516, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044467066516, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044467066516, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044467066517, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044467066517, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0.9426171
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2].Hour
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2]._action.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2]._action.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2]._action.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2265976760335007317}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2]._action.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2]._action.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_intensity
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2]._action.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.Rendering.Universal.Light2D, Unity.RenderPipelines.Universal.Runtime
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2]._action.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191282, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[2]._action.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191283, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191283, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 1.2509307
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191283, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.675946
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191285, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99851006
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044505191285, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.054568145
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044654251162, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044654251162, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044654251162, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044654251163, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044654251163, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 1.1278273
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044654251163, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.08116
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044654251165, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.6863745
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044654251165, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.7272483
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615338, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615338, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615338, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615338, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1]._action.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615339, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615339, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0.3208586
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615339, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.346029
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615341, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 21.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615341, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615341, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99801534
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044764615341, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.06297143
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044778223402, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044778223402, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 6.1001024
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044778223404, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9895383
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044778223404, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.14427045
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044778223405, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044778223405, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[1].IN
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786862044778223405, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _schedule.Array.data[0].Out
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146209293519075281, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146209293519075281, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 2.5865874
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146209293519075286, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-      propertyPath: _worldTime
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
---- !u!1 &601156576655342322 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6146209293519075284, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-  m_PrefabInstance: {fileID: 6709242430308666662}
-  m_PrefabAsset: {fileID: 0}
---- !u!108 &601156576406133577
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601156576655342322}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 2
-  m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!114 &601156576406133579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601156576655342322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
---- !u!114 &2265976760335007317 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4786862044505191283, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-  m_PrefabInstance: {fileID: 6709242430308666662}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &8018596202373459994 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3628708001067760956, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-  m_PrefabInstance: {fileID: 6709242430308666662}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &601156576099897755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8018596202373459994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 1
-  m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_LightVolumeIntensity: 1
-  m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.75
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_Vertices:
-  - position: {x: 0.9985302, y: 0.9985302, z: 0}
-    color: {r: 0.70710677, g: 0.70710677, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: 0.9985302, y: 0.9985302, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.9985302, y: 0.9985302, z: 0}
-    color: {r: -0.70710677, g: 0.70710677, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.9985302, y: 0.9985302, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.99853003, y: -0.9985304, z: 0}
-    color: {r: -0.70710665, g: -0.7071069, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.99853003, y: -0.9985304, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  - position: {x: 0.99853003, y: -0.9985304, z: 0}
-    color: {r: 0.70710665, g: -0.7071069, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: 0.99853003, y: -0.9985304, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  - position: {x: 0, y: 0, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  m_Triangles: 030001000800020000000100030002000100050003000800040002000300050004000300070005000800060004000500070006000500010007000800000006000700010000000700
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
 --- !u!4 &8018596202373459995 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3628708001067760957, guid: 2f5555f0202e30f498b9118baf9033f6, type: 3}
-  m_PrefabInstance: {fileID: 6709242430308666662}
+  m_CorrespondingSourceObject: {fileID: 5125623563243772019, guid: 7db6066b90ec3d8499e57008c2baba41, type: 3}
+  m_PrefabInstance: {fileID: 2911042502846867560}
   m_PrefabAsset: {fileID: 0}

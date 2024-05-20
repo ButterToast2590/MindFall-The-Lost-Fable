@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class BattleDialogBox : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] GameObject moveSelector;
     [SerializeField] GameObject moveDetails;
     [SerializeField] GameObject choiceBox;
-
 
     [SerializeField] List<Button> actionButtons;
     [SerializeField] List<Button> moveButtons;
@@ -63,6 +63,7 @@ public class BattleDialogBox : MonoBehaviour
         moveSelector.SetActive(enabled);
         moveDetails.SetActive(enabled);
     }
+
     public void EnableMoveDetails(bool enabled)
     {
         moveDetails.SetActive(enabled);
@@ -96,7 +97,7 @@ public class BattleDialogBox : MonoBehaviour
         if (yesSelected)
         {
             yesText.color = highlightedColor;
-            noText.color = Color.black; 
+            noText.color = Color.black;
         }
         else
         {
@@ -106,34 +107,49 @@ public class BattleDialogBox : MonoBehaviour
     }
 
     public void SetMoveNames(List<Move> moves)
-{
-    for (int i = 0; i < moveButtons.Count; ++i)
     {
-        if (i < moves.Count)
+        for (int i = 0; i < moveButtons.Count; ++i)
         {
-            TextMeshProUGUI buttonText = moveButtons[i].GetComponentInChildren<TextMeshProUGUI>(true);
-            if (buttonText != null)
+            if (i < moves.Count)
             {
-                buttonText.text = moves[i].Base.Name;
+                TextMeshProUGUI buttonText = moveButtons[i].GetComponentInChildren<TextMeshProUGUI>(true);
+                if (buttonText != null)
+                {
+                    buttonText.text = moves[i].Base.Name;
 
-                int moveIndex = i; 
-                moveButtons[i].onClick.RemoveAllListeners(); 
-                moveButtons[i].onClick.AddListener(() => {
-                    UpdateMoveDetails(moves[moveIndex]);
-                });
+                    int moveIndex = i;
+                    moveButtons[i].onClick.RemoveAllListeners();
+                    moveButtons[i].onClick.AddListener(() => {
+                        UpdateMoveDetails(moves[moveIndex]);
+                    });
+
+                    // Add Tooltip component and set the message
+                    Tooltip tooltip = moveButtons[i].gameObject.GetComponent<Tooltip>() ?? moveButtons[i].gameObject.AddComponent<Tooltip>();
+                    string tooltipMessage = $"Move: {moves[i].Base.Name}\nPP: {moves[i].PP}/{moves[i].Base.PP}\nType: {moves[i].Base.Type}";
+                    tooltip.UpdateMessage(tooltipMessage);
+
+                    // Add EventTrigger to handle long press for tooltip
+                    EventTrigger trigger = moveButtons[i].gameObject.GetComponent<EventTrigger>() ?? moveButtons[i].gameObject.AddComponent<EventTrigger>();
+
+                    EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
+                    pointerDownEntry.callback.AddListener((data) => { tooltip.OnPointerDown((PointerEventData)data); });
+                    trigger.triggers.Add(pointerDownEntry);
+
+                    EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerUp };
+                    pointerUpEntry.callback.AddListener((data) => { tooltip.OnPointerUp((PointerEventData)data); });
+                    trigger.triggers.Add(pointerUpEntry);
+                }
             }
-        }
-        else
-        {
-            TextMeshProUGUI buttonText = moveButtons[i].GetComponentInChildren<TextMeshProUGUI>(true);
-            if (buttonText != null)
+            else
             {
-                buttonText.text = "-";
+                TextMeshProUGUI buttonText = moveButtons[i].GetComponentInChildren<TextMeshProUGUI>(true);
+                if (buttonText != null)
+                {
+                    buttonText.text = "-";
+                }
             }
         }
     }
-}
-
 
     public int CalculateSelectedMoveIndex(Vector2 inputPosition)
     {
@@ -176,5 +192,4 @@ public class BattleDialogBox : MonoBehaviour
             }
         }
     }
-
 }
