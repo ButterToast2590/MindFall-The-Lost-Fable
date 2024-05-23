@@ -67,15 +67,9 @@ public class BattleSystem : MonoBehaviour
         player = playerParty.GetComponent<PlayerCon>();
         trainer = trainerParty.GetComponent<TrainerController>();
 
-        // Start the SetupBattle coroutine
-        StartCoroutine(SetupTrainerBattle());
-    }
 
-    private IEnumerator SetupTrainerBattle()
-    {
-        yield return SetupBattle(); 
+        StartCoroutine(SetupBattle());
     }
-
 
     public void StartBattle(FableParty playerParty, Fables wildFables)
     {
@@ -102,6 +96,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             // Trainer battle
+            //Show trainer and player sprites
             playerUnit.gameObject.SetActive(false);
             enemyUnit.gameObject.SetActive(false);
 
@@ -110,44 +105,25 @@ public class BattleSystem : MonoBehaviour
             playerImage.sprite = player.Sprite;
             trainerImage.sprite = trainer.Sprite;
 
-            // Show trainer's intent to battle
             yield return dialogBox.TypeDialog($"{trainer.Name} wants to battle");
 
-            // Coroutine nesting: Start the coroutine for sending out the trainer's Fable within the previous coroutine
-            yield return StartCoroutine(SendOutTrainerFable(trainerParty));
-
-            // Coroutine nesting: Start the coroutine for sending out the player's Fable within the previous coroutine
-            yield return StartCoroutine(SendOutPlayerFable(playerParty));
-
-            // Set move names after both Fables are sent out
+            //send out the first Fable of the trainer
+            trainerImage.gameObject.SetActive(false);
+            enemyUnit.gameObject.SetActive(true);
+            var enemyFables = trainerParty.GetHealthyFable();
+            enemyUnit.Setup(enemyFables);
+            yield return dialogBox.TypeDialog($"{trainer.Name} send out {enemyFables.Base.FableName}");
+            //send out the first Fable of the player
+            playerImage.gameObject.SetActive(false);
+            playerUnit.gameObject.SetActive(true);
+            var playerFables = playerParty.GetHealthyFable();
+            playerUnit.Setup(playerFables);
+            yield return dialogBox.TypeDialog($"Go {playerFables.Base.FableName}!");
             dialogBox.SetMoveNames(playerUnit.fables.Moves);
         }
-
         escapeAttempts = 0;
         partyScreen.Init();
         ActionSelection();
-    }
-
-    // Coroutine for sending out the trainer's Fable
-    private IEnumerator SendOutTrainerFable(FableParty trainerParty)
-    {
-        // Send out the first Fable of the trainer
-        enemyUnit.gameObject.SetActive(true);
-        var enemyFables = trainerParty.GetHealthyFable();
-        enemyUnit.Setup(enemyFables);
-        // Display dialog for trainer sending out their Fable
-        yield return dialogBox.TypeDialog($"{trainer.Name} sends out {enemyFables.Base.FableName}");
-    }
-
-    // Coroutine for sending out the player's Fable
-    private IEnumerator SendOutPlayerFable(FableParty playerParty)
-    {
-        // Send out the first Fable of the player
-        playerUnit.gameObject.SetActive(true);
-        var playerFables = playerParty.GetHealthyFable();
-        playerUnit.Setup(playerFables);
-        // Display dialog for player sending out their Fable
-        yield return dialogBox.TypeDialog($"Go {playerFables.Base.FableName}!");
     }
 
 
@@ -155,7 +131,13 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.BattleOver;
         playerParty.fables.ForEach(p => p.OnBattleOver());
-        OnBattleOver(won);
+        OnBattleOver?.Invoke(won);
+    }
+
+    public void ResetBattleState()
+    {
+        isTrainerBattle = false;
+        trainer = null;
     }
 
 

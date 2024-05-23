@@ -18,6 +18,19 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
 
     public string Name { get => name; }
     public Sprite Sprite { get => sprite; }
+    private const float offsetY = 0.0f;
+
+    public Character Character
+    {
+        get
+        {
+            if (character == null)
+            {
+                character = GetComponent<Character>(); 
+            }
+            return character;
+        }
+    }
 
     private void Awake()
     {
@@ -112,7 +125,19 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
     {
         CheckForEncounters();
         CheckIfInTrainersView();
+        var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerLayers);
+
+        foreach (var collider in colliders)
+        {
+            var triggerable = collider.GetComponent<IPlayerTriggerable>();
+            if (triggerable != null)
+            {
+                triggerable.OnPlayerTriggered(this);
+                break;
+            }
+        }
     }
+
 
     public void PauseMovement()
     {

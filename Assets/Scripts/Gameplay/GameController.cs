@@ -10,14 +10,16 @@ public class GameController : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
 
-   public GameState state;
+    public GameState state;
 
-    public static GameController Instance{get; private set;}    
+    public static GameController Instance { get; private set; }
+
     private void Awake()
     {
         Instance = this;
         ConditionsDB.Init();
     }
+
     private void Start()
     {
         playerController.OnEncountered += StartBattle;
@@ -58,10 +60,10 @@ public class GameController : MonoBehaviour
         var wildFableCopy = new Fables(wildFable.Base, wildFable.Level);
 
         battleSystem.StartBattle(playerParty, wildFableCopy);
-
     }
+
     TrainerController trainer;
-    //Start Trainer Battle
+
     public void StartTrainerBattle(TrainerController trainer)
     {
         state = GameState.Battle;
@@ -71,24 +73,21 @@ public class GameController : MonoBehaviour
         this.trainer = trainer;
         var playerParty = playerController.GetComponent<FableParty>();
         var trainerParty = trainer.GetComponent<FableParty>();
-       
 
         battleSystem.StartTrainerBattle(playerParty, trainerParty);
-
     }
-
 
     void EndBattle(bool won)
     {
-        if(trainer != null && won == true)
-        {
-            trainer.BattleLost();
-            trainer = null;
-        }
-
         state = GameState.FreeRoam;
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
+        battleSystem.ResetBattleState();
+
+        if (won && trainer != null)
+        {
+            trainer.BattleLost();
+        }
     }
 
     private void Update()
@@ -107,14 +106,21 @@ public class GameController : MonoBehaviour
         }
         else if (state == GameState.Cutscene)
         {
-            // Pause movement when entering cutscene
             playerController.PauseMovement();
         }
         else
         {
-            // Resume movement when leaving cutscene
             playerController.ResumeMovement();
         }
     }
 
+    public void StartCutsceneState()
+    {
+        state = GameState.Cutscene;
+    }
+
+    public void StartFreeRoamState()
+    {
+        state = GameState.FreeRoam;
+    }
 }

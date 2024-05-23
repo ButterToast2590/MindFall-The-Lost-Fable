@@ -8,6 +8,7 @@ public class PartyScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI messageText;
     [SerializeField] Button backButton;
     [SerializeField] GameObject partyButtonContainer;
+    [SerializeField] FableStatsDisplay fableStatsDisplay;
     PartyMemberUI[] memberSlots;
 
     List<Fables> fables;
@@ -44,13 +45,13 @@ public class PartyScreen : MonoBehaviour
         }
     }
 
-
     public void UpdateMemberSelection(int selectedMember)
     {
         DeselectAllPartyMembers();
         if (selectedMember >= 0 && selectedMember < memberSlots.Length)
         {
             memberSlots[selectedMember].SetSelected(true);
+            fableStatsDisplay.SetFableData(fables[selectedMember]);
         }
     }
 
@@ -129,6 +130,7 @@ public class PartyScreen : MonoBehaviour
             {
                 memberSlots[i].SetSelected(i == selectedIndex);
             }
+            fableStatsDisplay.SetFableData(fables[selectedIndex]);
         }
     }
 
