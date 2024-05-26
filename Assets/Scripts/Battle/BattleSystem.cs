@@ -52,7 +52,7 @@ public class BattleSystem : MonoBehaviour
         {
             member.SetSelected(false);
         }
-
+        dialogBox.EnableActionSelector(false);
         backButton.onClick.AddListener(OnBackButtonClick);
     }
 
@@ -177,8 +177,6 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move)
     {
-        
-        move.PP--;
 
         bool canRunMove = sourceUnit.fables.OnBeforeMove();
         if (!canRunMove)
@@ -187,12 +185,12 @@ public class BattleSystem : MonoBehaviour
             yield return sourceUnit.Hud.UpdateHP();
             yield break;
         }
-
         // Show status changes of the source fable
         yield return ShowStatusChanges(sourceUnit.fables);
 
         // Display a dialog indicating the move used
         yield return dialogBox.TypeDialog($"{sourceUnit.fables.Base.FableName} used {move.Base.Name}");
+        move.PP--;
 
         sourceUnit.PlayAttackAnimation(sourceUnit, targetUnit.transform.position, move.Base.ParticleDuration);
         if (move.Base.ParticleEffectPrefab != null)
@@ -393,7 +391,6 @@ public class BattleSystem : MonoBehaviour
             if (selectedMove.PP == 0)
             {
                 yield return dialogBox.TypeDialog($"No PP left for {selectedMove.Base.Name}!");
-                ActionSelection();
                 yield break;
             }
 

@@ -29,10 +29,27 @@ public class BattleUnit : MonoBehaviour
     public void Setup(Fables fable)
     {
         this.fables = fable;
+
+        // Set the sprite based on whether it's a player unit or not
         if (isPlayerUnit)
             image.sprite = fable.Base.BackSpriteName;
         else
             image.sprite = fable.Base.FrontSpriteName;
+
+        // Set the size of the image based on the isBigger property
+        if (fable.Base.IsBigger)
+        {
+            image.transform.localScale = Vector3.one; // Maintain original size
+        }
+        else
+        {
+            // Set a smaller size for the image
+            image.transform.localScale = Vector3.one * 0.5f;
+            image.SetNativeSize();
+            // Adjust the position to appear slightly lower
+            float yOffset = -10f; // You can adjust this value as needed
+            image.transform.position += new Vector3(0f, yOffset, 0f);
+        }
 
         hud.gameObject.SetActive(true);
         hud.SetData(fable);
@@ -41,6 +58,8 @@ public class BattleUnit : MonoBehaviour
         image.color = originalColor;
         PlayEnterAnimation();
     }
+
+
 
     public void Clear()
     {

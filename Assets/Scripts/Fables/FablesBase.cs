@@ -24,6 +24,7 @@ public class FablesBase : ScriptableObject
     [SerializeField] int catchRate = 255;
     [SerializeField] int fableID;
     [SerializeField] List<LearnableMove> learnableMoves;
+    [SerializeField] bool isBigger;
 
     public Sprite TypeSprite { get { return typeSprite; } }
 
@@ -43,6 +44,7 @@ public class FablesBase : ScriptableObject
     public int FableID { get { return fableID; } }
     public int CatchRate => catchRate;
     public List<LearnableMove> LearnableMoves { get { return learnableMoves; } }
+    public bool IsBigger { get { return isBigger; } }
 }
 
 [System.Serializable]

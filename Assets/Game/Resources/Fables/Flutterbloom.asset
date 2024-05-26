@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc2cbc9881d8e6428e671ec4ba3e317, type: 3}
+  m_Name: Flutterbloom
+  m_EditorClassIdentifier: 
+  fablename: 'Flutterbloom '
+  description: 
+  frontsprite: {fileID: -1737906970, guid: bb1f91a9a54be5340992222d5c3832ca, type: 3}
+  backsprite: {fileID: -1737906970, guid: bb1f91a9a54be5340992222d5c3832ca, type: 3}
+  typeSprite: {fileID: -2019579447, guid: 13289b31b36c3234e88c9878e19bbcc9, type: 3}
+  type1: 3
+  type2: 0
+  maxHp: 60
+  attack: 40
+  defense: 55
+  spAttack: 65
+  spDefense: 54
+  speed: 80
+  expYield: 160
+  catchRate: 255
+  fableID: 0
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: cb449dc8a4ff85d48b9e70b6d91855d2, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 7bd759bf46d07e44682c80c24230f8ae, type: 2}
+    level: 7
+  - moveBase: {fileID: 11400000, guid: 305b165cf86f90245b7f96c01da6a5a6, type: 2}
+    level: 4
+  - moveBase: {fileID: 11400000, guid: ac3f8a954275b4d40a1773d7db59a2ee, type: 2}
+    level: 16

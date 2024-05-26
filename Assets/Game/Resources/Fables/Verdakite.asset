@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc2cbc9881d8e6428e671ec4ba3e317, type: 3}
+  m_Name: Verdakite
+  m_EditorClassIdentifier: 
+  fablename: Verdakite
+  description: 
+  frontsprite: {fileID: 2061239550, guid: e2868b5a100991649a78022c80f75806, type: 3}
+  backsprite: {fileID: 2061239550, guid: e2868b5a100991649a78022c80f75806, type: 3}
+  typeSprite: {fileID: -1205032415, guid: 13289b31b36c3234e88c9878e19bbcc9, type: 3}
+  type1: 6
+  type2: 0
+  maxHp: 64
+  attack: 69
+  defense: 50
+  spAttack: 70
+  spDefense: 65
+  speed: 78
+  expYield: 143
+  catchRate: 255
+  fableID: 0
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 6636e13f28fd56f44a43c358cc61b463, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 956c73f3706db164fb0ea4fa088a525f, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 22fc85fa1d551f44b9457486129f6439, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: ac3f8a954275b4d40a1773d7db59a2ee, type: 2}
+    level: 0
+  isBigger: 0

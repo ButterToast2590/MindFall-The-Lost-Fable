@@ -31,7 +31,7 @@ namespace DialogueSystem
 
         private void LoadMainScene()
         {
-            SceneManager.LoadScene("SampleScene"); // Replace "MainGameSceneName" with the name of your main game scene
+            SceneManager.LoadScene("SampleSceneV0.3.6"); // Replace "MainGameSceneName" with the name of your main game scene
         }
 
         private void Deactivate()
