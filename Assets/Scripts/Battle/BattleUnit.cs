@@ -30,25 +30,25 @@ public class BattleUnit : MonoBehaviour
     {
         this.fables = fable;
 
+        // Reset the image size to its original size
+        image.transform.localScale = Vector3.one;
+
         // Set the sprite based on whether it's a player unit or not
         if (isPlayerUnit)
             image.sprite = fable.Base.BackSpriteName;
         else
             image.sprite = fable.Base.FrontSpriteName;
 
-        // Set the size of the image based on the isBigger property
         if (fable.Base.IsBigger)
         {
-            image.transform.localScale = Vector3.one; // Maintain original size
+            image.transform.localScale *= (isPlayerUnit ? 1f : 0.5f);
         }
         else
         {
             // Set a smaller size for the image
-            image.transform.localScale = Vector3.one * 0.5f;
+            image.transform.localScale *= 0.9f;
             image.SetNativeSize();
-            // Adjust the position to appear slightly lower
-            float yOffset = -10f; // You can adjust this value as needed
-            image.transform.position += new Vector3(0f, yOffset, 0f);
+      
         }
 
         hud.gameObject.SetActive(true);
@@ -58,6 +58,8 @@ public class BattleUnit : MonoBehaviour
         image.color = originalColor;
         PlayEnterAnimation();
     }
+
+
 
 
 
@@ -84,9 +86,9 @@ public class BattleUnit : MonoBehaviour
         else
             sequence.Append(image.transform.DOLocalMoveX(originalPos.x - 50f, 0.25f));
 
-        sequence.AppendInterval(throwDuration); // Wait for the attack animation duration
-        sequence.Append(image.transform.DOLocalMove(originalPos, 0.25f)); // Return to original position
-        sequence.OnComplete(() => PlayParticleEffect(targetPosition)); // Trigger particle effect
+        sequence.AppendInterval(throwDuration);
+        sequence.Append(image.transform.DOLocalMove(originalPos, 0.25f)); 
+        sequence.OnComplete(() => PlayParticleEffect(targetPosition)); 
     }
 
 
@@ -97,17 +99,10 @@ public class BattleUnit : MonoBehaviour
             // Instantiate the particle effect at the target position with the prefab's rotation
             GameObject particleEffect = Instantiate(particleEffectPrefab, targetPosition, particleEffectPrefab.transform.rotation);
 
-            // Get the duration of the particle effect animation
             ParticleSystem particleSystem = particleEffect.GetComponent<ParticleSystem>();
             float particleDuration = particleSystem ? particleSystem.main.duration : 0f;
-
-            // Calculate the total duration of the particle effect animation
-            float totalDuration = particleDuration + 1f; // Additional 1 second for safety
-
-            // Destroy the particle effect after the total duration
+            float totalDuration = particleDuration + 1f;
             Destroy(particleEffect, totalDuration);
-
-            // Wait for the total duration before proceeding
             StartCoroutine(WaitForParticleEffect(totalDuration));
         }
     }

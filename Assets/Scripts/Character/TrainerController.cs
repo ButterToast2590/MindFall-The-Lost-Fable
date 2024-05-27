@@ -39,7 +39,6 @@ public class TrainerController : MonoBehaviour, Interactable
             StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
             {
                 GameController.Instance.StartTrainerBattle(this);
-                initiator.GetComponent<PlayerCon>().ResumeMovement();
             }));
         }
         else
@@ -74,10 +73,9 @@ public class TrainerController : MonoBehaviour, Interactable
     {
         gameController = controller;
     }
-
     public IEnumerator TriggerTrainerBattle(PlayerCon player)
     {
-        player.PauseMovement();
+        Debug.Log("TriggerTrainerBattle started");
 
         if (gameController != null)
         {
@@ -86,29 +84,38 @@ public class TrainerController : MonoBehaviour, Interactable
         else
         {
             Debug.LogError("GameController reference is null in TrainerController.");
+            yield break; // Exit if gameController is null to avoid further errors
         }
 
+        Debug.Log("Activating exclamation mark");
         exclamation.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         exclamation.SetActive(false);
+        Debug.Log("Exclamation mark deactivated");
 
         // Calculate the direction from the trainer to the player
         var diff = player.transform.position - transform.position;
+        Debug.Log("Initial difference: " + diff);
 
         // Move the trainer towards the player until one tile away
         while (diff.magnitude > 1.0f)
         {
             var moveDir = diff.normalized;
+            Debug.Log("Moving towards player: " + moveDir);
 
-            yield return character.Move(moveDir);
+            yield return StartCoroutine(character.Move(moveDir, () => Debug.Log("Movement step completed")));
             diff = player.transform.position - transform.position;
+            Debug.Log("Updated difference: " + diff);
         }
 
+        Debug.Log("Reached the player, starting dialog");
         // Show dialog before battle
-        StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
+        yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
         {
+            Debug.Log("Dialog completed, starting trainer battle");
             GameController.Instance.StartTrainerBattle(this);
-            player.ResumeMovement();
         }));
     }
+
+
 }

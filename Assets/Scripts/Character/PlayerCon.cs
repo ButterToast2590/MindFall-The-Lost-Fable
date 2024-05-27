@@ -7,12 +7,11 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
     [SerializeField] string name;
     [SerializeField] Sprite sprite;
     public float moveSpeed;
-    public event Action OnEncountered;
     public event Action<Collider2D> OnEnterTrainersView;
 
     private Character character;
     bool isInDialog = false;
-    bool isMovementPaused = false; 
+    bool isMovementPaused = false;
     bool isInTrainerViewCollider = false;
 
 
@@ -26,7 +25,7 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
         {
             if (character == null)
             {
-                character = GetComponent<Character>(); 
+                character = GetComponent<Character>();
             }
             return character;
         }
@@ -44,7 +43,7 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
 
     public void HandleUpdate()
     {
-        if (!character.IsMoving && !isMovementPaused) // Check if movement is not paused
+        if (!character.IsMoving && !isMovementPaused) 
         {
             Vector2 input = Vector2.zero;
             input.x = Input.GetAxisRaw("Horizontal");
@@ -63,7 +62,7 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
                 {
                     transform.Translate(new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime);
                 }
-               
+
 
             }
         }
@@ -76,18 +75,6 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.playerPosition = this.transform.position;
-    }
-
-    private void CheckForEncounters()
-    {
-        if (Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.GrassLayer) != null)
-        {
-            if (UnityEngine.Random.Range(1, 101) <= 15)
-            {
-                character.Animator.IsMoving = false;
-                OnEncountered?.Invoke();
-            }
-        }
     }
 
     private void CheckIfInTrainersView()
@@ -123,8 +110,6 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
 
     private void OnMoveOver()
     {
-        CheckForEncounters();
-        CheckIfInTrainersView();
         var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerLayers);
 
         foreach (var collider in colliders)
@@ -132,11 +117,14 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
             var triggerable = collider.GetComponent<IPlayerTriggerable>();
             if (triggerable != null)
             {
+                character.Animator.IsMoving = false;
                 triggerable.OnPlayerTriggered(this);
+                Debug.Log("Trigger detected: " + collider.name); // Add this line for debugging
                 break;
             }
         }
     }
+
 
 
     public void PauseMovement()

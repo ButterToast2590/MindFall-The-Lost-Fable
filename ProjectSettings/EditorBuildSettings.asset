@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroScene.unity
     guid: 9dff5e687c530ef40b7e54e3ebdc69d2
   - enabled: 1
-    path: Assets/Scenes/SampleSceneV0.3.6.unity
+    path: Assets/Scenes/HomeTown.unity
     guid: 7493a5fd9fa16a541aa0606f46c0cfe4
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleTutorial.unity
     guid: 18636033db3f68b409f54d8d66d3428a
+  - enabled: 1
+    path: Assets/Scenes/Route1.unity
+    guid: 3e63b24603023ef41b02da5309ebadcd
   m_configObjects: {}

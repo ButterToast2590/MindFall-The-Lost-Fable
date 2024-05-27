@@ -8,7 +8,7 @@ public class ButtonInPopUp : MonoBehaviour
     public void ContinueGame()
     {
         // Handle continue action
-        SceneManager.LoadScene("SampleSceneV0.3.6"); // Example scene name for continuing game
+        SceneManager.LoadScene("HomeTown"); // Example scene name for continuing game
     }
 
     public void NewGame()
