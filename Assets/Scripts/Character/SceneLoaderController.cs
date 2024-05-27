@@ -18,6 +18,7 @@ public class SceneLoaderController : MonoBehaviour, Interactable
         character = GetComponent<Character>();
     }
 
+
     private void Start()
     {
         SetGameController(gameController);

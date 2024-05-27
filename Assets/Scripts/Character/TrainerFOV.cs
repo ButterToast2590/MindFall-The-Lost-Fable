@@ -11,8 +11,8 @@ public class TrainerFOV : MonoBehaviour, IPlayerTriggerable
         if (!triggered)
         {
             Debug.Log("Player entered trainer's FOV");
-            GameController.Instance.OnEnterTrainersView(GetComponentInParent<TrainerController>());
             triggered = true;
+            GameController.Instance.OnEnterTrainersView(GetComponentInParent<TrainerController>());
         }
     }
 }

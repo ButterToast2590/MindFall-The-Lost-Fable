@@ -75631,12 +75631,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3765162122358622492, guid: b00eeaa0e56d4eb498347b57ebdee0d8, type: 3}
       propertyPath: m_Size.y
-      value: 1.7269287
+      value: 1.1745262
       objectReference: {fileID: 0}
     - target: {fileID: 3765162122358622492, guid: b00eeaa0e56d4eb498347b57ebdee0d8, type: 3}
       propertyPath: m_Offset.y
-      value: -0.73794556
+      value: -1.0141468
       objectReference: {fileID: 0}
+    - target: {fileID: 3765162122358622493, guid: b00eeaa0e56d4eb498347b57ebdee0d8, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 3765162122358622493, guid: b00eeaa0e56d4eb498347b57ebdee0d8, type: 3}
       propertyPath: m_Name
       value: Portal (1)
@@ -75667,7 +75671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3765162122358622495, guid: b00eeaa0e56d4eb498347b57ebdee0d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23.62
+      value: -23.79
       objectReference: {fileID: 0}
     - target: {fileID: 3765162122358622495, guid: b00eeaa0e56d4eb498347b57ebdee0d8, type: 3}
       propertyPath: m_LocalPosition.z

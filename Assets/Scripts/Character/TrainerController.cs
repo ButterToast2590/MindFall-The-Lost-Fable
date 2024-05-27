@@ -109,13 +109,15 @@ public class TrainerController : MonoBehaviour, Interactable
         }
 
         Debug.Log("Reached the player, starting dialog");
-        // Show dialog before battle
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
         {
             Debug.Log("Dialog completed, starting trainer battle");
-            GameController.Instance.StartTrainerBattle(this);
+            GameController.Instance.StartTrainerBattle(this); // Debug log after this line
+            Debug.Log("Starting trainer battle"); // Third debug log
         }));
+
+        // Additional debug log to ensure the coroutine completes
+        Debug.Log("TriggerTrainerBattle coroutine completed");
+
     }
-
-
-}
+    }
