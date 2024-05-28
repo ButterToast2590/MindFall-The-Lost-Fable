@@ -134,11 +134,36 @@ public class BattleSystem : MonoBehaviour
         OnBattleOver?.Invoke(won);
     }
 
+
     public void ResetBattleState()
     {
-        isTrainerBattle = false;
+        // Clear battle units
+        playerUnit.Clear();
+        enemyUnit.Clear();
+
+        // Reset UI elements or states
+        dialogBox.EnableActionSelector(false);
+        backButton.onClick.RemoveAllListeners();
+
+        // Reset party members' selections
+        foreach (PartyMemberUI member in memberSlots)
+        {
+            member.SetSelected(false);
+        }
+
+        // Reset references
+        playerParty = null;
+        trainerParty = null;
+        wildFables = null;
+        player = null;
         trainer = null;
+
+        // Reset animations/effects if necessary
+
+        // Reset battle state
+        state = BattleState.Start;
     }
+
 
 
     void ActionSelection()

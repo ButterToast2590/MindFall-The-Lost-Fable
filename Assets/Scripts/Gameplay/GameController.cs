@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour
         Instance = this;
         ConditionsDB.Init();
     }
+    void ResetBattleSystem()
+    {
+        battleSystem.ResetBattleState();
+    }
 
     private void Start()
     {
@@ -70,6 +74,7 @@ public class GameController : MonoBehaviour
 
     public void StartTrainerBattle(TrainerController trainer)
     {
+        Debug.Log("StartTrainerBattle called");
         state = GameState.Battle;
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
@@ -83,12 +88,8 @@ public class GameController : MonoBehaviour
 
     public void OnEnterTrainersView(TrainerController trainer)
     {
-        Debug.Log("OnEnterTrainersView called");
-        if (state != GameState.Cutscene)
-        {
             state = GameState.Cutscene;
             StartCoroutine(trainer.TriggerTrainerBattle(playerController));
-        }
     }
 
     void EndBattle(bool won)
@@ -96,13 +97,20 @@ public class GameController : MonoBehaviour
         state = GameState.FreeRoam;
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
-        battleSystem.ResetBattleState();
 
         if (won && trainer != null)
         {
             trainer.BattleLost();
         }
+
+        // Reset movement flag after battle
+        playerController.ResumeMovement();
+
+        // Reset the BattleSystem
+        ResetBattleSystem();
     }
+
+
 
     private void Update()
     {
@@ -120,8 +128,14 @@ public class GameController : MonoBehaviour
         }
         else if (state == GameState.Cutscene)
         {
-            StartTrainerBattle(trainer);
+            // Ensure the trainer's dialog triggers the battle
+            if (trainer != null && !DialogManager.Instance.IsShowing)
+            {
+                StartTrainerBattle(trainer);
+                trainer = null; // Reset trainer to avoid repeated calls
+            }
         }
+
     }
 
     public void StartCutsceneState()

@@ -34,11 +34,18 @@ public class TrainerController : MonoBehaviour, Interactable
     public void Interact(Transform initiator)
     {
         character.LookTowards(initiator.position);
-        if (!battleLost)
+        if (!battleLost) // Check if the trainer has not been defeated
         {
             StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
             {
-                GameController.Instance.StartTrainerBattle(this);
+                if (!battleLost) // Check again before starting the battle
+                {
+                    GameController.Instance.StartTrainerBattle(this);
+                }
+                else
+                {
+                    StartCoroutine(DialogManager.Instance.ShowDialog(dialogAfterBattle, name, sprite));
+                }
             }));
         }
         else
@@ -73,51 +80,43 @@ public class TrainerController : MonoBehaviour, Interactable
     {
         gameController = controller;
     }
-    public IEnumerator TriggerTrainerBattle(PlayerCon player)
+
+    public IEnumerator TriggerTrainerBattle(PlayerCon player, float minDistance = 1.5f)
     {
-        Debug.Log("TriggerTrainerBattle started");
-
-        if (gameController != null)
-        {
-            gameController.state = GameState.Cutscene;
-        }
-        else
-        {
-            Debug.LogError("GameController reference is null in TrainerController.");
-            yield break; // Exit if gameController is null to avoid further errors
-        }
-
-        Debug.Log("Activating exclamation mark");
         exclamation.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         exclamation.SetActive(false);
-        Debug.Log("Exclamation mark deactivated");
 
         // Calculate the direction from the trainer to the player
         var diff = player.transform.position - transform.position;
-        Debug.Log("Initial difference: " + diff);
 
-        // Move the trainer towards the player until one tile away
-        while (diff.magnitude > 1.0f)
+        // Move the trainer towards the player while maintaining the minimum distance
+        while (diff.magnitude > minDistance)
         {
             var moveDir = diff.normalized;
             Debug.Log("Moving towards player: " + moveDir);
 
             yield return StartCoroutine(character.Move(moveDir, () => Debug.Log("Movement step completed")));
+
+            // Recalculate the direction and distance after movement
             diff = player.transform.position - transform.position;
             Debug.Log("Updated difference: " + diff);
         }
 
-        Debug.Log("Reached the player, starting dialog");
+        // After reaching the minimum distance, start the dialog
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog, name, sprite, () =>
         {
-            Debug.Log("Dialog completed, starting trainer battle");
-            GameController.Instance.StartTrainerBattle(this); // Debug log after this line
-            Debug.Log("Starting trainer battle"); // Third debug log
+            if (GameController.Instance != null)
+            {
+                GameController.Instance.StartTrainerBattle(this);
+            }
+            else
+            {
+                Debug.LogError("GameController reference is null, unable to start battle.");
+            }
         }));
-
-        // Additional debug log to ensure the coroutine completes
-        Debug.Log("TriggerTrainerBattle coroutine completed");
-
     }
-    }
+
+
+
+}

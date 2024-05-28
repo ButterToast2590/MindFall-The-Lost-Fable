@@ -11,9 +11,20 @@ public class Portal : MonoBehaviour, IPlayerTriggerable
     [SerializeField] Transform spawnPoint;
 
     PlayerCon player;
+    public Character Character { get; private set; }
+
+    private void Awake()
+    {
+        Character = GetComponent<Character>();
+        if (Character == null)
+        {
+            Debug.LogError("Character component not found.");
+        }
+    }
 
     public void OnPlayerTriggered(PlayerCon player)
     {
+        Character.Animator.IsMoving = false;
         this.player = player;
         StartCoroutine(SwitchScene());
     }

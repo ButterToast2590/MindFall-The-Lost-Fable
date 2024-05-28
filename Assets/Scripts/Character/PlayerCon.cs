@@ -84,19 +84,16 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
             var collider = Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.FovLayer);
             if (collider != null)
             {
-                // Check if the player has just entered the collider
                 if (!isInTrainerViewCollider)
                 {
                     character.Animator.IsMoving = false;
                     OnEnterTrainersView?.Invoke(collider);
-                    // Pause movement when entering the trainer's view collider
                     PauseMovement();
                 }
                 isInTrainerViewCollider = true;
             }
             else
             {
-                // Resume movement when leaving the trainer's view collider
                 if (isInTrainerViewCollider)
                 {
                     ResumeMovement();
@@ -111,18 +108,18 @@ public class PlayerCon : MonoBehaviour, IDataPersistence
     private void OnMoveOver()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offsetY), 0.2f, GameLayers.i.TriggerLayers);
-
+  
         foreach (var collider in colliders)
         {
             var triggerable = collider.GetComponent<IPlayerTriggerable>();
             if (triggerable != null)
             {
-                character.Animator.IsMoving = false;
                 triggerable.OnPlayerTriggered(this);
                 Debug.Log("Trigger detected: " + collider.name); // Add this line for debugging
                 break;
             }
         }
+
     }
 
 

@@ -22,7 +22,7 @@ MonoBehaviour:
   effects:
     boosts: []
     status: 0
+    volatileStatus: 0
   target: 0
   priority: 0
-  statusSprite: {fileID: 0}
-  particleEffectPrefab: {fileID: 6769053783052861897, guid: c47f5ea78c2b43842950078011c60820, type: 3}
+  particleEffectPrefab: {fileID: 7558424929678334324, guid: f5fb60b9f86ad124aaf44815e2ee1bc5, type: 3}

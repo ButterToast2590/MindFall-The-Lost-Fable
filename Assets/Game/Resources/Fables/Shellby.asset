@@ -30,11 +30,11 @@ MonoBehaviour:
   fableID: 4
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: 5384ece4325c7284ead5e401bcd5ce62, type: 2}
-    level: 1
+    level: 0
   - moveBase: {fileID: 11400000, guid: bc1694d07878ee445a1c70b1782d9ba6, type: 2}
-    level: 4
+    level: 0
   - moveBase: {fileID: 11400000, guid: 0fc85cd41e4c4b04c8ffc65405722fae, type: 2}
-    level: 7
+    level: 0
   - moveBase: {fileID: 11400000, guid: 082f8a49c05f55a4c83b2c8e38db6b3d, type: 2}
-    level: 16
+    level: 0
   isBigger: 1

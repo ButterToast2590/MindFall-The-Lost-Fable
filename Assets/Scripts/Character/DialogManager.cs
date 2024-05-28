@@ -50,6 +50,7 @@ public class DialogManager : MonoBehaviour
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
 
+
     public void HandleUpdate()
     {
         bool showContinueButton = !isTyping && currentLine < dialog.Lines.Count;

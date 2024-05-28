@@ -1966,11 +1966,13 @@ MonoBehaviour:
   fov: {fileID: 1798832218}
   dialog:
     lines:
-    - "I've been waiting for a worthy opponent. Let\u2019s see if you can survive
-      against my fable."
+    - 'I''ve been itching for a real challenge, and you might just be the one to
+      scratch that itch! '
+    - Let's see if you've got what it takes to make it in the big leagues of fable
+      research. Get ready to prove yourself, kid!
   dialogAfterBattle:
     lines:
-    - You have prove that the connection with your fable is still important.
+    - You have proven that you have the basics goodluck on your journey.
   gameController: {fileID: 0}
 --- !u!114 &490894837
 MonoBehaviour:
@@ -2004,7 +2006,7 @@ MonoBehaviour:
   - {fileID: 2072002573, guid: 171c4fa737915a84393bca05cc82cc8a, type: 3}
   - {fileID: -1038797019, guid: 171c4fa737915a84393bca05cc82cc8a, type: 3}
   - {fileID: -1612169073, guid: 171c4fa737915a84393bca05cc82cc8a, type: 3}
-  defaultDirection: 1
+  defaultDirection: 3
 --- !u!114 &490894838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2031,7 +2033,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027861595, y: 0.06268954}
+  m_Offset: {x: -0.027861595, y: -0.35677958}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2042,7 +2044,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.97891426, y: 1.4371209}
+  m_Size: {x: 0.6792965, y: 0.847867}
   m_EdgeRadius: 0
 --- !u!50 &490894840
 Rigidbody2D:
@@ -2125,7 +2127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490894835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.47, y: 14.17, z: -3.6246488}
+  m_LocalPosition: {x: -16.1, y: 13.08, z: -3.6246488}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2147,7 +2149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fables:
-  - _base: {fileID: 11400000, guid: 1fd9c76185170d045baa4f96c2c9cfc7, type: 2}
+  - _base: {fileID: 11400000, guid: a07db1251e36acf49982775299db61ef, type: 2}
     level: 2
     statusSprite: {fileID: 0}
     isDefeated: 0
@@ -4583,7 +4585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410762867}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.72, y: 41.69, z: -3.6246488}
+  m_LocalPosition: {x: 15.5, y: 43.8, z: -3.6246488}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4860,7 +4862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1798832219
 Transform:
   m_ObjectHideFlags: 0
