@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/BattleTutorial.unity
     guid: 18636033db3f68b409f54d8d66d3428a
   - enabled: 1
-    path: Assets/Scenes/Route1.unity
+    path: Assets/Prefab/Route1.unity
     guid: 3e63b24603023ef41b02da5309ebadcd
   m_configObjects: {}
