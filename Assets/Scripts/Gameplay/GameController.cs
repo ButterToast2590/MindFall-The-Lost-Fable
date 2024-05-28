@@ -86,6 +86,7 @@ public class GameController : MonoBehaviour
         battleSystem.StartTrainerBattle(playerParty, trainerParty);
     }
 
+
     public void OnEnterTrainersView(TrainerController trainer)
     {
             state = GameState.Cutscene;
@@ -108,7 +109,11 @@ public class GameController : MonoBehaviour
 
         // Reset the BattleSystem
         ResetBattleSystem();
+
+        // Reset the trainer reference
+        trainer = null;
     }
+
 
 
 

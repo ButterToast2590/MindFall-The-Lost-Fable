@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
-public enum DestinationIdentifier { A, B, C, D, E}
+public enum DestinationIdentifier { A, B, C, D, E }
 public class Portal : MonoBehaviour, IPlayerTriggerable
 {
     [SerializeField] int sceneToLoad = -1;
@@ -15,16 +15,28 @@ public class Portal : MonoBehaviour, IPlayerTriggerable
 
     private void Awake()
     {
+        // Check if the Character component is present
         Character = GetComponent<Character>();
         if (Character == null)
         {
-            Debug.LogError("Character component not found.");
+            Debug.LogError("Character component not found on the portal object.");
         }
     }
 
+
     public void OnPlayerTriggered(PlayerCon player)
     {
-        Character.Animator.IsMoving = false;
+        if (player == null)
+        {
+            Debug.LogError("PlayerCon reference is null.");
+            return;
+        }
+
+        if (player.Character == null)
+        {
+            Debug.LogError("Character component not found on the player object.");
+            return;
+        }
         this.player = player;
         StartCoroutine(SwitchScene());
     }

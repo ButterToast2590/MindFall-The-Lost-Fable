@@ -13196,7 +13196,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8918471631225729190}
+        - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
           m_MethodName: DownBtnDown
           m_Mode: 1
@@ -13212,7 +13212,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8918471631225729190}
+        - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
           m_MethodName: DownBtnUp
           m_Mode: 1
@@ -17000,19 +17000,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8918471630220739941}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8918471630629451946}
-        m_TargetAssemblyTypeName: FaeBook, Assembly-CSharp
-        m_MethodName: EnableMenuItem
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8918471630221412601
 GameObject:
   m_ObjectHideFlags: 0
@@ -21203,7 +21191,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8918471631225729190}
+        - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
           m_MethodName: UpBtnDown
           m_Mode: 1
@@ -21219,7 +21207,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8918471631225729190}
+        - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
           m_MethodName: UpBtnUp
           m_Mode: 1
@@ -31800,7 +31788,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8918471631225729190}
+      - m_Target: {fileID: 2688820874772328130}
         m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
         m_MethodName: OnInteract
         m_Mode: 1
@@ -40591,7 +40579,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8918471631225729190}
+        - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
           m_MethodName: RightBtnDown
           m_Mode: 1
@@ -40607,7 +40595,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8918471631225729190}
+        - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
           m_MethodName: RightBtnUp
           m_Mode: 1
@@ -54016,7 +54004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8918471631225729188}
   - component: {fileID: 8918471631225729191}
-  - component: {fileID: 8918471631225729190}
+  - component: {fileID: 2688820874772328130}
   - component: {fileID: 8918471631225729186}
   - component: {fileID: 8918471631225729187}
   - component: {fileID: 8918471631225729184}
@@ -54097,7 +54085,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8918471631225729190
+--- !u!114 &2688820874772328130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54110,7 +54098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Eripin
-  sprite: {fileID: 21300000, guid: 4f112aeda234bb4449e0a6ca837e8597, type: 3}
+  sprite: {fileID: -1608270055, guid: 7d729578cbbc10340836bec80878dbd9, type: 3}
   moveSpeed: 3
 --- !u!114 &8918471631225729186
 MonoBehaviour:
@@ -63857,7 +63845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd462441a7fbe834d9bbbc3d360be620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 8918471631225729190}
+  playerController: {fileID: 2688820874772328130}
   battleSystem: {fileID: 8918471630538254005}
   worldCamera: {fileID: 8918471632041571665}
   state: 0
@@ -66948,19 +66936,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8918471631491409702}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8918471630629451946}
-        m_TargetAssemblyTypeName: FaeBook, Assembly-CSharp
-        m_MethodName: EnableMenuItem
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8918471631493450840
 GameObject:
   m_ObjectHideFlags: 0
@@ -81725,7 +81701,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8918471631225729190}
+        - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
           m_MethodName: LeftBtnDown
           m_Mode: 1
@@ -81741,7 +81717,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8918471631225729190}
+        - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
           m_MethodName: LeftBtnUp
           m_Mode: 1
