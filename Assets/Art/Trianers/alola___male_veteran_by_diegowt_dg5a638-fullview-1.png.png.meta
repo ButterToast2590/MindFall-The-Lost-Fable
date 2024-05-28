@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,7 +115,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 196
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2171917ddf08f4585c023db17a7eb3
+      internalID: 752176848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_1
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 194
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7328d33897fb3d34f8f771a7cdd933d2
+      internalID: -344368099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 196
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 075f126f375949646ab7a252fa62f6ef
+      internalID: -48914462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_3
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 194
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b69892276248a0419c8a02b8803e3fd
+      internalID: -657544074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_4
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 132
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b334a83eb77509b47bd8099c6eb0659a
+      internalID: -2016078143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_5
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 132
+        width: 36
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e0ddb11d220304a8a7b95b7f98b945
+      internalID: 1058810657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_6
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 132
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5014ccc225f0e0345802f87d17b7f76f
+      internalID: 1166250427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_7
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 132
+        width: 36
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e9038f96ea1e02418267ee4a1956cf0
+      internalID: -157254328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_8
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 68
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 603bee7501c78a14abd683f6761e314b
+      internalID: -509300437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_9
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 68
+        width: 36
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 584ba339898b943489b2b992e5119c43
+      internalID: -1426947929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_10
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 68
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed6c036ef95e8ce46ad8a3b4a8d1df3a
+      internalID: 699463117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_11
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 68
+        width: 36
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e14e9c9f8cd3ab4fb5fa35278ae01e6
+      internalID: -801143726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_12
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 4
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3dfef00b5bb8a149b1611ad2af110e1
+      internalID: -1334333147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_13
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 2
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d204ec30669f4449d38b1721641e71
+      internalID: -1941850836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_14
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 4
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44787ba377bbd0c4f9aeb34f47e1b31c
+      internalID: 818172332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_15
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 2
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1531012b3de6e7458cceeba4c26e135
+      internalID: 1962580520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +462,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_0: 752176848
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_1: -344368099
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_10: 699463117
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_11: -801143726
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_12: -1334333147
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_13: -1941850836
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_14: 818172332
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_15: 1962580520
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_2: -48914462
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_3: -657544074
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_4: -2016078143
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_5: 1058810657
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_6: 1166250427
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_7: -157254328
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_8: -509300437
+      alola___male_veteran_by_diegowt_dg5a638-fullview-1.png_9: -1426947929
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

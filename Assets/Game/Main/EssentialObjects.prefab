@@ -331,8 +331,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3360588359965268937}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.99997807}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.9999962}
+  m_LocalScale: {x: 0.62359154, y: 0.62359154, z: 0.62359154}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4536046860596945018}
@@ -341,9 +341,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170, y: -186}
+  m_AnchoredPosition: {x: 2, y: -10}
   m_SizeDelta: {x: 187.43, y: 201.41}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &1518769452424467773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13429,22 +13429,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2688820874772328130}
-          m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
-          m_MethodName: DownBtnDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -13461,14 +13445,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 0
+  - eventID: 2
     callback:
       m_PersistentCalls:
-        m_Calls: []
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 2688820874772328130}
+          m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
+          m_MethodName: DownBtnDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &8918471630106508928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14347,7 +14339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8918471630142452269
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14357,7 +14349,7 @@ RectTransform:
   m_GameObject: {fileID: 8918471630142452268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.046918}
-  m_LocalScale: {x: 0.4090438, y: 0.4090438, z: 0.4090438}
+  m_LocalScale: {x: 0.93695575, y: 0.93695575, z: 0.93695575}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8918471631678966579}
@@ -19847,8 +19839,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8918471631751503350}
   m_HandleRect: {fileID: 8918471631751503353}
   m_Direction: 2
-  m_Value: -0.000015937556
-  m_Size: 0.7964095
+  m_Value: -0.000015368363
+  m_Size: 0.79640955
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21424,13 +21416,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 3
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
-          m_MethodName: UpBtnDown
+          m_MethodName: UpBtnUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -21440,13 +21432,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 3
+  - eventID: 2
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2688820874772328130}
           m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
-          m_MethodName: UpBtnUp
+          m_MethodName: UpBtnDown
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -39994,8 +39986,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8918471630841548664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.9999962}
+  m_LocalScale: {x: 0.67136294, y: 0.67136294, z: 0.67136294}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8918471629997717033}
@@ -40004,9 +39996,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -235.14001, y: -178.14001}
+  m_AnchoredPosition: {x: -20, y: -19}
   m_SizeDelta: {x: 169.04, y: 169.07}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &8918471630841548660
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40037,7 +40029,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -643414517, guid: 7fe3cd2797afa4c41a00e134008ee8f8, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -40812,22 +40804,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2688820874772328130}
-          m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
-          m_MethodName: RightBtnDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -40844,14 +40820,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 0
+  - eventID: 2
     callback:
       m_PersistentCalls:
-        m_Calls: []
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 2688820874772328130}
+          m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
+          m_MethodName: RightBtnDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &8918471630866966809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43439,7 +43423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -27, y: -0.00000095367}
+  m_AnchoredPosition: {x: -27, y: -0.0000009536743}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &8918471630942135177
@@ -44576,8 +44560,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8918471631426013368}
   m_HandleRect: {fileID: 8918471631426013371}
   m_Direction: 2
-  m_Value: 1.0000015
-  m_Size: 0.46555534
+  m_Value: 1.0000014
+  m_Size: 0.4655553
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -54350,11 +54334,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fables:
-  - _base: {fileID: 11400000, guid: 7490ff53809ec904d80d54954906397f, type: 2}
-    level: 5
-    statusSprite: {fileID: 0}
-    isDefeated: 0
-    fableID: 0
   - _base: {fileID: 11400000, guid: 1fd9c76185170d045baa4f96c2c9cfc7, type: 2}
     level: 5
     statusSprite: {fileID: 0}
@@ -54365,17 +54344,22 @@ MonoBehaviour:
     statusSprite: {fileID: 0}
     isDefeated: 0
     fableID: 0
+  - _base: {fileID: 11400000, guid: c6ccda026c8ea284dadc3310cc10e8b8, type: 2}
+    level: 5
+    statusSprite: {fileID: 0}
+    isDefeated: 0
+    fableID: 0
   - _base: {fileID: 11400000, guid: ae6f83e567203f042afc7505b26b66c6, type: 2}
     level: 5
     statusSprite: {fileID: 0}
     isDefeated: 0
     fableID: 0
-  - _base: {fileID: 11400000, guid: 2c76e3ff8265bfd499f13c6a2392488e, type: 2}
+  - _base: {fileID: 11400000, guid: eece4aa6e010dc54bba3ff9292c4be5d, type: 2}
     level: 5
     statusSprite: {fileID: 0}
     isDefeated: 0
     fableID: 0
-  - _base: {fileID: 11400000, guid: eece4aa6e010dc54bba3ff9292c4be5d, type: 2}
+  - _base: {fileID: 11400000, guid: 6113e584d9587a54a95bf7266dc48d9b, type: 2}
     level: 5
     statusSprite: {fileID: 0}
     isDefeated: 0
@@ -59536,7 +59520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8918471631337629558
 RectTransform:
   m_ObjectHideFlags: 0
@@ -59546,7 +59530,7 @@ RectTransform:
   m_GameObject: {fileID: 8918471631337629561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.065515}
-  m_LocalScale: {x: 0.3505828, y: 0.3505828, z: 0.3505828}
+  m_LocalScale: {x: 0.7905993, y: 0.7905993, z: 0.7905993}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8918471630938087802}
@@ -59561,7 +59545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40.039, y: -1}
+  m_AnchoredPosition: {x: -55, y: 11}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8918471631338416170
@@ -67718,8 +67702,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8918471631438820553}
   m_HandleRect: {fileID: 8918471631438820552}
   m_Direction: 2
-  m_Value: 1.0000023
-  m_Size: 0.46555525
+  m_Value: 1.000002
+  m_Size: 0.46555522
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -80838,7 +80822,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8918471631442386296}
   m_Direction: 2
   m_Value: 0.9999983
-  m_Size: 0.3241457
+  m_Size: 0.32414573
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -81934,22 +81918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2688820874772328130}
-          m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
-          m_MethodName: LeftBtnDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -81966,14 +81934,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 0
+  - eventID: 2
     callback:
       m_PersistentCalls:
-        m_Calls: []
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 2688820874772328130}
+          m_TargetAssemblyTypeName: PlayerCon, Assembly-CSharp
+          m_MethodName: LeftBtnDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &8918471631831567741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87003,8 +86979,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8918471629923356890}
   m_HandleRect: {fileID: 8918471629923356893}
   m_Direction: 2
-  m_Value: 1.0000007
-  m_Size: 0.38178796
+  m_Value: 1.0000006
+  m_Size: 0.3817879
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

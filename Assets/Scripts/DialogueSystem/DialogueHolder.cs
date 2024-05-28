@@ -11,8 +11,11 @@ namespace DialogueSystem
         [SerializeField] private Sprite[] backgroundImages;
         [SerializeField] private Image backgroundImageHolder;
 
+        private Scene currentScene;
+
         private void Awake()
         {
+            currentScene = SceneManager.GetActiveScene();
             StartCoroutine(DialogueSequence());
         }
 
@@ -22,16 +25,35 @@ namespace DialogueSystem
             {
                 Deactivate();
                 transform.GetChild(i).gameObject.SetActive(true);
-                backgroundImageHolder.sprite = backgroundImages[i]; // Change background image
+                backgroundImageHolder.sprite = backgroundImages[i];
                 yield return new WaitUntil(() => transform.GetChild(i).GetComponent<DialogueLine>().finished);
             }
-            // Load the main game scene after the dialogue sequence is finished
-            LoadMainScene();
+            if (currentScene.name == "Route1")
+            {
+                LoadEndScene();
+            }
+            else if (currentScene.name == "EndScene")
+            {
+                LoadTitleScene();
+            }
+            else
+            {
+                LoadMainScene();
+            }
         }
 
         private void LoadMainScene()
         {
             SceneManager.LoadScene("HomeTown");
+        }
+
+        private void LoadEndScene()
+        {
+            SceneManager.LoadScene("EndScene");
+        }
+        private void LoadTitleScene()
+        {
+            SceneManager.LoadScene("TitleScreen");
         }
 
         private void Deactivate()

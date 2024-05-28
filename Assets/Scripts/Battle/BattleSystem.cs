@@ -162,7 +162,11 @@ public class BattleSystem : MonoBehaviour
 
         // Reset battle state
         state = BattleState.Start;
+
+        // Reset isTrainerBattle
+        isTrainerBattle = false;
     }
+
 
 
 
